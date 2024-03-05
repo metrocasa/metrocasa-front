@@ -22,7 +22,7 @@ const Header = () => {
           <li>
             <Link
               href={'/'}
-              className="text-primary-dark hover:text-red-400 p-5 py-7 transition"
+              className="text-primary-dark hover:text-main-red p-5 py-7 transition"
             >
               Home
             </Link>
@@ -30,7 +30,7 @@ const Header = () => {
           <li>
             <Link
               href={'/empreendimentos'}
-              className="text-primary-dark hover:text-red-400 py-7 transition"
+              className="text-primary-dark hover:text-main-red p-5 py-7 transition"
             >
               Empreendimentos
             </Link>
@@ -38,7 +38,7 @@ const Header = () => {
           <li>
             <Link
               href={'/blog'}
-              className="text-primary-dark hover:text-red-400 py-7 transition"
+              className="text-primary-dark hover:text-main-red p-5 py-7 transition"
             >
               Blog
             </Link>
@@ -46,7 +46,7 @@ const Header = () => {
           <li>
             <Link
               href={'/contato'}
-              className="text-primary-dark hover:text-red-400 py-7 transition"
+              className="text-primary-dark hover:text-main-red p-5 py-7 transition"
             >
               Contato
             </Link>
