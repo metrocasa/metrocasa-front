@@ -23,16 +23,13 @@ interface Imovel {
 
 const EmpreendimentoList = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-  const POPULATE_PARAM = process.env.POPULATE_PARAM;
 
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
 
   useEffect(() => {
     const fetchImoveis = async () => {
       try {
-        const response = await axios.get(
-          `${BASE_URL}/api/imoveis${POPULATE_PARAM}`,
-        );
+        const response = await axios.get(`${BASE_URL}/api/imoveis/?populate=*`);
         setImoveis(response.data.data);
       } catch (error) {
         console.error('Erro ao buscar imóveis:', error);

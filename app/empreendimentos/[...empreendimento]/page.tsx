@@ -1,5 +1,6 @@
 'use client';
 
+import HeroSection from '@/components/HeroSection/HeroSection';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -46,6 +47,7 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
 
   return (
     <div>
+      <HeroSection title={'Detalhes do Empreendimento'} />
       {imovel ? (
         <>
           <h1>Detalhes do Produto: </h1>
