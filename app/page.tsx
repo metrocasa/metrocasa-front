@@ -1,18 +1,20 @@
-import EmpreendimentoList from '@/components/EmpreendimentoList/EmpreendimentoList';
-import Filter from '@/components/Filter/Filter';
-import Slider from '@/components/Slider/Slider';
-
-import Image from 'next/image';
+import EmpreendimentoList from "@/components/EmpreendimentoList/EmpreendimentoList";
+import Filter from "@/components/Filter/Filter";
+import Slider from "@/components/Slider/Slider";
 
 export default function Home() {
   return (
     <>
-      <Slider />
-      <Filter />
-      <EmpreendimentoList />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-16">
-        <h1></h1>
+      <div className="relative  mb-14">
+        <div className="z-60">
+          <Slider />
+        </div>
+
+        <div className="w-full z-60 absolute z-50 -bottom-8 mx-auto">
+          <Filter />
+        </div>
       </div>
+      <EmpreendimentoList />
     </>
   );
 }

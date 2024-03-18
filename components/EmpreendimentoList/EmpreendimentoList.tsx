@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import EmpreendimentoCard from './EmpreendimentoCard';
-import Link from 'next/link';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import EmpreendimentoCard from "./EmpreendimentoCard";
+import Link from "next/link";
 
 interface Imovel {
   id: number;
@@ -32,7 +32,7 @@ const EmpreendimentoList = () => {
         const response = await axios.get(`${BASE_URL}/api/imoveis/?populate=*`);
         setImoveis(response.data.data);
       } catch (error) {
-        console.error('Erro ao buscar imóveis:', error);
+        console.error("Erro ao buscar imóveis:", error);
       }
     };
 

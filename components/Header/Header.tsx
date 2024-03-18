@@ -1,27 +1,31 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import React from 'react';
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import React from "react";
+
+import Sidebar from "./sidebar";
 
 const Header = () => {
   const router = useRouter;
-  console.log(router);
+
   return (
-    <div className="bg-slate-50 py-5">
-      <nav className="flex justify-between items-center container mx-auto px-4 sm:px-6 lg:px-16">
-        <Link href={'/'}>
-          <Image
-            src={'logo-red.svg'}
-            alt="Logo metrocasa"
-            width={215}
-            height={100}
-            priority
-          />
-        </Link>
+    <div className="bg-slate-50 py-5 flex justify-between p-5 items-center">
+      <Link href={"/"}>
+        <Image
+          src={"logo-red.svg"}
+          alt="Logo metrocasa"
+          width={215}
+          height={100}
+          priority
+        />
+      </Link>
+      <nav className="hidden lg:flex justify-between items-center  ">
         <ul className="p-5 flex gap-7 font-bold">
           <li>
             <Link
-              href={'/'}
+              href={"/"}
               className="text-primary-dark hover:text-main-red p-5 py-7 transition"
             >
               Home
@@ -29,7 +33,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              href={'/empreendimentos'}
+              href={"/empreendimentos"}
               className="text-primary-dark hover:text-main-red p-5 py-7 transition"
             >
               Empreendimentos
@@ -37,7 +41,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              href={'/blog'}
+              href={"/blog"}
               className="text-primary-dark hover:text-main-red p-5 py-7 transition"
             >
               Blog
@@ -45,7 +49,7 @@ const Header = () => {
           </li>
           <li>
             <Link
-              href={'/contato'}
+              href={"/contato"}
               className="text-primary-dark hover:text-main-red p-5 py-7 transition"
             >
               Contato
@@ -53,6 +57,10 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+
+      <div className="lg:hidden">
+        <Sidebar />
+      </div>
     </div>
   );
 };

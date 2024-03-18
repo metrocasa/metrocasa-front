@@ -1,14 +1,13 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import Link from 'next/link';
-import Header from '@/components/Header/Header';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Header from "@/components/Header/Header";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Metrocasa',
-  description: 'Apartamentos em todas as regiões de São Paulo',
+  title: "Metrocasa",
+  description: "Apartamentos em todas as regiões de São Paulo",
 };
 
 export default function RootLayout({
