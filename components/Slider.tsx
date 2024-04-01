@@ -1,17 +1,12 @@
-"use client";
+'use client';
 
-import React, { useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import axios from "axios";
-import Image from "next/image";
-import {
-  A11y,
-  Autoplay,
-  EffectFade,
-  Navigation,
-  Pagination,
-} from "swiper/modules";
+import React, { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import axios from 'axios';
+import Image from 'next/image';
+
+import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 
 interface Banner {
   id: number;
@@ -44,7 +39,7 @@ const Slider = () => {
         const response = await axios.get(`${BASE_URL}/api/banners?populate=*`);
         setBanners(response.data.data);
       } catch (error) {
-        console.error("Error fetching banners:", error);
+        console.error('Error fetching banners:', error);
       }
     };
 
@@ -57,7 +52,7 @@ const Slider = () => {
         spaceBetween={30}
         slidesPerView={1}
         navigation={true}
-        effect={"fade"}
+        effect={'fade'}
         speed={1500}
         autoplay={{ delay: 2500 }}
         pagination={{

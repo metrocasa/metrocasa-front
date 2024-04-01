@@ -1,4 +1,4 @@
-import HeroSection from '@/components/HeroSection/HeroSection';
+import HeroSection from '@/components/HeroSection';
 import Image from 'next/image';
 
 export default function BlogPage() {

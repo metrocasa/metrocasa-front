@@ -1,28 +1,10 @@
-import Image from "next/image";
-import Link from "next/link";
-import React from "react";
-import { useMediaQuery } from "react-responsive";
-import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
-import { MenuIcon } from "lucide-react";
-
-const links = [
-  {
-    label: "Home",
-    href: "/",
-  },
-  {
-    label: "Empreendimentos",
-    href: "/empreendimentos",
-  },
-  {
-    label: "Blog",
-    href: "/blog",
-  },
-  {
-    label: "Contato",
-    href: "/contato",
-  },
-];
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import { useMediaQuery } from 'react-responsive';
+import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
+import { MenuIcon } from 'lucide-react';
+import { links } from '@/constants';
 
 const Sidebar = () => {
   return (
@@ -32,9 +14,9 @@ const Sidebar = () => {
       </SheetTrigger>
       <SheetContent className="p-0">
         <nav className="flex flex-col justify-between w-full p-14">
-          <Link href={"/"}>
+          <Link href={'/'}>
             <Image
-              src={"logo-red.svg"}
+              src={'logo-red.svg'}
               alt="Logo metrocasa"
               width={220}
               height={100}

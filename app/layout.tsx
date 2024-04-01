@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import Header from "@/components/Header/Header";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import Header from '@/components/Header';
+import { ImoveisProvider } from '@/contexts/imoveis-context';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Metrocasa",
-  description: "Apartamentos em todas as regiões de São Paulo",
+  title: 'Metrocasa',
+  description: 'Apartamentos em todas as regiões de São Paulo',
 };
 
 export default function RootLayout({
@@ -16,11 +17,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <div>{children}</div>
-      </body>
-    </html>
+    <ImoveisProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Header />
+          <div>{children}</div>
+        </body>
+      </html>
+    </ImoveisProvider>
   );
 }

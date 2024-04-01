@@ -1,55 +1,123 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import EmpreendimentoCard from "./EmpreendimentoCard";
-import Link from "next/link";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import EmpreendimentoCard from './EmpreendimentoCard';
+import Link from 'next/link';
 
-interface Imovel {
-  id: number;
-  attributes: {
-    title: string;
-    slug: string;
-    fachada: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      };
-    };
-    hash: string;
-  };
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+// Import Swiper styles
+import 'swiper/css';
+import { Pagination } from 'swiper/modules';
+
+import { useImoveis } from '@/contexts/imoveis-context';
+import { usePathname, useRouter } from 'next/navigation';
+
+interface IProps {
+  region?: string | null;
+  status?: string | null;
+  search?: string | null;
 }
 
-const EmpreendimentoList = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const EmpreendimentoList = ({ search, region, status }: IProps) => {
+  const path = usePathname();
 
-  const [imoveis, setImoveis] = useState<Imovel[]>([]);
+  const { imoveis, quantityImoveis } = useImoveis();
 
-  useEffect(() => {
-    const fetchImoveis = async () => {
-      try {
-        const response = await axios.get(`${BASE_URL}/api/imoveis/?populate=*`);
-        setImoveis(response.data.data);
-      } catch (error) {
-        console.error("Erro ao buscar imóveis:", error);
-      }
-    };
+  const filteredImoveis = (
+    paramTitle: string | null | undefined,
+    paramNeighborhoods: string | null | undefined,
+    paramStatus: string | null | undefined,
+  ) => {
+    // Verificar se todos os filtros estão vazios
+    if (!paramTitle && !paramNeighborhoods && !paramStatus) {
+      // Se nenhum filtro estiver preenchido, retornar todos os imóveis
+      return imoveis;
+    }
 
-    fetchImoveis();
-  }, []);
+    // Aplicar os filtros individualmente se estiverem preenchidos
+    let filtered = [...imoveis];
+
+    if (paramTitle) {
+      filtered = filtered.filter((imovel) =>
+        imovel.attributes.title?.includes(paramTitle),
+      );
+    }
+
+    if (paramNeighborhoods) {
+      filtered = filtered.filter(
+        (imovel) => imovel.attributes.neighborhoods === paramNeighborhoods,
+      );
+    }
+
+    if (paramStatus) {
+      filtered = filtered.filter(
+        (imovel) => imovel.attributes.status === paramStatus,
+      );
+    }
+
+    return filtered;
+  };
+
+  console.log('FILTER: ', filteredImoveis(search, region, status));
 
   return (
-    <div className="flex gap-1">
-      {imoveis.map((imovel) => (
-        <Link
-          key={imovel.attributes.title}
-          href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
+    <>
+      {/* RENDERIZAR NA PAGINA HOME */}
+      {path === '/' && (
+        <Swiper
+          spaceBetween={2}
+          slidesPerView={5}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            300: {
+              slidesPerView: 1,
+            },
+            640: {
+              slidesPerView: 2,
+            },
+            800: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
+            1400: {
+              slidesPerView: 5,
+            },
+          }}
+          modules={[Pagination]}
         >
-          <EmpreendimentoCard key={imovel.id} data={imovel} />
-        </Link>
-      ))}
-    </div>
+          {quantityImoveis(10).map((imovel, index) => (
+            <SwiperSlide key={index}>
+              <Link
+                href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
+              >
+                <EmpreendimentoCard key={imovel.id} data={imovel} />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
+
+      {/* RENDER DA PAGINA EMPREENDIMENTOS */}
+      {path.startsWith('/empreendimentos') && (
+        <div className="flex gap-[2px] flex-wrap w-full">
+          {filteredImoveis(search, region, status).map((imovel, index) => (
+            <Link
+              key={index}
+              href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
+            >
+              <EmpreendimentoCard key={imovel.id} data={imovel} />
+            </Link>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
