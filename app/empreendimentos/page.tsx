@@ -1,7 +1,9 @@
 'use client';
 
 import EmpreendimentoList from '@/components/EmpreendimentoList/EmpreendimentoList';
-import HeroSection from '@/components/HeroSection';
+import { HeroSection } from '@/components/HeroSection';
+import { Loading } from '@/components/loading';
+
 import { useImoveis } from '@/contexts/imoveis-context';
 
 import { useSearchParams } from 'next/navigation';
@@ -16,8 +18,14 @@ export default function EmpreendimentosPage() {
 
   return (
     <>
-      <HeroSection title={'Empreendimentos'} />
-      <EmpreendimentoList region={region} status={status} search={search} />
+      {imoveis.length ? (
+        <div>
+          <HeroSection title={'Empreendimentos'} />
+          <EmpreendimentoList region={region} status={status} search={search} />
+        </div>
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }

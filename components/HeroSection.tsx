@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const HeroSection = ({ title }: { title: string }) => {
+export const HeroSection = ({ title }: { title: string }) => {
   return (
     <div className="bg-main-red h-[350px] flex justify-center items-center">
       <h1 className="text-slate-50">{title}</h1>
@@ -10,5 +10,3 @@ const HeroSection = ({ title }: { title: string }) => {
     </div>
   );
 };
-
-export default HeroSection;

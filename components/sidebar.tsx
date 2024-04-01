@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { MenuIcon } from 'lucide-react';
 import { links } from '@/constants';
 
-const Sidebar = () => {
+export const Sidebar = () => {
   return (
     <Sheet>
       <SheetTrigger>
@@ -40,5 +40,3 @@ const Sidebar = () => {
     </Sheet>
   );
 };
-
-export default Sidebar;

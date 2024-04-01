@@ -1,6 +1,7 @@
 'use client';
 
-import HeroSection from '@/components/HeroSection';
+import { HeroSection } from '@/components/HeroSection';
+import { Loading } from '@/components/loading';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -47,21 +48,21 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
   }, []);
 
   return (
-    <div>
-      <HeroSection title={'Detalhes do Empreendimento'} />
+    <>
       {imovel ? (
-        <>
+        <div>
+          <HeroSection title={'Detalhes do Empreendimento'} />
           <h1>Detalhes do Produto: </h1>
           <img
             src={`http://localhost:1337${imovel.attributes.fachada.data.attributes.url}`}
             alt={imovel.attributes.title}
             className="w-96 h-[520px] object-cover relative"
           />
-        </>
+        </div>
       ) : (
-        <p>Carregando detalhes do imóvel...</p>
+        <Loading />
       )}
-    </div>
+    </>
   );
 };
 

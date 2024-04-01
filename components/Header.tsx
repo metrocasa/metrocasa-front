@@ -6,16 +6,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-import Sidebar from './sidebar';
-
 import { links } from '@/constants';
 import { Button } from '@/components/ui/button';
+import { Sidebar } from './sidebar';
 
-const Header = () => {
+export const Header = () => {
   const router = useRouter;
 
   return (
-    <div className="max-w-[1216px] mx-auto bg-slate-50 py-5 flex justify-between p-5 items-center">
+    <header className="max-w-[1216px] mx-auto bg-slate-50 py-5 flex justify-between p-5 items-center h-[100px] border-b-2 border-slate-100">
       <Link href={'/'}>
         <Image
           src={'logo-red.svg'}
@@ -23,6 +22,7 @@ const Header = () => {
           width={215}
           height={100}
           priority
+          className="w-[200px] md:w-[230px]"
         />
       </Link>
       <nav className="hidden lg:flex justify-between items-center">
@@ -44,8 +44,6 @@ const Header = () => {
       <div className="lg:hidden">
         <Sidebar />
       </div>
-    </div>
+    </header>
   );
 };
-
-export default Header;

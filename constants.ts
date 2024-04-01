@@ -17,7 +17,7 @@ export const links = [
   },
 ];
 
-export const zona = ['Centro', 'Zona Sul', 'Zona Leste', 'Zona Oeste'];
+export const zonas = ['Centro', 'Zona Sul', 'Zona Leste', 'Zona Oeste'];
 
 export const regions = [
   'Aclimação',

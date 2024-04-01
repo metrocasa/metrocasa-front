@@ -29,7 +29,7 @@ interface Banner {
   };
 }
 
-const Slider = () => {
+export const Slider = () => {
   const [banners, setBanners] = useState<Banner[]>([]);
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -93,5 +93,3 @@ const Slider = () => {
     </>
   );
 };
-
-export default Slider;

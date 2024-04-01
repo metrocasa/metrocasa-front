@@ -35,7 +35,7 @@ const formSchema = z.object({
   search: z.string(),
 });
 
-const Filter = () => {
+export const Filter = () => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -59,13 +59,13 @@ const Filter = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex items-center justify-center mx-auto gap-8 bg-white shadow-md p-7"
+        className="flex flex-col md:flex-row items-center justify-center mx-auto gap-4 md:gap-8 bg-white shadow-md py-14"
       >
         <FormField
           control={form.control}
           name="region"
           render={({ field }) => (
-            <FormItem className="w-full max-w-[220px]">
+            <FormItem className="w-full md:max-w-[220px]">
               <FormLabel>Região</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
@@ -88,7 +88,7 @@ const Filter = () => {
           control={form.control}
           name="status"
           render={({ field }) => (
-            <FormItem className="w-full max-w-[220px]">
+            <FormItem className="w-full md:max-w-[220px]">
               <FormLabel>Status</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
@@ -114,12 +114,12 @@ const Filter = () => {
           name="search"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Pesquisar...</FormLabel>
+              <FormLabel>Pesquisar</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Butantã, Real parque..."
                   {...field}
-                  className="pr-14"
+                  className="w-full md:pr-14"
                   type="search"
                 />
               </FormControl>
@@ -130,11 +130,9 @@ const Filter = () => {
         />
 
         <Button type="submit" variant="primary" className="self-end px-8">
-          Submit
+          Pesquisar
         </Button>
       </form>
     </Form>
   );
 };
-
-export default Filter;

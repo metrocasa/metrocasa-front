@@ -77,6 +77,7 @@ const config = {
       backgroundImage: {
         'gradient-bg':
           'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 65.88%)',
+        'white-bg': "url('/public/bg-white.jpg')",
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
