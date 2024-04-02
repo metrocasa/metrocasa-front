@@ -7,9 +7,9 @@ export const Loading: React.FC = () => {
       <Image
         src={'/metrocasa-icon.svg'}
         alt="Metrocasa"
-        width={50}
-        height={50}
-        className="animate-pulse"
+        width={70}
+        height={70}
+        className="animate-pulse w-auto h-auto"
       />
     </div>
   );

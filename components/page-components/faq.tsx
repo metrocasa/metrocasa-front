@@ -23,8 +23,8 @@ export const FaqSection = () => {
 
         {/* ACCORDIONS */}
         <Accordion type="single" collapsible>
-          {faqQuestions.map((question) => (
-            <AccordionItem value={question.question}>
+          {faqQuestions.map((question, i) => (
+            <AccordionItem key={i} value={question.question}>
               <AccordionTrigger>{question.question}</AccordionTrigger>
               <AccordionContent>{question.content}</AccordionContent>
             </AccordionItem>

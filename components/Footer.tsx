@@ -114,7 +114,7 @@ export const Footer = () => {
                   width={40}
                   height={40}
                 />
-                <div className="flex flex-col md:flex-col items-center">
+                <div className="flex flex-col md:flex-col items-center md:items-start">
                   <h3 className="text-2xl font-bold">CAC</h3>
                   <p>Central de Atendimento ao Cliente</p>
                   <h3 className="text-2xl font-bold">(11) 5061-0022</h3>

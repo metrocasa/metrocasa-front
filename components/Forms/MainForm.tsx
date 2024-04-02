@@ -182,8 +182,10 @@ export const MainForm = ({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {zonas.map((zona) => (
-                    <SelectItem value={zona}>{zona}</SelectItem>
+                  {zonas.map((zona, i) => (
+                    <SelectItem key={i} value={zona}>
+                      {zona}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>

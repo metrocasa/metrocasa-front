@@ -39,8 +39,8 @@ export const EtapaSection = () => {
 
         {/* TEXT TITLES */}
         <div className="flex gap-4 flex-wrap justify-center">
-          {cards.map((card) => (
-            <Card title={card.title} image={card.image} />
+          {cards.map((card, i) => (
+            <Card key={i} title={card.title} image={card.image} />
           ))}
         </div>
       </div>

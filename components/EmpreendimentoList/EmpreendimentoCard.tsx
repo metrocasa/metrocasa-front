@@ -10,9 +10,10 @@ const EmpreendimentoCard = ({ data }: { data: any }) => {
       <Image
         src={`${BASE_URL}${data.attributes.fachada.data.attributes.url}`}
         alt={'Fachada'}
-        className="w-full h-[520px] object-cover transition"
+        className="w-auto h-auto object-cover transition"
         width={400}
         height={400}
+        priority
       />
 
       <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg" />

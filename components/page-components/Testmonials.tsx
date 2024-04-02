@@ -22,8 +22,8 @@ export const Testmonials = () => {
         <h1 className="text-4xl font-bold text-main-red">Depoimentos</h1>
 
         <div className="flex gap-5 w-full flex-wrap items-center justify-center">
-          {testmonialVideos.map((video) => (
-            <YouTube videoId={video.id} opts={opts} />
+          {testmonialVideos.map((video, i) => (
+            <YouTube key={i} videoId={video.id} opts={opts} />
           ))}
         </div>
       </div>
