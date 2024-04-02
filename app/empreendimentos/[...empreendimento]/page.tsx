@@ -1,6 +1,6 @@
 'use client';
 
-import { HeroSection } from '@/components/HeroSection';
+import { HeroSection } from '@/components/page-components/HeroSection';
 import { Loading } from '@/components/loading';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';

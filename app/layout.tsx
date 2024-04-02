@@ -4,6 +4,7 @@ import './globals.css';
 import { Header } from '@/components/Header';
 
 import { ImoveisProvider } from '@/contexts/imoveis-context';
+import { Footer } from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 

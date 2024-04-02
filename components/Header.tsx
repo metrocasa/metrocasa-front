@@ -37,7 +37,9 @@ export const Header = () => {
               </Link>
             </li>
           ))}
-          <Button variant="primary">Fazer Simulação</Button>
+          <Button variant="primary" size={'lg'}>
+            Fazer Simulação
+          </Button>
         </ul>
       </nav>
 

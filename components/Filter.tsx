@@ -59,7 +59,7 @@ export const Filter = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col md:flex-row items-center justify-center mx-auto gap-4 md:gap-8 bg-white shadow-md py-14"
+        className="flex flex-col md:flex-row items-center justify-center max-w-[1200px] mx-auto gap-4 md:gap-8 bg-white shadow-md py-14 px-[45px] md:px-0"
       >
         <FormField
           control={form.control}
@@ -74,8 +74,10 @@ export const Filter = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {regions.map((item) => (
-                    <SelectItem value={item}>{item}</SelectItem>
+                  {regions.map((item, i) => (
+                    <SelectItem key={i} value={item}>
+                      {item}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -113,13 +115,13 @@ export const Filter = () => {
           control={form.control}
           name="search"
           render={({ field }) => (
-            <FormItem>
+            <FormItem className="w-full ">
               <FormLabel>Pesquisar</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Butantã, Real parque..."
+                  placeholder="Butantã, Real parque, Butantã..."
                   {...field}
-                  className="w-full md:pr-14"
+                  className="md:pr-14 md:w-[300px]"
                   type="search"
                 />
               </FormControl>

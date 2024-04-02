@@ -77,7 +77,9 @@ const config = {
       backgroundImage: {
         'gradient-bg':
           'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 65.88%)',
-        'white-bg': "url('/public/bg-white.jpg')",
+        'white-bg': "url('../public/bg-white.jpg')",
+        'dark-bg': "url('../public/bg-dark.jpg')",
+        'red-bg': "url('../public/red-bg.jpg')",
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -89,31 +91,3 @@ const config = {
 } satisfies Config;
 
 export default config;
-
-// colors: {
-//   'main-red': '#EC1C24',
-//   'secondary-red': '#B6211D',
-//   'primary-dark': '#404041',
-//   white: '#fff',
-//   black: '#000',
-// },
-// extend: {
-//   keyframes: {
-//     'accordion-down': {
-//       from: { height: '0' },
-//       to: { height: 'var(--radix-accordion-content-height)' },
-//     },
-//     'accordion-up': {
-//       from: { height: 'var(--radix-accordion-content-height)' },
-//       to: { height: '0' },
-//     },
-//   },
-//   backgroundImage: {
-//     'gradient-bg':
-//       'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 65.88%)',
-//   },
-//   animation: {
-//     'accordion-down': 'accordion-down 0.2s ease-out',
-//     'accordion-up': 'accordion-up 0.2s ease-out',
-//   },
-// },

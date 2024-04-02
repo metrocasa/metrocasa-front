@@ -1,7 +1,7 @@
 'use client';
 
 import EmpreendimentoList from '@/components/EmpreendimentoList/EmpreendimentoList';
-import { HeroSection } from '@/components/HeroSection';
+import { HeroSection } from '@/components/page-components/HeroSection';
 import { Loading } from '@/components/loading';
 
 import { useImoveis } from '@/contexts/imoveis-context';

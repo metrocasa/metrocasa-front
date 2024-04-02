@@ -58,7 +58,6 @@ export const Slider = () => {
         pagination={{
           clickable: false,
         }}
-        loop={true}
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         className="MainSwiper"
         breakpoints={{
