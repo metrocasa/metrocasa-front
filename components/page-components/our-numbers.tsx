@@ -26,9 +26,9 @@ const data = [
 
 export const OurNumbers = () => {
   return (
-    <div className="py-24 flex w-full justify-center">
+    <div className="py-24 flex flex-col items-center md:flex-row justify-center gap-14 ">
       {data.map((item) => (
-        <div className="flex flex-col items-center gap-5 border-r border-main-red/40 last:border-r-0 p-4 w-full">
+        <div className="flex flex-col items-center gap-5 border-r md:border-main-red/40 last:border-r-0 md:pr-14 w-full max-w-[250px]">
           {item.icon}
           <div className="flex flex-col items-center">
             <h4 className="font-extrabold text-3xl">{item.number}</h4>

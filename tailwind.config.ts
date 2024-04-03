@@ -22,6 +22,7 @@ const config = {
         'main-red': '#EC1C24',
         'secondary-red': '#B6211D',
         'primary-dark': '#404041',
+        'secondary-dark': '#232323',
         white: '#fff',
         black: '#000',
 

@@ -7,6 +7,7 @@ import { Loading } from '@/components/loading';
 import { useImoveis } from '@/contexts/imoveis-context';
 
 import { useSearchParams } from 'next/navigation';
+import { Header } from '@/components/Header';
 
 export default function EmpreendimentosPage() {
   const { imoveis } = useImoveis();
@@ -18,6 +19,7 @@ export default function EmpreendimentosPage() {
 
   return (
     <>
+      <Header />
       {imoveis.length ? (
         <div>
           <HeroSection title={'Empreendimentos'} />

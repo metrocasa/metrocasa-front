@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { useImoveis } from '@/contexts/imoveis-context';
 import { MainForm } from './Forms/MainForm';
 import { OurNumbers } from './page-components/our-numbers';
+import { useMediaQuery } from 'react-responsive';
 
 const font = Be_Vietnam_Pro({
   subsets: ['latin'],
@@ -15,6 +16,7 @@ const font = Be_Vietnam_Pro({
 });
 
 export const Hero = () => {
+  const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const { imoveis, quantityImoveis } = useImoveis();
@@ -27,11 +29,10 @@ export const Hero = () => {
   };
 
   return (
-    <section className="px-[15px] w-full py-24 overflow-x-hidden">
-      <div className="w-full max-w-[1216px] mx-auto ">
+    <section className="px-[15px] w-full py-24 pt-32 md:pt-36 overflow-x-hidden ">
+      <div className="w-full max-w-[1216px] mx-auto">
         {/* Hero Area */}
-
-        <div className="flex gap-14">
+        <div className="flex flex-col lg:flex-row gap-14">
           {/* CTA AREA */}
           <div className="w-full max-w-[530px] flex flex-col gap-5">
             <h1
@@ -52,14 +53,14 @@ export const Hero = () => {
             </p>
 
             {/*  FORM AREA */}
-            <div className="p-8 rounded-md shadow-lg min-w-[700px] z-10 bg-white flex items-center justify-center">
+            <div className="p-8 rounded-md shadow-lg md:min-w-[700px] z-10 bg-white flex items-center justify-center">
               <MainForm
-                className="gap-5 items-center"
+                className="gap-5 items-center flex-col md:flex-row "
                 name={false}
                 rendaMensal={false}
                 regiaoDeInteresse={false}
-                errorMessage={false}
-                label={false}
+                errorMessage={isMobile ? true : false}
+                label={isMobile ? true : false}
                 variant={'primary'}
               />
             </div>

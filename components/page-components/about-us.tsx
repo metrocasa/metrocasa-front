@@ -1,35 +1,21 @@
-import { ChevronRight, MoveRight } from 'lucide-react';
+import { MoveRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+
 import React from 'react';
 
-import { Be_Vietnam_Pro } from 'next/font/google';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
-
-const font = Be_Vietnam_Pro({
-  subsets: ['latin'],
-  weight: ['200', '400', '700', '900'],
-});
+import { Title } from '../title';
 
 export const AboutUs = () => {
   return (
-    <section className="w-full py-24">
-      <div className="w-full max-w-[1216px] mx-auto flex gap-14">
+    <section className="w-full py-10 md:py-24 px-[15px]">
+      <div className="w-full max-w-[1216px] mx-auto flex flex-col md:flex-row gap-2 md:gap-14">
         {/* LEFT */}
         <div className="w-full flex flex-col gap-8">
-          {/* SUBTITLE */}
-          <div className="flex gap-2 text-main-red items-center">
-            <MoveRight strokeWidth={1} className="w-14" />
-            <h5 className="text-lg font-medium">Empreendimentos</h5>
-          </div>
-
-          <h2 className={cn('text-5xl font-bold', font.className)}>
-            Conheça a Metrocasa
-          </h2>
+          <Title title="Conheça a Metrocasa" subtitle="Quem Somos?" />
 
           {/* IMAGE */}
-          <div className="h-[438px] w-[670px]">
+          <div className="h-[438px] md:w-[670px]">
             <Image
               src={'/sobre/fachada-jardim-botanico.jpg'}
               alt="Metrocasa Jardim Botânico"

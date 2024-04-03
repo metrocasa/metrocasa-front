@@ -92,7 +92,7 @@ export const MainForm = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn('flex gap-y-7', className)}
+        className={cn('flex gap-y-7 w-full', className)}
       >
         {/* Nome */}
         {name && (
@@ -100,7 +100,7 @@ export const MainForm = ({
             control={form.control}
             name="name"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full md:w-auto">
                 {label && <FormLabel>Nome</FormLabel>}
                 <FormControl>
                   <Input placeholder="Maria dos Santos" {...field} />
@@ -118,7 +118,7 @@ export const MainForm = ({
             control={form.control}
             name="phone"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full md:w-auto">
                 {label && <FormLabel>Número de Contato</FormLabel>}
                 <FormControl>
                   <Input
@@ -150,7 +150,7 @@ export const MainForm = ({
             control={form.control}
             name="email"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full md:w-auto">
                 {label && <FormLabel>E-mail</FormLabel>}
                 <FormControl>
                   <Input
@@ -171,7 +171,7 @@ export const MainForm = ({
             control={form.control}
             name="rendaMensal"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full md:w-auto">
                 {label && <FormLabel>Renda Mensal</FormLabel>}
                 <Select
                   onValueChange={field.onChange}
@@ -206,7 +206,7 @@ export const MainForm = ({
             control={form.control}
             name="regiaoDeInteresse"
             render={({ field }) => (
-              <FormItem>
+              <FormItem className="w-full md:w-auto">
                 {label && <FormLabel>Região de Interesse</FormLabel>}
                 <Select
                   onValueChange={field.onChange}

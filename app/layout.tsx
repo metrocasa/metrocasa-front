@@ -20,8 +20,7 @@ export default function RootLayout({
   return (
     <ImoveisProvider>
       <html lang="en">
-        <body className={inter.className}>
-          <Header />
+        <body className={inter.className + 'px-[15px]'}>
           <div>{children}</div>
         </body>
       </html>

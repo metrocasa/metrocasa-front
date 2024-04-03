@@ -22,8 +22,8 @@ const CarouselHero = () => {
     <Link
       href={`/empreendimentos/${imoveisData.attributes.slug}/${imoveisData.id}`}
     >
-      <div className="-mr-[445px] flex gap-4 overflow-hidden">
-        <div className="relative min-w-[437px] h-[474px]">
+      <div className="md:-mr-[445px] flex gap-4 overflow-hidden">
+        <div className="relative w-full md:min-w-[437px] md:h-[474px] h-[400px]">
           <Image
             src={`${BASE_URL}${imoveisData.attributes.fachada.data.attributes.url}`}
             alt={imoveisData.attributes.title}
@@ -45,7 +45,7 @@ const CarouselHero = () => {
         </div>
 
         {/* TODO: MELHORAR TRANSFORMANDO AS IMAGENS EM IMGS RANDOMICAS E NIMAÇÕES PARA O LADO COM GSAP */}
-        <div className="relative w-[197px] h-[474px]">
+        <div className="hidden md:block relative w-[197px] h-[474px]">
           <Image
             src={`${BASE_URL}${getRandomImages(1)}`}
             alt={imoveisData.attributes.title}
@@ -56,7 +56,7 @@ const CarouselHero = () => {
 
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg rounded-lg" />
         </div>
-        <div className="relative w-[197px] h-[474px]">
+        <div className="hidden md:block  relative w-[197px] h-[474px]">
           <Image
             src={`${BASE_URL}${getRandomImages(3)}`}
             alt={imoveisData.attributes.title}
@@ -67,7 +67,7 @@ const CarouselHero = () => {
 
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg rounded-lg" />
         </div>
-        <div className="relative w-[197px] h-[474px]">
+        <div className="hidden md:block relative w-[197px] h-[474px]">
           <Image
             src={`${BASE_URL}${getRandomImages(7)}`}
             alt={imoveisData.attributes.title}

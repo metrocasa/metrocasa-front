@@ -16,6 +16,7 @@ import { FaqSection } from '@/components/page-components/faq';
 import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/hero';
 import { AboutUs } from '@/components/page-components/about-us';
+import { Header } from '@/components/Header';
 
 export default function Home() {
   const { imoveis } = useImoveis();
@@ -24,17 +25,20 @@ export default function Home() {
     <>
       {imoveis.length ? (
         <div>
+          <Header />
+
           <Hero />
           <AboutUs />
           <EmpreendimentoList />
           <Filter />
 
-          <FormSection />
           <LancamentoSection />
-          <EtapaSection />
+          {/* <EtapaSection /> */}
           <ZonasSlide />
+          <FormSection />
           <Testmonials />
           <FaqSection />
+
           <Footer />
         </div>
       ) : (

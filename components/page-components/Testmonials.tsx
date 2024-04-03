@@ -6,11 +6,11 @@ import YouTube from 'react-youtube';
 
 export const Testmonials = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
-  const isMobile = useMediaQuery({ query: '(max-width: 440px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
 
   const opts = {
-    height: isTabletOrMobile ? (isMobile ? '210' : '250') : '320',
-    width: isTabletOrMobile ? (isMobile ? '380' : '250') : '565',
+    height: isTabletOrMobile ? (isMobile ? '190' : '230') : '300',
+    width: isTabletOrMobile ? (isMobile ? '360' : '230') : '545',
     playerVars: {
       autoplay: 0,
     },

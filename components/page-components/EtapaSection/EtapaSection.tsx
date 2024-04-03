@@ -1,12 +1,33 @@
 import React from 'react';
 import { Card } from './Card';
+import { BookUserIcon, CoffeeIcon, SproutIcon, UsersIcon } from 'lucide-react';
 
 export const EtapaSection = () => {
   const cards = [
-    { title: 'Indepedência', image: '/etapa/idependencia.jpg' },
-    { title: 'Vou Casar', image: '/etapa/vou-casar.jpg' },
-    { title: 'Familía', image: '/etapa/familia.jpg' },
-    { title: 'Quero Investir', image: '/etapa/investimento.jpg' },
+    {
+      title: 'Indepedência',
+      icon: <CoffeeIcon className="w-11 h-11 text-secondary-dark" />,
+      description:
+        'I want you to take it to the next level. Can you use a high definition screenshot I really like the colour but can you change',
+    },
+    {
+      title: 'Vou Casar',
+      icon: <UsersIcon className="w-11 h-11 text-secondary-dark" />,
+      description:
+        'I want you to take it to the next level. Can you use a high definition screenshot I really like the colour but can you change',
+    },
+    {
+      title: 'Familía',
+      icon: <BookUserIcon className="w-11 h-11 text-secondary-dark" />,
+      description:
+        'I want you to take it to the next level. Can you use a high definition screenshot I really like the colour but can you change',
+    },
+    {
+      title: 'Quero Investir',
+      icon: <SproutIcon className="w-11 h-11 text-secondary-dark" />,
+      description:
+        'I want you to take it to the next level. Can you use a high definition screenshot I really like the colour but can you change',
+    },
   ];
 
   return (
@@ -38,9 +59,14 @@ export const EtapaSection = () => {
         </div>
 
         {/* TEXT TITLES */}
-        <div className="flex gap-4 flex-wrap justify-center">
+        <div className="flex gap-4 justify-center">
           {cards.map((card, i) => (
-            <Card key={i} title={card.title} image={card.image} />
+            <Card
+              key={i}
+              title={card.title}
+              icon={card.icon}
+              description={card.description}
+            />
           ))}
         </div>
       </div>

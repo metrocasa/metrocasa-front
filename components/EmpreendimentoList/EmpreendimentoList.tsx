@@ -1,28 +1,21 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import EmpreendimentoCard from './EmpreendimentoCard';
 import Link from 'next/link';
-
-import { cn } from '@/lib/utils';
-import { Be_Vietnam_Pro } from 'next/font/google';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import 'swiper/css/effect-fade';
 
 import { useImoveis } from '@/contexts/imoveis-context';
-import { usePathname, useRouter } from 'next/navigation';
-import { MoveRight } from 'lucide-react';
-
-const font = Be_Vietnam_Pro({
-  subsets: ['latin'],
-  weight: ['200', '400', '700', '900'],
-});
+import { usePathname } from 'next/navigation';
+import { useMediaQuery } from 'react-responsive';
+import { Title } from '../title';
 
 interface IProps {
   region?: string | null;
@@ -31,6 +24,8 @@ interface IProps {
 }
 
 const EmpreendimentoList = ({ search, region, status }: IProps) => {
+  const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
+
   const path = usePathname();
 
   const { imoveis, quantityImoveis } = useImoveis();
@@ -93,22 +88,19 @@ const EmpreendimentoList = ({ search, region, status }: IProps) => {
     <>
       {/* RENDERIZAR NA PAGINA HOME */}
       {path === '/' && (
-        <section className="w-full pt-24">
-          <div className="w-full max-w-[1216px] mx-auto mb-11">
-            {/* SUBTITLE */}
-            <div className="flex gap-2 text-main-red items-center">
-              <MoveRight strokeWidth={1} className="w-14" />
-              <h5 className="text-lg font-medium">Sobre a Metrocasa</h5>
-            </div>
-
-            <h2 className={cn('text-5xl font-bold', font.className)}>
-              Conheça sua nova casa
-            </h2>
-          </div>
+        <section className="w-full pt-24 px-[15px] md:px-0">
+          <Title
+            title="Conheça seu novo Apartamento"
+            subtitle="Seu mais novo"
+          />
 
           <Swiper
-            spaceBetween={185}
-            autoplay={true}
+            spaceBetween={isMobile ? 15 : 185}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            effect={isMobile ? 'fade' : ''}
             pagination={{
               clickable: true,
             }}
@@ -117,21 +109,21 @@ const EmpreendimentoList = ({ search, region, status }: IProps) => {
                 slidesPerView: 1,
               },
               640: {
-                slidesPerView: 2,
+                slidesPerView: 1,
               },
               800: {
-                slidesPerView: 3,
+                slidesPerView: 2,
               },
               1024: {
-                slidesPerView: 4,
+                slidesPerView: 3,
               },
               1400: {
                 slidesPerView: 5,
               },
             }}
-            modules={[Pagination]}
+            modules={[Autoplay, Pagination, EffectFade]}
           >
-            {quantityImoveis(10).map((imovel, index) => (
+            {quantityImoveis(15).map((imovel, index) => (
               <SwiperSlide key={index}>
                 <Link
                   href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
