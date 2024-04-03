@@ -59,7 +59,7 @@ export const Filter = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col md:flex-row items-center justify-center max-w-[1200px] mx-auto gap-4 md:gap-8 bg-white shadow-md py-14 px-[45px] md:px-0"
+        className="rounded-lg flex flex-col md:flex-row items-center justify-center max-w-[1200px] mx-auto gap-4 md:gap-8 bg-white shadow-md py-14 px-[45px] md:px-0"
       >
         <FormField
           control={form.control}
@@ -115,13 +115,13 @@ export const Filter = () => {
           control={form.control}
           name="search"
           render={({ field }) => (
-            <FormItem className="w-full ">
+            <FormItem className="w-full md:w-[300px]">
               <FormLabel>Pesquisar</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Butantã, Real parque, Butantã..."
                   {...field}
-                  className="md:pr-14 md:w-[300px]"
+                  className="md:pr-14 md:w-full"
                   type="search"
                 />
               </FormControl>

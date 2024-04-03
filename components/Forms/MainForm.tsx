@@ -32,7 +32,7 @@ const formSchema = z.object({
   phone: z.string().regex(/^\d{2}\s\d{5}\-\d{4}$/),
   email: z.string().min(2).max(50),
   rendaMensal: z.string().min(2).max(50),
-  regiaoDeinteresse: z.string().min(2).max(50),
+  regiaoDeInteresse: z.string().min(2).max(50),
 });
 
 // FORMAT PHONE NUMBER
@@ -48,9 +48,23 @@ const parseAndFormatPhoneNumber = (value: string) => {
 export const MainForm = ({
   className,
   variant,
+  name,
+  email,
+  phone,
+  rendaMensal,
+  regiaoDeInteresse,
+  errorMessage,
+  label,
 }: {
   className?: string;
   variant?: 'default' | 'primary' | 'outline' | 'ghost' | null | undefined;
+  name?: boolean;
+  email?: boolean;
+  phone?: boolean;
+  rendaMensal?: boolean;
+  regiaoDeInteresse?: boolean;
+  errorMessage?: boolean;
+  label?: boolean;
 }) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -58,7 +72,7 @@ export const MainForm = ({
       name: '',
       phone: '',
       email: '',
-      regiaoDeinteresse: '',
+      regiaoDeInteresse: '',
     },
   });
 
@@ -80,124 +94,157 @@ export const MainForm = ({
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn('flex gap-y-7', className)}
       >
-        <FormField
-          control={form.control}
-          name="name"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Nome</FormLabel>
-              <FormControl>
-                <Input placeholder="Maria dos Santos" {...field} />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="phone"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Número de Contato</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="11 91234-5678"
-                  {...field}
-                  value={formattedPhoneValue}
-                  onBlur={() => {
-                    form.setValue(
-                      'phone',
-                      parseAndFormatPhoneNumber(formattedPhoneValue),
-                      {
-                        shouldValidate: true,
-                      },
-                    );
-                  }}
-                  maxLength={11}
-                />
-              </FormControl>
-
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="email"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>E-mail</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder="exemplo@email.com"
-                  {...field}
-                  type="email"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        <FormField
-          control={form.control}
-          name="rendaMensal"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Renda Mensal</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+        {/* Nome */}
+        {name && (
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                {label && <FormLabel>Nome</FormLabel>}
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecione..." />
-                  </SelectTrigger>
+                  <Input placeholder="Maria dos Santos" {...field} />
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value="Abaixo de 2 Mil">
-                    Abaixo de 2 Mil
-                  </SelectItem>
-                  <SelectItem value="De 2 a 4 Mil">De 2 a 4 Mil</SelectItem>
-                  <SelectItem value="De 4 a 6 Mil">De 4 a 6 Mil</SelectItem>
-                  <SelectItem value="De 6 a 8 Mil">De 6 a 8 Mil</SelectItem>
-                  <SelectItem value="Acima de 8 Mil">Acima de 8 Mil</SelectItem>
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
 
-        <FormField
-          control={form.control}
-          name="regiaoDeinteresse"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Região de Interesse</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                {errorMessage && <FormMessage />}
+              </FormItem>
+            )}
+          />
+        )}
+
+        {/* Número de Contato */}
+        {phone && (
+          <FormField
+            control={form.control}
+            name="phone"
+            render={({ field }) => (
+              <FormItem>
+                {label && <FormLabel>Número de Contato</FormLabel>}
                 <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Selecione..." />
-                  </SelectTrigger>
+                  <Input
+                    placeholder="11 91234-5678"
+                    {...field}
+                    value={formattedPhoneValue}
+                    onBlur={() => {
+                      form.setValue(
+                        'phone',
+                        parseAndFormatPhoneNumber(formattedPhoneValue),
+                        {
+                          shouldValidate: true,
+                        },
+                      );
+                    }}
+                    maxLength={11}
+                  />
                 </FormControl>
-                <SelectContent>
-                  {zonas.map((zona, i) => (
-                    <SelectItem key={i} value={zona}>
-                      {zona}
+
+                {errorMessage && <FormMessage />}
+              </FormItem>
+            )}
+          />
+        )}
+
+        {/* E-mail */}
+        {email && (
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                {label && <FormLabel>E-mail</FormLabel>}
+                <FormControl>
+                  <Input
+                    placeholder="exemplo@email.com"
+                    {...field}
+                    type="email"
+                  />
+                </FormControl>
+                {errorMessage && <FormMessage />}
+              </FormItem>
+            )}
+          />
+        )}
+
+        {/* Renda Mensal */}
+        {rendaMensal && (
+          <FormField
+            control={form.control}
+            name="rendaMensal"
+            render={({ field }) => (
+              <FormItem>
+                {label && <FormLabel>Renda Mensal</FormLabel>}
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione..." />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="Abaixo de 2 Mil">
+                      Abaixo de 2 Mil
                     </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                    <SelectItem value="De 2 a 4 Mil">De 2 a 4 Mil</SelectItem>
+                    <SelectItem value="De 4 a 6 Mil">De 4 a 6 Mil</SelectItem>
+                    <SelectItem value="De 6 a 8 Mil">De 6 a 8 Mil</SelectItem>
+                    <SelectItem value="Acima de 8 Mil">
+                      Acima de 8 Mil
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                {errorMessage && <FormMessage />}
+              </FormItem>
+            )}
+          />
+        )}
 
-        <Button type="submit" variant={variant} className="rounded-0">
+        {/* Região de Interesse */}
+        {regiaoDeInteresse && (
+          <FormField
+            control={form.control}
+            name="regiaoDeInteresse"
+            render={({ field }) => (
+              <FormItem>
+                {label && <FormLabel>Região de Interesse</FormLabel>}
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione..." />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {zonas.map((zona, i) => (
+                      <SelectItem key={i} value={zona}>
+                        {zona}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errorMessage && <FormMessage />}
+              </FormItem>
+            )}
+          />
+        )}
+
+        <Button type="submit" variant={variant} className="self-end">
           Enviar
         </Button>
       </form>
     </Form>
   );
+};
+
+MainForm.defaultProps = {
+  name: true,
+  email: true,
+  phone: true,
+  rendaMensal: true,
+  regiaoDeInteresse: true,
+  errorMessage: true,
+  label: true,
 };

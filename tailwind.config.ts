@@ -76,7 +76,11 @@ const config = {
       },
       backgroundImage: {
         'gradient-bg':
-          'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 65.88%)',
+          'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 45.88%)',
+        'gradient-bg-red':
+          'linear-gradient(0deg, #EC1C24 0%, rgba(0, 0, 0, 0) 45.88%)',
+        'gradient-bg-reversed':
+          'linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 45.88%)',
         'white-bg': "url('../public/bg-white.jpg')",
         'dark-bg': "url('../public/bg-dark.jpg')",
         'red-bg': "url('../public/red-bg.jpg')",

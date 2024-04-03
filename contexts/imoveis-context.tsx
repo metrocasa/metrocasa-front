@@ -10,6 +10,7 @@ interface Imovel {
   id: number;
   attributes: {
     title: string;
+    subtitle: string;
     slug: string;
     fachada: {
       data: {
@@ -17,6 +18,14 @@ interface Imovel {
           url: string;
         };
       };
+    };
+    main_gallery: {
+      data: {
+        id: number;
+        attributes: {
+          url: string;
+        };
+      }[];
     };
     neighborhoods: string;
     status: string;

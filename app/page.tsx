@@ -3,7 +3,7 @@
 import EmpreendimentoList from '@/components/EmpreendimentoList/EmpreendimentoList';
 import { Filter } from '@/components/Filter';
 import { FormSection } from '@/components/page-components/FormSection';
-import { Slider } from '@/components/Slider';
+
 import { Loading } from '@/components/loading';
 
 import { useImoveis } from '@/contexts/imoveis-context';
@@ -14,6 +14,8 @@ import { ZonasSlide } from '@/components/page-components/ZonasSlide/ZonasSlide';
 import { Testmonials } from '@/components/page-components/Testmonials';
 import { FaqSection } from '@/components/page-components/faq';
 import { Footer } from '@/components/Footer';
+import { Hero } from '@/components/hero';
+import { AboutUs } from '@/components/page-components/about-us';
 
 export default function Home() {
   const { imoveis } = useImoveis();
@@ -22,13 +24,11 @@ export default function Home() {
     <>
       {imoveis.length ? (
         <div>
-          <div className="z-10">
-            <Slider />
-          </div>
-
+          <Hero />
+          <AboutUs />
+          <EmpreendimentoList />
           <Filter />
 
-          <EmpreendimentoList />
           <FormSection />
           <LancamentoSection />
           <EtapaSection />
