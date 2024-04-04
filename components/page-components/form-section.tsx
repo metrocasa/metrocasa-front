@@ -1,5 +1,5 @@
 import React from 'react';
-import { MainForm } from '../Forms/MainForm';
+import { MainForm } from '../Forms/main-form';
 
 export const FormSection = () => {
   return (

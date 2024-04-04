@@ -6,13 +6,20 @@ import axios from 'axios';
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
 // Definindo o tipo para o array de imóveis
-interface Imovel {
+export interface Imovel {
   id: number;
   attributes: {
     title: string;
     subtitle: string;
     slug: string;
     fachada: {
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+    logo: {
       data: {
         attributes: {
           url: string;
@@ -27,6 +34,7 @@ interface Imovel {
         };
       }[];
     };
+    zone: string;
     neighborhoods: string;
     status: string;
     hash: string;
@@ -53,7 +61,17 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
   // Função para buscar imóveis
   const fetchImoveis = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/api/imoveis/?populate=*`);
+      // CONFIG DA API TOKEN DE IMOVEIS
+      const config = {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS}`,
+        },
+      };
+
+      const response = await axios.get(
+        `${BASE_URL}/api/imoveis/?populate=*`,
+        config,
+      );
       setImoveis(response.data.data);
     } catch (error) {
       console.error('Erro ao buscar imóveis:', error);

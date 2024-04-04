@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from './Card';
+import { Card } from './etapa-card';
 import { BookUserIcon, CoffeeIcon, SproutIcon, UsersIcon } from 'lucide-react';
 
 export const EtapaSection = () => {

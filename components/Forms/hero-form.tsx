@@ -1,5 +1,3 @@
-'use client';
-
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -8,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,22 +14,12 @@ import {
 import { Input } from '@/components/ui/input';
 
 import { cn } from '@/lib/utils';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { zonas } from '@/constants';
 
 // SCHEMA
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   phone: z.string().regex(/^\d{2}\s\d{5}\-\d{4}$/),
   email: z.string().min(2).max(50),
-  rendaMensal: z.string().min(2).max(50),
-  regiaoDeInteresse: z.string().min(2).max(50),
 });
 
 // FORMAT PHONE NUMBER
@@ -45,14 +32,12 @@ const parseAndFormatPhoneNumber = (value: string) => {
   return formattedValue;
 };
 
-export const MainForm = ({
+export const HeroForm = ({
   className,
   variant,
   name,
   email,
   phone,
-  rendaMensal,
-  regiaoDeInteresse,
   errorMessage,
   label,
 }: {
@@ -61,8 +46,6 @@ export const MainForm = ({
   name?: boolean;
   email?: boolean;
   phone?: boolean;
-  rendaMensal?: boolean;
-  regiaoDeInteresse?: boolean;
   errorMessage?: boolean;
   label?: boolean;
 }) => {
@@ -72,7 +55,6 @@ export const MainForm = ({
       name: '',
       phone: '',
       email: '',
-      regiaoDeInteresse: '',
     },
   });
 
@@ -83,9 +65,54 @@ export const MainForm = ({
     : '';
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
+    const endpoint =
+      'https://crm.anapro.com.br/webcrm/webapi/integracao/v2/CadastrarProspect';
+
+    const key = 'wz2O9Z9BawY1';
+    const canal_key = '7aTeATm50Tk1';
+    const campanha_key = 'T8Ds8DuFA781';
+    const key_integradora = '883F81F3-32BF-4A1F-BE1D-71E93E900832';
+    const key_agencia = '883F81F3-32BF-4A1F-BE1D-71E93E900832';
+
+    const body = {
+      Key: key,
+      CanalKey: canal_key,
+      CampanhaKey: campanha_key,
+      PoliticaPrivacidadeKey: '',
+      PessoaNome: values.name,
+      PessoaEmail: values.email,
+      KeyIntegradora: key_integradora,
+      KeyAgencia: key_agencia,
+      PessoaTelefones: [
+        {
+          DDD: values.phone.slice(0, 2),
+          Numero: values.phone.slice(2),
+        },
+      ],
+    };
+
+    // ENVIAR DADOS PARA O ANAPRO
+    const postData = async () => {
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to submit form');
+        }
+
+        console.log('Form submitted successfully');
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      }
+    };
+    postData();
   }
 
   return (
@@ -103,7 +130,7 @@ export const MainForm = ({
               <FormItem className="w-full md:w-auto">
                 {label && <FormLabel>Nome</FormLabel>}
                 <FormControl>
-                  <Input placeholder="Maria dos Santos" {...field} />
+                  <Input placeholder="Nome" {...field} />
                 </FormControl>
 
                 {errorMessage && <FormMessage />}
@@ -122,7 +149,7 @@ export const MainForm = ({
                 {label && <FormLabel>Número de Contato</FormLabel>}
                 <FormControl>
                   <Input
-                    placeholder="11 91234-5678"
+                    placeholder="WhatsApp"
                     {...field}
                     value={formattedPhoneValue}
                     onBlur={() => {
@@ -153,78 +180,8 @@ export const MainForm = ({
               <FormItem className="w-full md:w-auto">
                 {label && <FormLabel>E-mail</FormLabel>}
                 <FormControl>
-                  <Input
-                    placeholder="exemplo@email.com"
-                    {...field}
-                    type="email"
-                  />
+                  <Input placeholder="E-mail" {...field} type="email" />
                 </FormControl>
-                {errorMessage && <FormMessage />}
-              </FormItem>
-            )}
-          />
-        )}
-
-        {/* Renda Mensal */}
-        {rendaMensal && (
-          <FormField
-            control={form.control}
-            name="rendaMensal"
-            render={({ field }) => (
-              <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Renda Mensal</FormLabel>}
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione..." />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="Abaixo de 2 Mil">
-                      Abaixo de 2 Mil
-                    </SelectItem>
-                    <SelectItem value="De 2 a 4 Mil">De 2 a 4 Mil</SelectItem>
-                    <SelectItem value="De 4 a 6 Mil">De 4 a 6 Mil</SelectItem>
-                    <SelectItem value="De 6 a 8 Mil">De 6 a 8 Mil</SelectItem>
-                    <SelectItem value="Acima de 8 Mil">
-                      Acima de 8 Mil
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-                {errorMessage && <FormMessage />}
-              </FormItem>
-            )}
-          />
-        )}
-
-        {/* Região de Interesse */}
-        {regiaoDeInteresse && (
-          <FormField
-            control={form.control}
-            name="regiaoDeInteresse"
-            render={({ field }) => (
-              <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Região de Interesse</FormLabel>}
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione..." />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {zonas.map((zona, i) => (
-                      <SelectItem key={i} value={zona}>
-                        {zona}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
                 {errorMessage && <FormMessage />}
               </FormItem>
             )}
@@ -239,12 +196,10 @@ export const MainForm = ({
   );
 };
 
-MainForm.defaultProps = {
+HeroForm.defaultProps = {
   name: true,
   email: true,
   phone: true,
-  rendaMensal: true,
-  regiaoDeInteresse: true,
   errorMessage: true,
   label: true,
 };

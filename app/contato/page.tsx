@@ -1,4 +1,4 @@
-import { HeroSection } from '@/components/page-components/HeroSection';
+import { HeroSection } from '@/components/page-components/hero-section';
 import { Header } from '@radix-ui/react-accordion';
 import Image from 'next/image';
 

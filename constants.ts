@@ -17,9 +17,7 @@ export const links = [
   },
 ];
 
-export const zonas = ['Centro', 'Zona Sul', 'Zona Leste', 'Zona Oeste'];
-
-export const zonasSlide = [
+export const zonas = [
   {
     zone: 'Centro',
     image: '/zonas/centro.webp',

@@ -33,6 +33,7 @@ const formSchema = z.object({
   region: z.string(),
   status: z.string(),
   search: z.string(),
+  zone: z.string(),
 });
 
 export const Filter = () => {
@@ -44,6 +45,7 @@ export const Filter = () => {
       region: '',
       status: '',
       search: '',
+      zone: '',
     },
   });
 

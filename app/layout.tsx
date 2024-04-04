@@ -8,7 +8,7 @@ import { ImoveisProvider } from '@/contexts/imoveis-context';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Metrocasa',
+  title: 'Construtora Metrocasa',
   description: 'Apartamentos em todas as regiões de São Paulo',
 };
 

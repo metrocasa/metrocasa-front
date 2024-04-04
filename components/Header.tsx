@@ -20,7 +20,7 @@ export const Header = () => {
         <div className="flex gap-8 items-center ">
           <Link href={'/'}>
             <Image
-              src={'logo-red.svg'}
+              src={'/logo-red.svg'}
               alt="Logo metrocasa"
               width={215}
               height={100}

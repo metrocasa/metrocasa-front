@@ -85,6 +85,7 @@ const config = {
         'white-bg': "url('../public/bg-white.jpg')",
         'dark-bg': "url('../public/bg-dark.jpg')",
         'red-bg': "url('../public/red-bg.jpg')",
+        'red-hero-bg': "url('../public/hero-bg.jpg')",
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',

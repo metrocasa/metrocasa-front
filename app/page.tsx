@@ -1,16 +1,17 @@
 'use client';
 
-import EmpreendimentoList from '@/components/EmpreendimentoList/EmpreendimentoList';
-import { Filter } from '@/components/Filter';
-import { FormSection } from '@/components/page-components/FormSection';
+import EmpreendimentoList from '@/components/EmpreendimentoList/empreendimento-list';
+
+import { FormSection } from '@/components/page-components/form-section';
+import { Filter } from '@/components/filter';
 
 import { Loading } from '@/components/loading';
 
 import { useImoveis } from '@/contexts/imoveis-context';
 
-import { LancamentoSection } from '@/components/page-components/LancamentoSection';
-import { EtapaSection } from '@/components/page-components/EtapaSection/EtapaSection';
-import { ZonasSlide } from '@/components/page-components/ZonasSlide/ZonasSlide';
+import { LancamentoSection } from '@/components/page-components/lancamento-section';
+import { EtapaSection } from '@/components/page-components/EtapaSection/etapa-section';
+import { Zonas } from '@/components/page-components/zonas-slide';
 import { Testmonials } from '@/components/page-components/Testmonials';
 import { FaqSection } from '@/components/page-components/faq';
 import { Footer } from '@/components/Footer';
@@ -34,7 +35,7 @@ export default function Home() {
 
           <LancamentoSection />
           {/* <EtapaSection /> */}
-          <ZonasSlide />
+          <Zonas />
           <FormSection />
           <Testmonials />
           <FaqSection />

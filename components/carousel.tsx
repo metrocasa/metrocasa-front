@@ -1,17 +1,18 @@
-import { gsap } from 'gsap';
-
 import React, { useEffect, useRef, useState } from 'react';
 
-import { useImoveis } from '@/contexts/imoveis-context';
+import BackgroundVideo from 'next-video/background-video';
+import Tour from '@/videos/tour.mp4';
+
+import { Imovel, useImoveis } from '@/contexts/imoveis-context';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const CarouselHero = () => {
+const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const { imoveis, quantityImoveis } = useImoveis();
-
-  const imoveisData = quantityImoveis(1)[0];
+  const { quantityImoveis } = useImoveis();
+  const randomNumber = Math.floor(Math.random() * 4) + 1;
+  const imoveisData = quantityImoveis(5)[randomNumber];
 
   const getRandomImages = (i: number) => {
     const images = imoveisData.attributes.main_gallery.data[i].attributes.url;
@@ -23,7 +24,8 @@ const CarouselHero = () => {
       href={`/empreendimentos/${imoveisData.attributes.slug}/${imoveisData.id}`}
     >
       <div className="md:-mr-[445px] flex gap-4 overflow-hidden">
-        <div className="relative w-full md:min-w-[437px] md:h-[474px] h-[400px]">
+        <div className="relative w-full md:min-w-[297px] md:h-[474px] h-[400px]">
+          {/* REMOVER OU ACRESCENTAR DE ACORDO COM O GOSTO */}
           <Image
             src={`${BASE_URL}${imoveisData.attributes.fachada.data.attributes.url}`}
             alt={imoveisData.attributes.title}
@@ -32,8 +34,12 @@ const CarouselHero = () => {
             className="active w-full h-full rounded-xl object-cover bg-center "
           />
 
+          {/* <BackgroundVideo
+            src={Tour}
+            poster={imovel.attributes.fachada.data.attributes.url}
+            className=" object-cover "
+          ></BackgroundVideo> */}
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
-
           <div className="absolute top-0 p-5 flex flex-col gap-2">
             <h2 className="text-white font-bold text-xl">
               {`${imoveisData.attributes.title}`}

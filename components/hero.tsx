@@ -3,11 +3,11 @@ import { EmblaOptionsType } from 'embla-carousel';
 import { cn } from '@/lib/utils';
 import { Be_Vietnam_Pro } from 'next/font/google';
 
-import CarouselHero from './carousel';
+import CarouselHero from '@/components/carousel';
 import Image from 'next/image';
 import { useImoveis } from '@/contexts/imoveis-context';
-import { MainForm } from './Forms/MainForm';
-import { OurNumbers } from './page-components/our-numbers';
+import { HeroForm } from '@/components/Forms/hero-form';
+import { OurNumbers } from '@/components/page-components/our-numbers';
 import { useMediaQuery } from 'react-responsive';
 
 const font = Be_Vietnam_Pro({
@@ -23,13 +23,16 @@ export const Hero = () => {
 
   const imoveisData = quantityImoveis(1)[0];
 
+  console.log(imoveisData);
+
+  // TODO: USAR ESSA FUNÇÃO PARA MOSTRAR RANDOMICAMENTE UM EMPRENDIMENTO AO ENTRAR NA PAGINA
   const getRandomImages = (i: number) => {
     const images = imoveisData.attributes.main_gallery.data[i].attributes.url;
     return images;
   };
 
   return (
-    <section className="px-[15px] w-full py-24 pt-32 md:pt-36 overflow-x-hidden ">
+    <section className="px-[15px] w-full py-24 pt-32 md:pt-48 overflow-x-hidden ">
       <div className="w-full max-w-[1216px] mx-auto">
         {/* Hero Area */}
         <div className="flex flex-col lg:flex-row gap-14">
@@ -53,12 +56,9 @@ export const Hero = () => {
             </p>
 
             {/*  FORM AREA */}
-            <div className="p-8 rounded-md shadow-lg md:min-w-[700px] z-10 bg-white flex items-center justify-center">
-              <MainForm
+            <div className="p-8 rounded-md shadow-lg md:min-w-[780px] z-10 bg-white flex items-center justify-center">
+              <HeroForm
                 className="gap-5 items-center flex-col md:flex-row "
-                name={false}
-                rendaMensal={false}
-                regiaoDeInteresse={false}
                 errorMessage={isMobile ? true : false}
                 label={isMobile ? true : false}
                 variant={'primary'}
@@ -67,7 +67,7 @@ export const Hero = () => {
           </div>
 
           {/* SLIDER AREA */}
-          <CarouselHero />
+          <CarouselHero imovel={imoveisData} />
         </div>
 
         {/* Our Numbers */}

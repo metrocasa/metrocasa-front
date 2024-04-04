@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import EmpreendimentoCard from './EmpreendimentoCard';
+import EmpreendimentoCard from './empreendimento-card';
 import Link from 'next/link';
 
 // Import Swiper React components
@@ -21,9 +21,12 @@ interface IProps {
   region?: string | null;
   status?: string | null;
   search?: string | null;
+  zone?: string | null;
 }
 
-const EmpreendimentoList = ({ search, region, status }: IProps) => {
+const EmpreendimentoList = ({ search, region, status, zone }: IProps) => {
+  console.log(search);
+
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
 
   const path = usePathname();
@@ -34,6 +37,7 @@ const EmpreendimentoList = ({ search, region, status }: IProps) => {
     paramTitle: string | null | undefined,
     paramNeighborhoods: string | null | undefined,
     paramStatus: string | null | undefined,
+    paramZone: string | null | undefined,
   ) => {
     // Transformar os parâmetros de filtro, se estiverem definidos
     const normalizedTitle = paramTitle
@@ -45,9 +49,17 @@ const EmpreendimentoList = ({ search, region, status }: IProps) => {
     const normalizedStatus = paramStatus
       ? paramStatus.trim().toLowerCase().normalize()
       : null;
+    const normalizedZone = paramZone
+      ? paramZone.trim().toLowerCase().normalize()
+      : null;
 
     // Verificar se todos os filtros estão vazios
-    if (!normalizedTitle && !normalizedNeighborhoods && !normalizedStatus) {
+    if (
+      !normalizedTitle &&
+      !normalizedNeighborhoods &&
+      !normalizedStatus &&
+      !normalizedZone
+    ) {
       // Se nenhum filtro estiver preenchido, retornar todos os imóveis
       return imoveis;
     }
@@ -78,6 +90,14 @@ const EmpreendimentoList = ({ search, region, status }: IProps) => {
         (imovel) =>
           imovel.attributes.status?.trim().toLowerCase().normalize() ===
           normalizedStatus,
+      );
+    }
+
+    if (normalizedZone) {
+      filtered = filtered.filter(
+        (imovel) =>
+          imovel.attributes.zone?.trim().toLowerCase().normalize() ===
+          normalizedZone,
       );
     }
 
@@ -139,17 +159,19 @@ const EmpreendimentoList = ({ search, region, status }: IProps) => {
       {/* RENDER DA PAGINA EMPREENDIMENTOS */}
       {path.startsWith('/empreendimentos') && (
         <div className="flex gap-1 w-full flex-wrap">
-          {filteredImoveis(search, region, status).map((imovel, index) => (
-            <Link
-              key={index}
-              href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
-              className={`flex flex-1  ${
-                search || region || (status && 'md:max-w-[350px]')
-              }`}
-            >
-              <EmpreendimentoCard key={imovel.id} data={imovel} />
-            </Link>
-          ))}
+          {filteredImoveis(search, region, status, zone).map(
+            (imovel, index) => (
+              <Link
+                key={index}
+                href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
+                className={`flex flex-1  ${
+                  search || region || (status && 'md:max-w-[350px]')
+                }`}
+              >
+                <EmpreendimentoCard key={imovel.id} data={imovel} />
+              </Link>
+            ),
+          )}
         </div>
       )}
     </>
