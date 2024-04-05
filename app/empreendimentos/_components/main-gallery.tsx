@@ -44,8 +44,6 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
 
-  console.log(imovel);
-
   return (
     <section className="w-full px-[15px] md:px-0">
       <div className="w-full">

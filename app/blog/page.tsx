@@ -1,8 +1,11 @@
-import { HeroSection } from '@/components/page-components/hero-section';
-import { Header } from '@radix-ui/react-accordion';
-import Image from 'next/image';
+'use client';
 
-export default function BlogPage() {
+import { Header } from '@/components/Header';
+import { HeroSection } from '@/components/page-components/hero-section';
+
+import React from 'react';
+
+const BlogPage = () => {
   return (
     <>
       <Header />
@@ -10,4 +13,6 @@ export default function BlogPage() {
       <h1>Blog</h1>
     </>
   );
-}
+};
+
+export default BlogPage;

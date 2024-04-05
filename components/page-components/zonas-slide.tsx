@@ -26,7 +26,7 @@ export const Zonas = () => {
         {/* SLIDER */}
         <div className="flex md:flex-row flex-col gap-8 ">
           {zonas.map((slide, index) => (
-            <Link href={`/empreendimentos?zone=${slide.zone}`}>
+            <Link key={index} href={`/empreendimentos?zone=${slide.zone}`}>
               <div className="w-full h-[426px] relative">
                 <div className="absolute top-0 left-0 w-full h-full rounded-xl" />
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/60 rounded-lg" />

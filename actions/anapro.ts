@@ -13,8 +13,6 @@ export async function addLead({ name }: { name: string }) {
   // const email = formData.get('email') as string;
   // const phone = formData.get('phone') as string;
 
-  console.log('DADOS: ', name);
-
   return name;
 }
 

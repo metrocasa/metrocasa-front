@@ -4,15 +4,14 @@ import React from 'react';
 
 export const MainContent = ({ imovel }: { imovel: Imovel }) => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-  console.log(imovel);
 
   return (
     <section className="w-full px-[15px] md:px-0 py-24">
       <div className="w-full max-w-[1216px] mx-auto">
-        <div className="flex gap-10">
+        <div className="flex flex-col-reverse md:flex-row gap-10">
           {/* RIGHT */}
-          <div className="w-full h-auto ">
-            <h2 className="text-3xl font-semibold">
+          <div className="w-full">
+            <h2 className="text-3xl font-semibold text-center md:text-left ">
               Um horizonte que se abre para quem sempre desejou comprar no(a){' '}
               <strong>{imovel.attributes.neighborhoods}</strong>
             </h2>
@@ -21,7 +20,7 @@ export const MainContent = ({ imovel }: { imovel: Imovel }) => {
           {/* LEFT */}
           <div className="w-full h-full relative">
             {/* VISITE O DECORADO */}
-            <div className="absolute -top-36 bg-white p-8 rounded-lg flex flex-col gap-4 shadow-md">
+            <div className="md:-mt-36 bg-white p-8 rounded-lg flex flex-col gap-4 shadow-md">
               <h4 className="text-center text-2xl font-bold text-main-red">
                 Visite o Decorado
               </h4>

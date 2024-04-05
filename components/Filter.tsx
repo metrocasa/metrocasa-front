@@ -51,7 +51,6 @@ export const Filter = () => {
 
   // onSubmit Form
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
     router.push(
       `/empreendimentos?region=${values.region}&status=${values.status}&search=${values.search}`,
     );

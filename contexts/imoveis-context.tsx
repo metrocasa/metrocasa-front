@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { cache, createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
@@ -19,6 +19,9 @@ export interface Imovel {
         };
       };
     };
+    video_hero: string;
+    video_background: string;
+    tour_virtual: string;
     logo: {
       data: {
         attributes: {
@@ -38,6 +41,19 @@ export interface Imovel {
     neighborhoods: string;
     status: string;
     hash: string;
+    planta_comp: {
+      id: string;
+      planta_title: string;
+      planta_image: {
+        data: {
+          attributes: {
+            url: string;
+            width: string;
+            height: string;
+          };
+        };
+      };
+    }[];
   };
 }
 
@@ -59,7 +75,8 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
 
   // Função para buscar imóveis
-  const fetchImoveis = async () => {
+  const fetchImoveis = cache(async () => {
+    console.log('Imoveis fetched successfully.');
     try {
       // CONFIG DA API TOKEN DE IMOVEIS
       const config = {
@@ -69,14 +86,16 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
       };
 
       const response = await axios.get(
-        `${BASE_URL}/api/imoveis/?populate=*`,
+        `${BASE_URL}/api/imoveis?populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
         config,
       );
       setImoveis(response.data.data);
+
+      console.log('Imoveis fetched successfully.');
     } catch (error) {
       console.error('Erro ao buscar imóveis:', error);
     }
-  };
+  });
 
   const quantityImoveis = (quantity: number): Imovel[] => {
     return imoveis.slice(0, quantity);

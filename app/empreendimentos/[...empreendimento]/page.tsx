@@ -13,6 +13,8 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 import { MainGallery } from '../_components/main-gallery';
+import { TourVirtual } from '../_components/tour-virtual';
+import { Plantas } from '../_components/plantas-section';
 
 interface ParamsValues {
   empreendimento: string[];
@@ -21,10 +23,10 @@ interface ParamsValues {
 const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
   const [imovel, setImovel] = useState<Imovel | null>(null);
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   console.log('IMOVEL: ', imovel);
 
   const [selectedTab, setSelectedTab] = useState(0);
-  console.log(selectedTab);
 
   useEffect(() => {
     const fetchImoveis = async () => {
@@ -38,7 +40,8 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
         };
 
         const response = await axios.get(
-          `${BASE_URL}/api/imoveis/${id}?populate=*`,
+          `${BASE_URL}/api/imoveis/${id}?populate[planta_comp][populate][planta_image][fields]=*url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
+
           config,
         );
         setImovel(response.data.data);
@@ -91,11 +94,14 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
                   <MainGallery imovel={imovel} />
                 </TabPanel>
                 <TabPanel>
-                  <h1>Make changes to your account here.</h1>
+                  <TourVirtual imovel={imovel} />
                 </TabPanel>
               </Tabs>
             </div>
           </section>
+
+          {/* PLANTAS */}
+          <Plantas imovel={imovel} />
         </>
       ) : (
         <Loading />

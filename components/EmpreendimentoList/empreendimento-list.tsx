@@ -25,8 +25,6 @@ interface IProps {
 }
 
 const EmpreendimentoList = ({ search, region, status, zone }: IProps) => {
-  console.log(search);
-
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
 
   const path = usePathname();
