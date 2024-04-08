@@ -17,7 +17,7 @@ const font = Be_Vietnam_Pro({
 
 export const Hero = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
 
   const { imoveis, quantityImoveis } = useImoveis();
 

@@ -30,7 +30,7 @@ import 'swiper/css';
 import { Title } from '@/components/title';
 
 export const Plantas = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
 
   const slideshowRef = React.useRef<SlideshowRef>(null);
   const zoomRef = React.useRef<ZoomRef>(null);
@@ -41,13 +41,13 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
 
   const [openLightBox, setOpenLightBox] = React.useState(false);
   const allImages = imovel.attributes.planta_comp.map((planta) => [
-    planta.planta_image.data.attributes.url,
-    planta.planta_image.data.attributes.height,
-    planta.planta_image.data.attributes.url,
+    planta.planta_image?.data?.attributes.url,
+    planta.planta_image?.data?.attributes.height,
+    planta.planta_image?.data?.attributes.url,
   ]);
 
   const allImagesMapped = allImages.map((url) => ({
-    src: `${BASE_URL}${url[0]}`,
+    src: `${url[0]}`,
     alt: 'Planta',
     width: Number(url[2]),
     height: Number(url[1]),
@@ -69,11 +69,15 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
       <div className="w-full">
         <Title subtitle="Veja mais" title="Plantas" />
 
-        <div className="w-full max-w-[1216px] mx-auto">
+        <div className="w-full max-w-[1216px] mx-auto flex items-center justify-center">
           <Gallery
             images={allImagesMapped}
             onClick={handleClick}
             enableImageSelection={false}
+            maxRows={3}
+            rowHeight={200}
+            margin={8}
+            tagStyle={{ height: 150 }}
           />
 
           <Lightbox

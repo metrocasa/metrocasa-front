@@ -10,8 +10,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   const isMobile = useMediaQuery({ query: '(max-width: 770px)' });
 
   const { quantityImoveis } = useImoveis();
@@ -19,7 +17,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
   const imoveisData = quantityImoveis(5)[randomNumber];
 
   const getRandomImages = (i: number) => {
-    const images = imoveisData.attributes.main_gallery.data[i].attributes.url;
+    const images = imoveisData.attributes.main_gallery.data[i]?.attributes.url;
     return images;
   };
 
@@ -30,7 +28,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
       <div className="md:-mr-[445px] flex gap-4 overflow-hidden">
         <div className="relative w-full md:max-w-[433px] md:h-[474px] h-[400px] rounded-2xl overflow-hidden">
           {/* <Image
-            src={`${BASE_URL}${imoveisData.attributes.fachada.data.attributes.url}`}
+            src={`${imoveisData.attributes.fachada.data.attributes.url}`}
             alt={imoveisData.attributes.title}
             width={500}
             height={500}
@@ -40,10 +38,10 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
           <BackgroundVideo
             src={
               isMobile
-                ? `${BASE_URL}${imoveisData.attributes.fachada.data.attributes.url}`
+                ? `${imoveisData.attributes.fachada.data.attributes.url}`
                 : imoveisData.attributes.video_hero
             }
-            poster={`${BASE_URL}${imoveisData.attributes.fachada.data.attributes.url}`}
+            poster={`${imoveisData.attributes.fachada.data?.attributes.url}`}
             className="active w-full h-full rounded-xl object-cover bg-center "
           >
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
@@ -60,7 +58,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
 
         <div className="hidden md:block relative w-[197px] h-[474px]">
           <Image
-            src={`${BASE_URL}${getRandomImages(1)}`}
+            src={`${getRandomImages(1)}`}
             alt={imoveisData.attributes.title}
             width={600}
             height={600}
@@ -71,7 +69,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
         </div>
         <div className="hidden md:block  relative w-[197px] h-[474px]">
           <Image
-            src={`${BASE_URL}${getRandomImages(3)}`}
+            src={`${getRandomImages(3)}`}
             alt={imoveisData.attributes.title}
             width={600}
             height={600}
@@ -82,7 +80,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
         </div>
         <div className="hidden md:block relative w-[197px] h-[474px]">
           <Image
-            src={`${BASE_URL}${getRandomImages(7)}`}
+            src={`${getRandomImages(7)}`}
             alt={imoveisData.attributes.title}
             width={600}
             height={600}

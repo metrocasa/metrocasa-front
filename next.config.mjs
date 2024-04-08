@@ -1,8 +1,9 @@
 import { withNextVideo } from "next-video/process";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  
   images: {
-    domains: ["localhost", "swiperjs.com"],
+    domains: ["localhost", "res.cloudinary.com"],
   },
 };
 

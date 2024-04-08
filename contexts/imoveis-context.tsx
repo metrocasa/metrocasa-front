@@ -37,6 +37,7 @@ export interface Imovel {
         };
       }[];
     };
+    activate_planta_section: boolean;
     zone: string;
     neighborhoods: string;
     status: string;

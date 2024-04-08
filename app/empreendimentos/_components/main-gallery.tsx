@@ -27,8 +27,6 @@ import 'yet-another-react-lightbox/styles.css';
 import 'swiper/css';
 
 export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   const slideshowRef = React.useRef<SlideshowRef>(null);
   const zoomRef = React.useRef<ZoomRef>(null);
   const fullscreenRef = React.useRef<FullscreenRef>(null);
@@ -39,7 +37,7 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
     (img) => img.attributes.url,
   );
   const allImagesMapped = allImages.map((url) => ({
-    src: `${BASE_URL}${url}`,
+    src: `${url}`,
   }));
 
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
@@ -81,7 +79,7 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
               <div className="w-[600px] h-[500px]">
                 <Image
                   onClick={() => setOpenLightBox(true)}
-                  src={`${BASE_URL}${image.attributes.url}`}
+                  src={`${image.attributes.url}`}
                   alt="image"
                   width={700}
                   height={700}
