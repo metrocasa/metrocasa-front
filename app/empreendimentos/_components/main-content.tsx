@@ -3,7 +3,7 @@ import { MapIcon, MapPinnedIcon, TramFront } from 'lucide-react';
 import React from 'react';
 
 export const MainContent = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   return (
     <section className="w-full px-[15px] md:px-0 py-24">

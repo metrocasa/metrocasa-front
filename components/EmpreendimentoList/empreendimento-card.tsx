@@ -3,14 +3,14 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 const EmpreendimentoCard = ({ data }: { data: any }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const path = usePathname();
 
   return (
     <div key={data.id} className="relative w-full min-w-[400px] ">
       <Image
-        src={`${data.attributes.fachada.data.attributes.url}`}
+        src={`${BASE_URL}${data.attributes.fachada.data.attributes.url}`}
         alt={'Fachada'}
         className={`object-cover transition h-[495px] w-full ${
           path === '/empreendimentos' ? '' : 'rounded-lg'

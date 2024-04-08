@@ -9,9 +9,10 @@ const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 export interface Imovel {
   id: number;
   attributes: {
+    slug: string;
     title: string;
     subtitle: string;
-    slug: string;
+    address: string;
     fachada: {
       data: {
         attributes: {
@@ -19,6 +20,7 @@ export interface Imovel {
         };
       };
     };
+    about_the_region: string;
     video_hero: string;
     video_background: string;
     tour_virtual: string;

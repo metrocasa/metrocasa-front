@@ -4,8 +4,8 @@ import { Imovel } from '@/contexts/imoveis-context';
 
 import Image from 'next/image';
 
-import { SwiperSlide, Swiper } from 'swiper/react';
-import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import { SwiperSlide, Swiper, useSwiper } from 'swiper/react';
+import { Pagination, Autoplay, EffectFade, Navigation } from 'swiper/modules';
 
 import { useMediaQuery } from 'react-responsive';
 
@@ -25,8 +25,14 @@ import 'yet-another-react-lightbox/styles.css';
 
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/navigation';
+import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
 
 export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  const swiper = useSwiper();
+
   const slideshowRef = React.useRef<SlideshowRef>(null);
   const zoomRef = React.useRef<ZoomRef>(null);
   const fullscreenRef = React.useRef<FullscreenRef>(null);
@@ -37,7 +43,7 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
     (img) => img.attributes.url,
   );
   const allImagesMapped = allImages.map((url) => ({
-    src: `${url}`,
+    src: `${BASE_URL}${url}`,
   }));
 
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
@@ -54,6 +60,10 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
           effect={isMobile ? 'fade' : ''}
           pagination={{
             clickable: true,
+          }}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
           }}
           breakpoints={{
             300: {
@@ -72,14 +82,18 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
               slidesPerView: 3,
             },
           }}
-          modules={[Autoplay, Pagination, EffectFade]}
+          modules={[Autoplay, Pagination, EffectFade, Navigation]}
         >
+          {/* TODO: CHANGE ARROWS */}
+          <ArrowLeftIcon className="swiper-button-prev text-white z-10" />
+          <ArrowRightIcon className="swiper-button-next text-white z-10" />
+
           {imovel.attributes.main_gallery.data.map((image) => (
             <SwiperSlide className="w-[600px] h-[700px]">
               <div className="w-[600px] h-[500px]">
                 <Image
                   onClick={() => setOpenLightBox(true)}
-                  src={`${image.attributes.url}`}
+                  src={`${BASE_URL}${image.attributes.url}`}
                   alt="image"
                   width={700}
                   height={700}

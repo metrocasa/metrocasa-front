@@ -17,7 +17,6 @@ const font = Be_Vietnam_Pro({
 
 export const Hero = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
-  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
 
   const { imoveis, quantityImoveis } = useImoveis();
 
@@ -27,7 +26,8 @@ export const Hero = () => {
 
   // TODO: USAR ESSA FUNÇÃO PARA MOSTRAR RANDOMICAMENTE UM EMPRENDIMENTO AO ENTRAR NA PAGINA
   const getRandomImages = (i: number) => {
-    const images = imoveisData.attributes.main_gallery.data[i].attributes.url;
+    const images =
+      imoveisData?.attributes?.main_gallery.data[i]?.attributes?.url;
     return images;
   };
 

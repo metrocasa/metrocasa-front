@@ -10,6 +10,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   const isMobile = useMediaQuery({ query: '(max-width: 770px)' });
 
   const { quantityImoveis } = useImoveis();
@@ -38,10 +40,10 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
           <BackgroundVideo
             src={
               isMobile
-                ? `${imoveisData.attributes.fachada.data.attributes.url}`
+                ? `${BASE_URL}${imoveisData.attributes.fachada.data.attributes.url}`
                 : imoveisData.attributes.video_hero
             }
-            poster={`${imoveisData.attributes.fachada.data?.attributes.url}`}
+            poster={`${BASE_URL}${imoveisData.attributes.fachada.data?.attributes.url}`}
             className="active w-full h-full rounded-xl object-cover bg-center "
           >
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
@@ -58,7 +60,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
 
         <div className="hidden md:block relative w-[197px] h-[474px]">
           <Image
-            src={`${getRandomImages(1)}`}
+            src={`${BASE_URL}${getRandomImages(1)}`}
             alt={imoveisData.attributes.title}
             width={600}
             height={600}
@@ -69,7 +71,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
         </div>
         <div className="hidden md:block  relative w-[197px] h-[474px]">
           <Image
-            src={`${getRandomImages(3)}`}
+            src={`${BASE_URL}${getRandomImages(3)}`}
             alt={imoveisData.attributes.title}
             width={600}
             height={600}
@@ -80,7 +82,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
         </div>
         <div className="hidden md:block relative w-[197px] h-[474px]">
           <Image
-            src={`${getRandomImages(7)}`}
+            src={`${BASE_URL}${getRandomImages(7)}`}
             alt={imoveisData.attributes.title}
             width={600}
             height={600}

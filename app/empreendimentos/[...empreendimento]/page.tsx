@@ -15,18 +15,17 @@ import 'react-tabs/style/react-tabs.css';
 import { MainGallery } from '../_components/main-gallery';
 import { TourVirtual } from '../_components/tour-virtual';
 import { Plantas } from '../_components/plantas-section';
+import FacilitiesSection from '../_components/facilities-section';
+import { MapsSection } from '../_components/maps-section';
 
 interface ParamsValues {
   empreendimento: string[];
 }
 
 const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
   const [imovel, setImovel] = useState<Imovel | null>(null);
-  const BASE_API = process.env.NEXT_PUBLIC_API_BASE_URL;
-
-  console.log(imovel);
-
-  console.log('IMOVEL: ', imovel);
 
   const [selectedTab, setSelectedTab] = useState(0);
 
@@ -42,7 +41,7 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
         };
 
         const response = await axios.get(
-          `${BASE_API}/api/imoveis/${id}?populate[planta_comp][populate][planta_image][fields]=*url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
+          `${BASE_URL}/api/imoveis/${id}?populate[planta_comp][populate][planta_image][fields]=*url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
 
           config,
         );
@@ -106,6 +105,12 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
           {imovel.attributes.activate_planta_section && (
             <Plantas imovel={imovel} />
           )}
+
+          {/* Facildiades */}
+          <FacilitiesSection imovel={imovel} />
+
+          {/* Maps */}
+          <MapsSection imovel={imovel} />
         </>
       ) : (
         <Loading />

@@ -30,24 +30,24 @@ import 'swiper/css';
 import { Title } from '@/components/title';
 
 export const Plantas = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL;
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+  const isMobile = useMediaQuery({ query: '(max-width: 1178px)' });
 
   const slideshowRef = React.useRef<SlideshowRef>(null);
   const zoomRef = React.useRef<ZoomRef>(null);
   const fullscreenRef = React.useRef<FullscreenRef>(null);
   const thumbnailsRef = React.useRef<ThumbnailsRef>(null);
 
-  console.log(imovel);
-
   const [openLightBox, setOpenLightBox] = React.useState(false);
   const allImages = imovel.attributes.planta_comp.map((planta) => [
-    planta.planta_image?.data?.attributes.url,
-    planta.planta_image?.data?.attributes.height,
-    planta.planta_image?.data?.attributes.url,
+    planta.planta_image.data.attributes.url,
+    planta.planta_image.data.attributes.height,
+    planta.planta_image.data.attributes.url,
   ]);
 
   const allImagesMapped = allImages.map((url) => ({
-    src: `${url[0]}`,
+    src: `${BASE_URL}${url[0]}`,
     alt: 'Planta',
     width: Number(url[2]),
     height: Number(url[1]),
@@ -59,25 +59,40 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
     height,
   }));
 
-  const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
-
   const handleClick = (index: number) => setIndex(index);
   const [index, setIndex] = React.useState(-1);
 
   return (
-    <section className="w-full px-[15px] md:px-0">
+    <section className="w-full px-[15px] md:px-0 py-24">
       <div className="w-full">
         <Title subtitle="Veja mais" title="Plantas" />
 
-        <div className="w-full max-w-[1216px] mx-auto flex items-center justify-center">
+        <div className="w-full max-w-[1216px] mx-auto">
           <Gallery
             images={allImagesMapped}
             onClick={handleClick}
             enableImageSelection={false}
-            maxRows={3}
-            rowHeight={200}
-            margin={8}
-            tagStyle={{ height: 150 }}
+            maxRows={10}
+            rowHeight={250}
+            tagStyle={{ backgroundColor: 'red', height: 150, width: 150 }}
+            tileViewportStyle={
+              isMobile
+                ? {
+                    width: '100%',
+                    height: '100%',
+                  }
+                : {
+                    width: '100%',
+                    maxWidth: 580,
+                    height: '100%',
+                  }
+            }
+            thumbnailStyle={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              flex: '1 1 100px;',
+            }}
           />
 
           <Lightbox
