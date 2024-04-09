@@ -24,13 +24,6 @@ export const Hero = () => {
 
   console.log(imoveisData);
 
-  // TODO: USAR ESSA FUNÇÃO PARA MOSTRAR RANDOMICAMENTE UM EMPRENDIMENTO AO ENTRAR NA PAGINA
-  const getRandomImages = (i: number) => {
-    const images =
-      imoveisData?.attributes?.main_gallery.data[i]?.attributes?.url;
-    return images;
-  };
-
   return (
     <section className="px-[15px] w-full py-24 pt-32 md:pt-48 overflow-x-hidden ">
       <div className="w-full max-w-[1216px] mx-auto">

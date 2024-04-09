@@ -11,8 +11,19 @@ export interface Imovel {
   attributes: {
     slug: string;
     title: string;
+    description: string;
     subtitle: string;
     address: string;
+    address_json: {
+      className: string;
+      height: string;
+      width: string;
+      loading: 'eager' | 'lazy';
+      src: string;
+      style: {
+        border: number;
+      };
+    };
     fachada: {
       data: {
         attributes: {
@@ -20,6 +31,7 @@ export interface Imovel {
         };
       };
     };
+    facilities: string[];
     about_the_region: string;
     video_hero: string;
     video_background: string;

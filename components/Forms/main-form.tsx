@@ -25,6 +25,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { zonas } from '@/constants';
+import { anapro } from '@/actions/anapro';
 
 // SCHEMA
 const formSchema = z.object({
@@ -83,8 +84,59 @@ export const MainForm = ({
     : '';
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    const endpoint =
+      'https://crm.anapro.com.br/webcrm/webapi/integracao/v2/CadastrarProspect';
+
+    const key = process.env.ANAPRO_KEY;
+    const canal_key = process.env.ANAPRO_CANAL_KEY;
+    const campanha_key = process.env.ANAPRO_CAMPANHA_KEY;
+    const key_integradora = process.env.ANAPRO_KEY_INTEGRADORA;
+    const key_agencia = process.env.ANAPRO_KEY_AGENCIA;
+
+    const body = {
+      Key: key,
+      CanalKey: canal_key,
+      CampanhaKey: campanha_key,
+      KeyIntegradora: key_integradora,
+      KeyAgencia: key_agencia,
+
+      PoliticaPrivacidadeKey: '',
+      PessoaNome: values.name,
+      PessoaEmail: values.email,
+      Observacoes: `
+        Renda Mensal: ${values.rendaMensal},
+        Região De Interesse: ${values.regiaoDeInteresse},
+        `,
+
+      PessoaTelefones: [
+        {
+          DDD: values.phone.slice(0, 2),
+          Numero: values.phone.slice(3),
+        },
+      ],
+    };
+
+    // ENVIAR DADOS PARA O ANAPRO
+    const postData = async () => {
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to submit form');
+        }
+
+        console.log('Form submitted successfully');
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      }
+    };
+    postData();
   }
 
   return (

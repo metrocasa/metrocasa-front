@@ -29,33 +29,42 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
     >
       <div className="md:-mr-[445px] flex gap-4 overflow-hidden">
         <div className="relative w-full md:max-w-[433px] md:h-[474px] h-[400px] rounded-2xl overflow-hidden">
-          {/* <Image
-            src={`${imoveisData.attributes.fachada.data.attributes.url}`}
-            alt={imoveisData.attributes.title}
-            width={500}
-            height={500}
-            className="active w-full h-full rounded-xl object-cover bg-center "
-          /> */}
-
-          <BackgroundVideo
-            src={
-              isMobile
-                ? `${BASE_URL}${imoveisData.attributes.fachada.data.attributes.url}`
-                : imoveisData.attributes.video_hero
-            }
-            poster={`${BASE_URL}${imoveisData.attributes.fachada.data?.attributes.url}`}
-            className="active w-full h-full rounded-xl object-cover bg-center "
-          >
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
-            <div className="absolute top-0 p-5 flex flex-col gap-2">
-              <h2 className="text-white font-bold text-xl">
-                {`${imoveisData.attributes.title}`}
-              </h2>
-              <span className="text-white font-medium text-sm">
-                {`${imoveisData.attributes.subtitle}`}
-              </span>
+          {!isMobile ? (
+            <BackgroundVideo
+              src={isMobile ? '' : imoveisData.attributes.video_hero}
+              poster={`${BASE_URL}${imoveisData.attributes.fachada.data?.attributes.url}`}
+              className="active w-full h-full rounded-xl object-cover bg-center "
+            >
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
+              <div className="absolute top-0 p-5 flex flex-col gap-2">
+                <h2 className="text-white font-bold text-xl">
+                  {`${imoveisData.attributes.title}`}
+                </h2>
+                <span className="text-white font-medium text-sm">
+                  {`${imoveisData.attributes.subtitle}`}
+                </span>
+              </div>
+            </BackgroundVideo>
+          ) : (
+            <div className="relative w-full md:max-w-[433px] md:h-[474px] h-[400px] rounded-2xl overflow-hidden">
+              <Image
+                src={`${BASE_URL}${imoveisData.attributes.fachada.data.attributes.url}`}
+                alt={imoveisData.attributes.title}
+                width={500}
+                height={500}
+                className="active w-full h-full rounded-xl object-cover bg-center "
+              />
+              <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
+              <div className="absolute top-0 p-5 flex flex-col gap-2">
+                <h2 className="text-white font-bold text-xl">
+                  {`${imoveisData.attributes.title}`}
+                </h2>
+                <span className="text-white font-medium text-sm">
+                  {`${imoveisData.attributes.subtitle}`}
+                </span>
+              </div>
             </div>
-          </BackgroundVideo>
+          )}
         </div>
 
         <div className="hidden md:block relative w-[197px] h-[474px]">

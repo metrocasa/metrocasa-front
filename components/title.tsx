@@ -11,17 +11,24 @@ interface IProps {
   children?: React.ReactNode;
   title: string;
   subtitle: string;
+  className?: string;
 }
 
-export const Title = ({ children, title, subtitle }: IProps) => {
+export const Title = ({ children, title, subtitle, className }: IProps) => {
   return (
     <div className="w-full max-w-[1216px] mx-auto md:py-14 flex flex-col gap-4">
-      <div className="flex gap-2 text-main-red items-center">
+      <div className={cn('flex gap-2 text-main-red items-center', className)}>
         <MoveRight strokeWidth={1} className="w-14" />
-        <h5 className="text-lg font-medium">{subtitle}</h5>
+        <h5 className={cn('text-lg font-medium', className)}>{subtitle}</h5>
       </div>
 
-      <h2 className={cn('text-4xl md:text-5xl font-bold', font.className)}>
+      <h2
+        className={cn(
+          'text-4xl md:text-5xl font-bold',
+          font.className,
+          className,
+        )}
+      >
         {title}
       </h2>
       <div>{children}</div>

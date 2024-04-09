@@ -4,7 +4,7 @@ import { Loading } from '@/components/loading';
 import axios from 'axios';
 
 import { useEffect, useState } from 'react';
-import { Header } from '@/components/Header';
+import { Header } from '@/components/globals/Header';
 import { Imovel } from '@/contexts/imoveis-context';
 import { HeroSection } from '../_components/hero-section';
 import { MainContent } from '../_components/main-content';
@@ -17,6 +17,8 @@ import { TourVirtual } from '../_components/tour-virtual';
 import { Plantas } from '../_components/plantas-section';
 import FacilitiesSection from '../_components/facilities-section';
 import { MapsSection } from '../_components/maps-section';
+import { FormSection } from '@/components/page-components/form-section';
+import { Footer } from '@/components/globals/Footer';
 
 interface ParamsValues {
   empreendimento: string[];
@@ -69,6 +71,7 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
             <div className="w-full">
               <Tabs className="w-full flex flex-col ">
                 <TabList className="w-full max-w-[1216px] mx-auto flex gap-14 items-center justify-center p-4 rounded-lg  py-8">
+                  {/* TAB GALERIA  */}
                   <Tab
                     className={
                       selectedTab === 0
@@ -79,6 +82,8 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
                   >
                     Galeria
                   </Tab>
+
+                  {/* TAB TOUR VIRTUAL */}
                   <Tab
                     className={
                       selectedTab === 1
@@ -101,7 +106,7 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
             </div>
           </section>
 
-          {/* PLANTAS */}
+          {/* Plantas */}
           {imovel.attributes.activate_planta_section && (
             <Plantas imovel={imovel} />
           )}
@@ -111,6 +116,15 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
 
           {/* Maps */}
           <MapsSection imovel={imovel} />
+
+          {/* Form */}
+          <FormSection
+            title="Entre em contato"
+            subtitle="Deixe seus dados que enviaremos mais informações sobre o empreendimento:"
+          />
+
+          {/* Footer */}
+          <Footer />
         </>
       ) : (
         <Loading />

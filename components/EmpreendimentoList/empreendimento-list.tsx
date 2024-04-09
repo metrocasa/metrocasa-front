@@ -156,7 +156,7 @@ const EmpreendimentoList = ({ search, region, status, zone }: IProps) => {
 
       {/* RENDER DA PAGINA EMPREENDIMENTOS */}
       {path.startsWith('/empreendimentos') && (
-        <div className="flex gap-1 w-full flex-wrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
           {filteredImoveis(search, region, status, zone).map(
             (imovel, index) => (
               <Link

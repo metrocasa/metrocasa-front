@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 
 import { links } from '@/constants';
 import { Button } from '@/components/ui/button';
-import { Sidebar } from './sidebar';
+import { Sidebar } from '../sidebar';
 import { PhoneIcon } from 'lucide-react';
 
 export const Header = () => {

@@ -32,7 +32,7 @@ import { Title } from '@/components/title';
 export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const isMobile = useMediaQuery({ query: '(max-width: 1178px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 690px)' });
 
   const slideshowRef = React.useRef<SlideshowRef>(null);
   const zoomRef = React.useRef<ZoomRef>(null);
@@ -44,13 +44,15 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
     planta.planta_image.data.attributes.url,
     planta.planta_image.data.attributes.height,
     planta.planta_image.data.attributes.url,
+    planta.planta_title,
   ]);
 
   const allImagesMapped = allImages.map((url) => ({
     src: `${BASE_URL}${url[0]}`,
     alt: 'Planta',
-    width: Number(url[2]),
     height: Number(url[1]),
+    width: Number(url[2]),
+    // thumbnailCaption: url[3],  Titulo da Planta
   }));
 
   const slides = allImagesMapped.map(({ src, width, height }) => ({
@@ -68,13 +70,15 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
         <Title subtitle="Veja mais" title="Plantas" />
 
         <div className="w-full max-w-[1216px] mx-auto">
+          {/* TODO: Alterar Galeria para uma proria e remover a dependencia 'react-grid-gallery
+' */}
           <Gallery
             images={allImagesMapped}
             onClick={handleClick}
             enableImageSelection={false}
-            maxRows={10}
-            rowHeight={250}
-            tagStyle={{ backgroundColor: 'red', height: 150, width: 150 }}
+            maxRows={5}
+            rowHeight={150}
+            tagStyle={{ height: 150, width: 150 }}
             tileViewportStyle={
               isMobile
                 ? {
@@ -91,7 +95,9 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              flex: '1 1 100px;',
+              border: '2px solid #c6c6c6',
+              cursor: 'pointer',
+              borderRadius: 10,
             }}
           />
 

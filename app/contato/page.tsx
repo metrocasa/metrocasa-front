@@ -1,4 +1,4 @@
-import { Header } from '@/components/Header';
+import { Header } from '@/components/globals/Header';
 import { HeroSection } from '@/components/page-components/hero-section';
 
 import Image from 'next/image';

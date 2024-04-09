@@ -7,8 +7,8 @@ import { Loading } from '@/components/loading';
 import { useImoveis } from '@/contexts/imoveis-context';
 
 import { useSearchParams } from 'next/navigation';
-import { Header } from '@/components/Header';
-import { Filter } from '@/components/filter';
+import { Header } from '@/components/globals/Header';
+import { Filter } from '@/components/globals/Filter';
 
 export default function EmpreendimentosPage() {
   const { imoveis } = useImoveis();

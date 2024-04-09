@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React from 'react';
@@ -8,7 +9,10 @@ const EmpreendimentoCard = ({ data }: { data: any }) => {
   const path = usePathname();
 
   return (
-    <div key={data.id} className="relative w-full min-w-[400px] ">
+    <div
+      key={data.id}
+      className={cn('relative w-full', path === '/' && 'min-w-[400px]')}
+    >
       <Image
         src={`${BASE_URL}${data.attributes.fachada.data.attributes.url}`}
         alt={'Fachada'}
