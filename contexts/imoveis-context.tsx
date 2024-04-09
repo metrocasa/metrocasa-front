@@ -31,6 +31,14 @@ export interface Imovel {
         };
       };
     };
+    materiais: {
+      ri: string;
+      books: {
+        fase_1: string;
+        fase_2: string;
+        fase_3: string;
+      };
+    };
     facilities: string[];
     about_the_region: string;
     video_hero: string;
@@ -101,7 +109,7 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
       };
 
       const response = await axios.get(
-        `${BASE_URL}/api/imoveis?populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
+        `${BASE_URL}/api/imoveis?populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url&populate[materiais][populate]=*`,
         config,
       );
       setImoveis(response.data.data);

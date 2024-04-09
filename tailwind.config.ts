@@ -23,6 +23,7 @@ const config = {
         'secondary-red': '#B6211D',
         'primary-dark': '#404041',
         'secondary-dark': '#232323',
+        'tertiary-black': '#0A0909',
         white: '#fff',
         black: '#000',
 

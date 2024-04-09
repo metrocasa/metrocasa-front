@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { Header } from '@/components/globals/Header';
+import { ClerkProvider } from '@clerk/nextjs';
 
 import { ImoveisProvider } from '@/contexts/imoveis-context';
 
@@ -18,12 +18,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ImoveisProvider>
-      <html lang="en">
+    <ClerkProvider>
+      <html lang="pt-br">
         <body className={inter.className + 'px-[15px]'}>
-          <div>{children}</div>
+          <ImoveisProvider>
+            <div>{children}</div>
+          </ImoveisProvider>
         </body>
       </html>
-    </ImoveisProvider>
+    </ClerkProvider>
   );
 }
