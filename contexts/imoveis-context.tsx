@@ -31,14 +31,22 @@ export interface Imovel {
         };
       };
     };
+    active_on_materiais: boolean;
     materiais: {
       ri: string;
       books: {
-        fase_1: string;
-        fase_2: string;
-        fase_3: string;
+        a3: string;
+        fase_2: {
+          link: string;
+          disponivel: boolean;
+        };
+        fase_3: {
+          link: string;
+          disponivel: boolean;
+        };
       };
     };
+
     facilities: string[];
     about_the_region: string;
     video_hero: string;

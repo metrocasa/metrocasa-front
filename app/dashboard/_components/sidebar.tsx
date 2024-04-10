@@ -1,30 +1,55 @@
 'use client';
 
-import { UserButton } from '@clerk/nextjs';
+import { UserButton, useUser } from '@clerk/nextjs';
 import { BoxIcon, Building2Icon, StarIcon, Users2Icon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-const linksSidebar = [
+export const linksSidebar = [
+  {
+    label: 'Inicio',
+    href: '/dashboard',
+    icon: <BoxIcon className="w-5 h-5 text-white" />,
+    role: ['admin', 'marketing', 'corretor', 'rh', 'superintendente'],
+  },
   {
     label: 'Materiais',
     href: '/dashboard/materiais',
     icon: <BoxIcon className="w-5 h-5 text-white" />,
+    role: ['admin', 'marketing', 'corretor', 'superintendente'],
   },
   {
     label: 'Evolução de Obras',
     href: '/dashboard/evolucao-de-obras',
     icon: <Building2Icon />,
+    role: ['admin', 'marketing', 'corretor', 'superintendente'],
   },
-  { label: 'Link 3', href: '/dashboard/', icon: <StarIcon /> },
-  { label: 'Link 4', href: '/dashboard/', icon: <Users2Icon /> },
-  { label: 'Link 5', href: '/dashboard/', icon: <StarIcon /> },
+  {
+    label: 'Link 3',
+    href: '/dashboard/',
+    icon: <StarIcon />,
+    role: ['admin', 'marketing'],
+  },
+  {
+    label: 'Link 4',
+    href: '/dashboard/',
+    icon: <Users2Icon />,
+    role: ['admin', 'marketing'],
+  },
+  {
+    label: 'Link 5',
+    href: '/dashboard/',
+    icon: <StarIcon />,
+    role: ['admin', 'marketing'],
+  },
 ];
 
 export const Sidebar = () => {
   const path = usePathname();
+  const user = useUser();
+
   return (
     <div className="hidden lg:block h-screen w-full max-w-[350px] fixed left-0 border-r-2 border-main-red/20 bg-[#210B0C]">
       <div className="h-full flex flex-col justify-between p-14">
@@ -42,22 +67,28 @@ export const Sidebar = () => {
           </Link>
 
           <ul className="flex flex-col text-white font-bold gap-4">
-            {linksSidebar.map((link) => (
-              <Link
-                href={link.href}
-                className={`w-full flex gap-5 items-center cursor-pointer p-4 rounded-lg hover:bg-black/40 transition ${
-                  path === link.href ? 'bg-black/40' : ''
-                }`}
-              >
-                {link.icon}
-                <li className="">{link.label}</li>
-              </Link>
-            ))}
+            {linksSidebar.map(
+              (link, i) =>
+                link.role.includes(
+                  user.user?.publicMetadata.role as string,
+                ) && (
+                  <Link
+                    key={i}
+                    href={link.href}
+                    className={`w-full flex gap-5 items-center cursor-pointer p-4 rounded-lg hover:bg-black/40 transition ${
+                      path === link.href ? 'bg-black/40' : ''
+                    }`}
+                  >
+                    {link.icon}
+                    <li className="">{link.label}</li>
+                  </Link>
+                ),
+            )}
           </ul>
         </div>
 
         <div className="self-start">
-          <UserButton />
+          <UserButton afterSignOutUrl="/dashboard" />
         </div>
       </div>
     </div>

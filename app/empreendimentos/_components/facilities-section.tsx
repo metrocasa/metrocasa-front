@@ -113,8 +113,11 @@ const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ imovel }) => {
         {/* Listagem */}
         <div className="py-14">
           <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-            {facilityWIcons.map((facilityWIcon) => (
-              <li className="text-white font-medium text-xl flex items-center gap-4">
+            {facilityWIcons.map((facilityWIcon, i) => (
+              <li
+                className="text-white font-medium text-xl flex items-center gap-4"
+                key={i}
+              >
                 {facilityWIcon.icon}
                 {facilityWIcon.facility}
               </li>

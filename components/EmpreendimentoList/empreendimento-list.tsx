@@ -141,8 +141,8 @@ const EmpreendimentoList = ({ search, region, status, zone }: IProps) => {
             }}
             modules={[Autoplay, Pagination, EffectFade]}
           >
-            {quantityImoveis(15).map((imovel, index) => (
-              <SwiperSlide key={index}>
+            {quantityImoveis(15).map((imovel, i) => (
+              <SwiperSlide key={i}>
                 <Link
                   href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
                 >
@@ -157,19 +157,17 @@ const EmpreendimentoList = ({ search, region, status, zone }: IProps) => {
       {/* RENDER DA PAGINA EMPREENDIMENTOS */}
       {path.startsWith('/empreendimentos') && (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
-          {filteredImoveis(search, region, status, zone).map(
-            (imovel, index) => (
-              <Link
-                key={index}
-                href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
-                className={`flex flex-1  ${
-                  search || region || (status && 'md:max-w-[350px]')
-                }`}
-              >
-                <EmpreendimentoCard key={imovel.id} data={imovel} />
-              </Link>
-            ),
-          )}
+          {filteredImoveis(search, region, status, zone).map((imovel, i) => (
+            <Link
+              key={i}
+              href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
+              className={`flex flex-1  ${
+                search || region || (status && 'md:max-w-[350px]')
+              }`}
+            >
+              <EmpreendimentoCard key={imovel.id} data={imovel} />
+            </Link>
+          ))}
         </div>
       )}
     </>

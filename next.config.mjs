@@ -3,7 +3,7 @@ import { withNextVideo } from "next-video/process";
 const nextConfig = {
   
   images: {
-    domains: ["localhost", "res.cloudinary.com"],
+    domains: ["localhost", "res.cloudinary.com", "img.clerk.com"],
   },
 };
 

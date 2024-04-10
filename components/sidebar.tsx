@@ -24,8 +24,8 @@ export const Sidebar = () => {
             />
           </Link>
           <ul className="flex flex-col gap-8 py-7">
-            {links.map((link, index) => (
-              <li key={index}>
+            {links.map((link, i) => (
+              <li key={i}>
                 <Link
                   href={link.href}
                   className="text-primary-dark hover:text-main-red transition py-7 font-bold"

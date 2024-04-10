@@ -88,10 +88,11 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
           <ArrowLeftIcon className="swiper-button-prev text-white z-10" />
           <ArrowRightIcon className="swiper-button-next text-white z-10" />
 
-          {imovel.attributes.main_gallery.data.map((image) => (
+          {imovel.attributes.main_gallery.data.map((image, i) => (
             <SwiperSlide className="w-[600px] h-[700px]">
               <div className="w-[600px] h-[500px]">
                 <Image
+                  key={i}
                   onClick={() => setOpenLightBox(true)}
                   src={`${BASE_URL}${image.attributes.url}`}
                   alt="image"

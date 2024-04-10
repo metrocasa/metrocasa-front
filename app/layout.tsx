@@ -18,14 +18,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="pt-br">
-        <body className={inter.className + 'px-[15px]'}>
-          <ImoveisProvider>
-            <div>{children}</div>
-          </ImoveisProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="pt-br">
+      <body className={inter.className + 'px-[15px]'}>
+        <ImoveisProvider>
+          <div>{children}</div>
+        </ImoveisProvider>
+      </body>
+    </html>
   );
 }

@@ -1,122 +1,55 @@
 import { Imovel, useImoveis } from '@/contexts/imoveis-context';
 
-import { Button } from '@/components/ui/button';
-import {
-  TableHead,
-  TableRow,
-  TableHeader,
-  TableCell,
-  TableBody,
-  Table,
-  TableCaption,
-} from '@/components/ui/table';
-import Link from 'next/link';
-import { DownloadIcon, EyeIcon } from 'lucide-react';
+import { Card } from './card';
+import { Search } from './search';
 
-const List = ({ imoveis }: { imoveis: Imovel[] }) => {
-  console.log(imoveis[1].attributes.materiais?.books.fase_1);
+const List = ({
+  imoveis,
+  search,
+}: {
+  imoveis: Imovel[];
+  search: string | null;
+}) => {
+  const filteredImoveis = (paramTitle: string | null | undefined) => {
+    // Transformar os parâmetros de filtro, se estiverem definidos
+    const normalizedTitle = paramTitle
+      ? paramTitle.trim().toLowerCase().normalize()
+      : null;
+
+    // Verificar se todos os filtros estão vazios
+    if (!normalizedTitle) {
+      // Se nenhum filtro estiver preenchido, retornar todos os imóveis
+      return imoveis;
+    }
+
+    // Aplicar os filtros individualmente se estiverem preenchidos
+    let filtered = [...imoveis];
+
+    if (normalizedTitle) {
+      filtered = filtered.filter((imovel) =>
+        imovel.attributes.title
+          ?.trim()
+          .toLowerCase()
+          .normalize()
+          .includes(normalizedTitle),
+      );
+    }
+
+    return filtered;
+  };
 
   return (
-    <Table className="text-white">
-      <TableCaption>Esta é a lista completa de empreendimentos.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead>Empreendimento</TableHead>
-          <TableHead className="w-[230px]">Status</TableHead>
-          <TableHead>R.I</TableHead>
-          <TableHead className="w-[430px]">Books</TableHead>
-          <TableHead className=" w-[100px]">Ver</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {imoveis.map((imovel, i) => (
-          <TableRow key={i}>
-            <TableCell className="font-medium">
-              {imovel.attributes.title}
-            </TableCell>
-            <TableCell>
-              <span className={'font-bold'}>{imovel.attributes?.status}</span>
-            </TableCell>
-
-            <TableCell>
-              <Link
-                href={imovel.attributes.materiais?.ri}
-                className="p-5 rounded-lg"
-              >
-                <DownloadIcon className="w-5 h-5 text-main-red" />
-              </Link>
-            </TableCell>
-
-            <TableCell className="flex gap-2 items-center h-full">
-              {/* FASE 1 */}
-              <Button
-                variant={'primary'}
-                disabled={!imovel?.attributes.materiais?.books.fase_1}
-              >
-                <Link
-                  className="flex gap-3 items-center"
-                  href={
-                    imovel?.attributes.materiais?.books.fase_1
-                      ? imovel?.attributes.materiais?.books.fase_1
-                      : '/dashboard/materiais'
-                  }
-                  download
-                >
-                  <DownloadIcon className="w-4 h-4 text-white" />
-                  Fase 1
-                </Link>
-              </Button>
-
-              {/* FASE 2 */}
-              <Button
-                variant={'primary'}
-                disabled={!imovel?.attributes.materiais?.books.fase_2}
-              >
-                <Link
-                  className="flex gap-3 items-center"
-                  href={
-                    imovel?.attributes.materiais?.books.fase_2
-                      ? imovel?.attributes.materiais?.books.fase_2
-                      : '/dashboard/materiais'
-                  }
-                  download
-                >
-                  <DownloadIcon className="w-4 h-4 text-white" />
-                  Fase 2
-                </Link>
-              </Button>
-
-              {/* FASE 3 */}
-              <Button
-                variant={'primary'}
-                disabled={!imovel?.attributes.materiais?.books.fase_3}
-              >
-                <Link
-                  className="flex gap-3 items-center"
-                  href={
-                    imovel?.attributes.materiais?.books.fase_3
-                      ? imovel?.attributes.materiais?.books.fase_3
-                      : '/dashboard/materiais'
-                  }
-                  download
-                >
-                  <DownloadIcon className="w-4 h-4 text-white" />
-                  Fase 3
-                </Link>
-              </Button>
-            </TableCell>
-
-            <TableCell>
-              <Link
-                href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
-              >
-                <EyeIcon className="w-5 h-5 text-main-red " />
-              </Link>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <>
+      {/* SEARCH */}
+      <Search />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-1">
+        {/* LISTAGEM */}
+        {filteredImoveis(search).map(
+          (imovel) =>
+            imovel.attributes.active_on_materiais && <Card imovel={imovel} />,
+        )}
+      </div>
+    </>
   );
 };
 

@@ -1,17 +1,37 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+'use client';
+
+import { ClerkProvider } from '@clerk/nextjs';
+
+import { ptBR } from '@clerk/localizations';
+
 import { Header } from './_components/header';
 import { Sidebar } from './_components/sidebar';
-import { MainContent } from './_components/main-content';
+
+import { usePathname } from 'next/navigation';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const path = usePathname();
   return (
-    <main className="bg-tertiary-black">
-      <Sidebar />
-      <Header />
-      {children}
-    </main>
+    <ClerkProvider
+      localization={ptBR}
+      appearance={{
+        elements: {
+          footer: 'hidden',
+        },
+      }}
+    >
+      <main className="bg-tertiary-black">
+        {path === '/dashboard' ||
+        path === '/dashboard/materiais' ||
+        path === '/dashboard/evolucao-de-obras' ||
+        path === '/dashboard/linkX' ? (
+          <Sidebar />
+        ) : null}
+
+        <Header />
+        {children}
+      </main>
+    </ClerkProvider>
   );
 };
 

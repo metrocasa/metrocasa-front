@@ -11,13 +11,14 @@ import { useImoveis } from '@/contexts/imoveis-context';
 import { LancamentoSection } from '@/components/page-components/lancamento-section';
 
 import { Zonas } from '@/components/page-components/zonas-slide';
-import { Testmonials } from '@/components/page-components/Testmonials';
+
 import { FaqSection } from '@/components/page-components/faq';
 import { Footer } from '@/components/globals/Footer';
 import { Hero } from '@/components/hero';
 import { AboutUs } from '@/components/page-components/about-us';
 import { Header } from '@/components/globals/Header';
 import { Filter } from '@/components/globals/Filter';
+import { Testmonials } from '@/components/page-components/Testmonials';
 
 export default function Home() {
   const { imoveis } = useImoveis();

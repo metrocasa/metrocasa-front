@@ -39,8 +39,8 @@ export const Header = () => {
 
         <nav className="hidden lg:flex justify-between items-center">
           <ul className="p-5 flex gap-2 font-bold items-center">
-            {links.map((link, index) => (
-              <li key={index}>
+            {links.map((link, i) => (
+              <li key={i}>
                 <Link
                   href={link.href}
                   className="text-primary-dark hover:text-main-red p-4 py-7 transition"
