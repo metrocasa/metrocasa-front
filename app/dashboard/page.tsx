@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Sidebar } from './_components/sidebar';
 
 import { usePathname } from 'next/navigation';
@@ -13,9 +13,11 @@ const DashboardPage = () => {
 
   return (
     <main className="flex w-full ">
-      {path === '/dashboard' && <MainContent />}
-      {path === '/dashboard/materiais' && <Materiais />}
-      {path === '/evolucao-de-obras' && <EvolucaoDeObras />}
+      <Suspense>
+        {path === '/dashboard' && <MainContent />}
+        {path === '/dashboard/materiais' && <Materiais />}
+        {path === '/evolucao-de-obras' && <EvolucaoDeObras />}
+      </Suspense>
     </main>
   );
 };

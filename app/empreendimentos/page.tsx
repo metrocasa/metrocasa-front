@@ -21,7 +21,7 @@ const EmpreendimentosPage = () => {
   const zone = searchParams.get('zone');
 
   return (
-    <Suspense fallback={<div>Carregando...</div>}>
+    <Suspense>
       <Header />
       {imoveis.length ? (
         <div>
