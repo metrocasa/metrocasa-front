@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React from 'react';
 
-const EmpreendimentoCard = ({ data }: { data: any }) => {
+export const EmpreendimentoCard = ({ data }: { data: any }) => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const path = usePathname();
@@ -44,5 +44,3 @@ const EmpreendimentoCard = ({ data }: { data: any }) => {
     </div>
   );
 };
-
-export default EmpreendimentoCard;

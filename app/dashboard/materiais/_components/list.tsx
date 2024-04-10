@@ -3,7 +3,7 @@ import { Imovel, useImoveis } from '@/contexts/imoveis-context';
 import { Card } from './card';
 import { Search } from './search';
 
-const List = ({
+export const List = ({
   imoveis,
   search,
 }: {
@@ -54,5 +54,3 @@ const List = ({
     </>
   );
 };
-
-export default List;

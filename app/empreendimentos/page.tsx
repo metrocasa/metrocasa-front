@@ -1,6 +1,6 @@
 'use client';
 
-import EmpreendimentoList from '@/components/EmpreendimentoList/empreendimento-list';
+import { EmpreendimentoList } from '@/components/EmpreendimentoList/empreendimento-list';
 import { HeroSection } from '@/components/page-components/hero-section';
 import { Loading } from '@/components/loading';
 
@@ -10,7 +10,7 @@ import { useSearchParams } from 'next/navigation';
 import { Header } from '@/components/globals/Header';
 import { Filter } from '@/components/globals/Filter';
 
-export default function EmpreendimentosPage() {
+const EmpreendimentosPage = () => {
   const { imoveis } = useImoveis();
 
   const searchParams = useSearchParams();
@@ -38,4 +38,6 @@ export default function EmpreendimentosPage() {
       )}
     </>
   );
-}
+};
+
+export default EmpreendimentosPage;

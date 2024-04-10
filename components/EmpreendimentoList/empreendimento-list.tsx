@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import EmpreendimentoCard from './empreendimento-card';
+import { EmpreendimentoCard } from './empreendimento-card';
 import Link from 'next/link';
 
 // Import Swiper React components
@@ -24,7 +24,12 @@ interface IProps {
   zone?: string | null;
 }
 
-const EmpreendimentoList = ({ search, region, status, zone }: IProps) => {
+export const EmpreendimentoList = ({
+  search,
+  region,
+  status,
+  zone,
+}: IProps) => {
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
 
   const path = usePathname();
@@ -173,5 +178,3 @@ const EmpreendimentoList = ({ search, region, status, zone }: IProps) => {
     </>
   );
 };
-
-export default EmpreendimentoList;

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import List from './_components/list';
+import { List } from './_components/list';
 import { useImoveis } from '@/contexts/imoveis-context';
 import { Loader2Icon } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
