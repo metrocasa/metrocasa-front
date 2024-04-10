@@ -34,11 +34,10 @@ export const Hero = () => {
             <h1
               className={cn('font-bold text-5xl md:text-7xl', font.className)}
             >
-              Lorem ipsum sit{' '}
+              Lorem ipsum sit
               <span className="text-secondary-red font-extrabold">
-                {' '}
                 amet dolor
-              </span>{' '}
+              </span>
               ensenctum.
             </h1>
             <p className={cn('font-normal', font.className)}>
