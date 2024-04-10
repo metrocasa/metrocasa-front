@@ -45,8 +45,10 @@ const List = ({
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-1">
         {/* LISTAGEM */}
         {filteredImoveis(search).map(
-          (imovel) =>
-            imovel.attributes.active_on_materiais && <Card imovel={imovel} />,
+          (imovel, i) =>
+            imovel.attributes.active_on_materiais && (
+              <Card key={i} imovel={imovel} />
+            ),
         )}
       </div>
     </>
