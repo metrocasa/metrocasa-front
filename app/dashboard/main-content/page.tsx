@@ -2,27 +2,28 @@
 
 import React from 'react';
 
-import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import { Loader2Icon } from 'lucide-react';
 
 const MainContent = () => {
-  const user = useUser();
+  const user = true;
 
-  return user.isLoaded ? (
+  return user ? (
     <main className="w-full flex flex-col md:ml-[350px] h-screen md:p-14 p-10">
       <div className="flex flex-col gap-5">
-        <Image
-          src={`${user?.user?.imageUrl}`}
+        {/* <Image
+          src={'/logo-red-white.svg'}
           alt={'Perfil'}
           className={`object-cover transition h-[70px] w-[70px] rounded-full`}
           width={900}
           height={900}
           priority
-        />
+        /> */}
+
+        <div className="object-cover transition h-[70px] w-[70px] rounded-full bg-main-red" />
 
         <h1 className="text-white text-3xl">
-          Bem-vindo, <strong>{user.user?.firstName}</strong>!
+          Bem-vindo, <strong>USUARIO</strong>!
         </h1>
         <hr className="text-white" />
         <h2 className="text-main-red mt-14">

@@ -1,6 +1,5 @@
 'use client';
 
-import { UserButton, useUser } from '@clerk/nextjs';
 import { BoxIcon, Building2Icon, StarIcon, Users2Icon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -48,7 +47,10 @@ export const linksSidebar = [
 
 export const Sidebar = () => {
   const path = usePathname();
-  const user = useUser();
+  const user = true;
+  const userRole = {
+    role: 'marketing',
+  };
 
   return (
     <div className="hidden lg:block h-screen w-full max-w-[350px] fixed left-0 border-r-2 border-main-red/20 bg-[#210B0C]">
@@ -69,9 +71,7 @@ export const Sidebar = () => {
           <ul className="flex flex-col text-white font-bold gap-4">
             {linksSidebar.map(
               (link, i) =>
-                link.role.includes(
-                  user.user?.publicMetadata.role as string,
-                ) && (
+                link.role.includes(userRole.role) && (
                   <Link
                     key={i}
                     href={link.href}
@@ -87,9 +87,7 @@ export const Sidebar = () => {
           </ul>
         </div>
 
-        <div className="self-start">
-          <UserButton afterSignOutUrl="/dashboard" />
-        </div>
+        <div className="self-start">USERBUTTON</div>
       </div>
     </div>
   );

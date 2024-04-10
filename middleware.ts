@@ -1,10 +1,33 @@
-import { authMiddleware } from '@clerk/nextjs';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { cookies } from 'next/headers';
 
-// See https://clerk.com/docs/references/nextjs/auth-middleware
-// for more information about configuring your Middleware
-export default authMiddleware({
-  // Allow signed out users to access the specified routes:
-  publicRoutes: [
+const protectedRoutes = ['/dashboard'];
+
+// Middleware function to handle public routes
+export function middleware(request: NextRequest) {
+  cookies().get('auth');
+  const path = request.nextUrl.pathname;
+
+  console.log(path);
+
+  console.log(path);
+
+  if (path === '/dashboard') {
+    console.log('é igual');
+  }
+
+  return NextResponse.next();
+}
+
+export const config = {
+  // Regular expressions to match routes
+  matcher: [
+    // Match any route that doesn't end with a file extension or _next
+    '/((?!.*\\.[\\w]+$|_next).*)',
+
+    // PUBLIC ROUTES
+    '/(api|trpc)(.*)',
     '/',
     '/sobre-nos',
     '/blog',
@@ -12,15 +35,5 @@ export default authMiddleware({
     '/empreendimentos',
     '/empreendimentos/:empreendimento/:id',
     '/contato',
-  ],
-});
-
-export const config = {
-  matcher: [
-    // Exclude files with a "." followed by an extension, which are typically static files.
-    // Exclude files in the _next directory, which are Next.js internals.
-    '/((?!.+\\.[\\w]+$|_next).*)',
-    // Re-include any files in the api or trpc folders that might have an extension
-    '/(api|trpc)(.*)',
   ],
 };

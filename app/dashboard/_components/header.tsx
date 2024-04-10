@@ -1,4 +1,3 @@
-import { UserButton, useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,7 +15,9 @@ import { usePathname } from 'next/navigation';
 
 export const Header = () => {
   const path = usePathname();
-  const user = useUser();
+  const user = {
+    role: 'marketing',
+  };
 
   return (
     <header className="lg:hidden flex w-full  h-[85px] lg:px-24 px-10 border-b-2 border-main-red/20 bg-main-red/10">
@@ -50,26 +51,18 @@ export const Header = () => {
             </Link>
 
             <ul className="flex flex-col text-white font-bold gap-4">
-              {linksSidebar.map(
-                (link, i) =>
-                  link.role.includes(
-                    user.user?.publicMetadata.role as string,
-                  ) && (
-                    <Link
-                      key={i}
-                      href={link.href}
-                      className={`w-full flex gap-5 items-center cursor-pointer p-4 rounded-lg hover:bg-black/40 transition ${
-                        path === link.href ? 'bg-black/40' : ''
-                      }`}
-                    >
-                      {link.icon}
-                      <li className="">{link.label}</li>
-                    </Link>
-                  ),
-              )}
-              <li className="p-4">
-                <UserButton />
-              </li>
+              {linksSidebar.map((link, i) => (
+                <Link
+                  key={i}
+                  href={link.href}
+                  className={`w-full flex gap-5 items-center cursor-pointer p-4 rounded-lg hover:bg-black/40 transition ${
+                    path === link.href ? 'bg-black/40' : ''
+                  }`}
+                >
+                  {link.icon}
+                  <li className="">{link.label}</li>
+                </Link>
+              ))}
             </ul>
 
             <div className="w-full flex items-center justify-center py-14"></div>
