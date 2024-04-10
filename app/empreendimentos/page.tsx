@@ -9,6 +9,7 @@ import { useImoveis } from '@/contexts/imoveis-context';
 import { useSearchParams } from 'next/navigation';
 import { Header } from '@/components/globals/Header';
 import { Filter } from '@/components/globals/Filter';
+import { Suspense } from 'react';
 
 const EmpreendimentosPage = () => {
   const { imoveis } = useImoveis();
@@ -20,7 +21,7 @@ const EmpreendimentosPage = () => {
   const zone = searchParams.get('zone');
 
   return (
-    <>
+    <Suspense fallback={<div>Carregando...</div>}>
       <Header />
       {imoveis.length ? (
         <div>
@@ -36,7 +37,7 @@ const EmpreendimentosPage = () => {
       ) : (
         <Loading />
       )}
-    </>
+    </Suspense>
   );
 };
 
