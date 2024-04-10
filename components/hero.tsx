@@ -34,17 +34,17 @@ export const Hero = () => {
             <h1
               className={cn('font-bold text-5xl md:text-7xl', font.className)}
             >
-              Lorem ipsum sit
+              Lorem ipsum sit{' '}
               <span className="text-secondary-red font-extrabold">
-                amet dolor
+                amet dolor{' '}
               </span>
-              ensenctum.
+              &apos;ensenctum&apos;.
             </h1>
             <p className={cn('font-normal', font.className)}>
               How much will it cost the target audience is makes and famles aged
-              zero and up, for i'll pay you in a week we don't need to pay
-              upfront i hope you understand yet i'll know it when i see it there
-              are more projects lined up charge extra the next time,
+              zero and up, for i&apos;ll pay you in a week we don&apos;t need to
+              pay upfront i hope you understand yet i&apos;ll know it when i see
+              it there are more projects lined up charge extra the next time,
             </p>
 
             {/*  FORM AREA */}
