@@ -4,17 +4,34 @@ import { cookies } from 'next/headers';
 
 const protectedRoutes = ['/dashboard'];
 
+// PUBLIC ROUTES
+const publicRoutes = [
+  '/',
+  '/sobre-nos',
+  '/blog',
+  '/fazer-simulacao',
+  '/empreendimentos',
+  '/empreendimentos/:empreendimento/:id',
+  '/contato',
+  '/dashboard/sign-in',
+  '/dashboard/sign-up',
+];
+
 // Middleware function to handle public routes
 export function middleware(request: NextRequest) {
-  cookies().get('auth');
+  const auth = cookies().get('session');
   const path = request.nextUrl.pathname;
 
-  console.log(path);
+  if (publicRoutes.includes(path)) {
+    return NextResponse.next();
+  }
 
-  console.log(path);
+  if (auth) {
+    return NextResponse.next();
+  }
 
-  if (path === '/dashboard') {
-    console.log('é igual');
+  if (!auth) {
+    return NextResponse.redirect(new URL('/dashboard/sign-in', request.url));
   }
 
   return NextResponse.next();
@@ -25,15 +42,6 @@ export const config = {
   matcher: [
     // Match any route that doesn't end with a file extension or _next
     '/((?!.*\\.[\\w]+$|_next).*)',
-
-    // PUBLIC ROUTES
     '/(api|trpc)(.*)',
-    '/',
-    '/sobre-nos',
-    '/blog',
-    '/fazer-simulacao',
-    '/empreendimentos',
-    '/empreendimentos/:empreendimento/:id',
-    '/contato',
   ],
 };

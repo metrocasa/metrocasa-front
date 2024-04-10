@@ -32,13 +32,15 @@ async function createAccount(formData: FormData) {
   if (res.ok) {
     const data = await res.json();
 
-    cookies().set('auth', data.jwt, {
-      maxAge: 24 * 60 * 60,
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
-    });
+    if (data.jwt) {
+      cookies().set('session', data.jwt, {
+        maxAge: 24 * 60 * 60,
+        path: '/',
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+      });
+    }
   }
 
   // // Redirect to the login page after successful registration
@@ -72,7 +74,7 @@ async function login(formData: FormData) {
   if (res.ok) {
     const data = await res.json();
 
-    cookies().set('auth', data.jwt, {
+    cookies().set('session', data.jwt, {
       maxAge: 24 * 60 * 60,
       path: '/',
       httpOnly: true,
@@ -80,13 +82,21 @@ async function login(formData: FormData) {
       sameSite: 'strict',
     });
 
-    redirect('/dashboard');
+    if (data.jwt) {
+      redirect('/dashboard');
+    }
   } else {
     console.log('ERRO NO LOGIN');
   }
 
-  // revalidatePath('/dashboard');
-  // redirect('/dashboard');
+  revalidatePath('/dashboard');
+  redirect('/dashboard');
+}
+
+// TODO: Verificar se a sessão é válida
+
+async function isSessionVaid() {
+  const sessionCookie = cookies().get('session');
 }
 
 const authActions = {
