@@ -6,7 +6,7 @@ import { Sidebar } from './_components/sidebar';
 import { usePathname } from 'next/navigation';
 import Materiais from './materiais/page';
 import EvolucaoDeObras from './evolucao-de-obras/page';
-import { MainContent } from './main-content/page';
+import MainContent from './main-content/page';
 
 const DashboardPage = () => {
   const path = usePathname();

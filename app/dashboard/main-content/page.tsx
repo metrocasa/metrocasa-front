@@ -4,7 +4,7 @@ import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import { Loader2Icon } from 'lucide-react';
 
-export const MainContent = () => {
+const MainContent = () => {
   const user = useUser();
 
   return user.isLoaded ? (
@@ -34,3 +34,5 @@ export const MainContent = () => {
     </div>
   );
 };
+
+export default MainContent;
