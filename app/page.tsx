@@ -18,7 +18,7 @@ import { Hero } from '@/components/hero';
 import { AboutUs } from '@/components/page-components/about-us';
 import { Header } from '@/components/globals/Header';
 import { Filter } from '@/components/globals/Filter';
-import { Testmonials } from '@/components/page-components/testmonials';
+import { TestmonialsComp } from '@/components/page-components/testmonials';
 
 export default function Home() {
   const { imoveis } = useImoveis();
@@ -38,7 +38,7 @@ export default function Home() {
           {/* <EtapaSection /> */}
           <Zonas />
           <FormSection title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento." />
-          <Testmonials />
+          <TestmonialsComp />
           <FaqSection />
 
           <Footer />

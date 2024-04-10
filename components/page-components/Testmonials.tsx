@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 
 import YouTube from 'react-youtube';
 
-export const Testmonials = () => {
+export const TestmonialsComp = () => {
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
   const isMobile = useMediaQuery({ query: '(max-width: 640px)' });
 
