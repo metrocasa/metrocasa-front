@@ -1,6 +1,6 @@
 'use client';
 
-import EmpreendimentoList from '@/components/EmpreendimentoList/empreendimento-list';
+import { EmpreendimentoList } from '@/components/EmpreendimentoList/empreendimento-list';
 
 import { FormSection } from '@/components/page-components/form-section';
 
@@ -18,7 +18,7 @@ import { Hero } from '@/components/hero';
 import { AboutUs } from '@/components/page-components/about-us';
 import { Header } from '@/components/globals/Header';
 import { Filter } from '@/components/globals/Filter';
-import { Testmonials } from '@/components/page-components/Testmonials';
+import { Testmonials } from '@/components/page-components/testmonials';
 
 export default function Home() {
   const { imoveis } = useImoveis();
