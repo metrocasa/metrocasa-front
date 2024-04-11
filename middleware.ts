@@ -12,7 +12,7 @@ const publicRoutes = [
   '/blog',
   '/fazer-simulacao',
   '/empreendimentos',
-  '/empreendimentos/:empreendimento/:id',
+  /^\/empreendimentos\/[^/]+\/[^/]+$/,
   '/contato',
   '/dashboard/sign-in',
   '/dashboard/sign-up',
@@ -26,7 +26,11 @@ export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
   // Verificar se o caminho é uma rota pública
-  if (publicRoutes.includes(path)) {
+  if (
+    publicRoutes.some((route) =>
+      typeof route === 'string' ? route === path : route.test(path),
+    )
+  ) {
     return NextResponse.next();
   }
 

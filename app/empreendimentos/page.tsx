@@ -21,6 +21,7 @@ const EmpreendimentosPage = () => {
         <div>
           <HeroSection title={'Empreendimentos'} />
           <Filter />
+          {/* TODO: ADD A SKELETON IF NEEDED */}
           <Suspense>
             <EmpreendimentoList />
           </Suspense>

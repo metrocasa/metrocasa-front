@@ -20,6 +20,7 @@ const Materiais = () => {
         Materiais
       </h1>
       {imoveis.length ? (
+        //TODO: ADD A SKELETON IF NEEDED
         <Suspense>
           <List imoveis={imoveis} />
         </Suspense>
