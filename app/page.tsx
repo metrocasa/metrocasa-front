@@ -18,6 +18,7 @@ import { Hero } from '@/components/hero';
 import { AboutUs } from '@/components/page-components/about-us';
 import { Header } from '@/components/globals/Header';
 import { Filter } from '@/components/globals/Filter';
+import { Suspense } from 'react';
 
 export default function Home() {
   const { imoveis } = useImoveis();
@@ -30,9 +31,10 @@ export default function Home() {
 
           <Hero />
           <AboutUs />
-          <EmpreendimentoList />
-          <Filter />
 
+          <EmpreendimentoList />
+
+          <Filter />
           <LancamentoSection />
           {/* <EtapaSection /> */}
           <Zonas />

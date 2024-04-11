@@ -9,7 +9,7 @@ const MainContent = () => {
   const user = true;
 
   return user ? (
-    <main className="w-full flex flex-col md:ml-[350px] h-screen md:p-14 p-10">
+    <main className="w-full flex flex-col lg:ml-[350px] h-screen md:p-14 p-10">
       <div className="flex flex-col gap-5">
         {/* <Image
           src={'/logo-red-white.svg'}

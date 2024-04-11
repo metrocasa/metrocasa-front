@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { cookies } from 'next/headers';
+import Cookies from 'js-cookie';
 
 const protectedRoutes = ['/dashboard'];
 
@@ -15,22 +16,30 @@ const publicRoutes = [
   '/contato',
   '/dashboard/sign-in',
   '/dashboard/sign-up',
+  '/dashboard/reset-password',
+  '/dashboard/forgot-password',
 ];
 
 // Middleware function to handle public routes
 export function middleware(request: NextRequest) {
-  const auth = cookies().get('session');
+  const session = cookies().get('session');
   const path = request.nextUrl.pathname;
 
+  // Verificar se o caminho é uma rota pública
   if (publicRoutes.includes(path)) {
     return NextResponse.next();
   }
 
-  if (auth) {
-    return NextResponse.next();
+  // Verificar se o cookie 'session' existe
+  if (!session) {
+    return NextResponse.redirect(new URL('/dashboard/sign-in', request.url));
   }
 
-  if (!auth) {
+  // Verificar se o valor do cookie 'session' está vazio
+  if (session.value === '') {
+    // Excluir o cookie 'session'
+    Cookies.remove('session');
+    // Redirecionar para a página de login
     return NextResponse.redirect(new URL('/dashboard/sign-in', request.url));
   }
 

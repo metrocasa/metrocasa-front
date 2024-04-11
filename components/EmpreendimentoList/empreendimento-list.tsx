@@ -13,41 +13,36 @@ import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css/effect-fade';
 
 import { useImoveis } from '@/contexts/imoveis-context';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useMediaQuery } from 'react-responsive';
 import { Title } from '../title';
 
-interface IProps {
-  region?: string | null;
-  status?: string | null;
-  search?: string | null;
-  zone?: string | null;
-}
+export const EmpreendimentoList = () => {
+  const { imoveis, quantityImoveis } = useImoveis();
 
-export const EmpreendimentoList = ({
-  search,
-  region,
-  status,
-  zone,
-}: IProps) => {
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
 
   const path = usePathname();
 
-  const { imoveis, quantityImoveis } = useImoveis();
+  // PARAMS
+  const searchParams = useSearchParams();
+  const region = searchParams.get('region');
+  const status = searchParams.get('status');
+  const search = searchParams.get('search');
+  const zone = searchParams.get('zone');
 
   const filteredImoveis = (
-    paramTitle: string | null | undefined,
-    paramNeighborhoods: string | null | undefined,
+    paramSearch: string | null | undefined,
+    paramRegion: string | null | undefined,
     paramStatus: string | null | undefined,
     paramZone: string | null | undefined,
   ) => {
     // Transformar os parâmetros de filtro, se estiverem definidos
-    const normalizedTitle = paramTitle
-      ? paramTitle.trim().toLowerCase().normalize()
+    const normalizedTitle = paramSearch
+      ? paramSearch.trim().toLowerCase().normalize()
       : null;
-    const normalizedNeighborhoods = paramNeighborhoods
-      ? paramNeighborhoods.trim().toLowerCase().normalize()
+    const normalizedRegion = paramRegion
+      ? paramRegion.trim().toLowerCase().normalize()
       : null;
     const normalizedStatus = paramStatus
       ? paramStatus.trim().toLowerCase().normalize()
@@ -59,7 +54,7 @@ export const EmpreendimentoList = ({
     // Verificar se todos os filtros estão vazios
     if (
       !normalizedTitle &&
-      !normalizedNeighborhoods &&
+      !normalizedRegion &&
       !normalizedStatus &&
       !normalizedZone
     ) {
@@ -80,11 +75,11 @@ export const EmpreendimentoList = ({
       );
     }
 
-    if (normalizedNeighborhoods) {
+    if (normalizedRegion) {
       filtered = filtered.filter(
         (imovel) =>
           imovel.attributes.neighborhoods?.trim().toLowerCase().normalize() ===
-          normalizedNeighborhoods,
+          normalizedRegion,
       );
     }
 

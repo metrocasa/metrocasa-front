@@ -13,11 +13,9 @@ const DashboardPage = () => {
 
   return (
     <main className="flex w-full ">
-      <Suspense>
-        {path === '/dashboard' && <MainContent />}
-        {path === '/dashboard/materiais' && <Materiais />}
-        {path === '/evolucao-de-obras' && <EvolucaoDeObras />}
-      </Suspense>
+      {path === '/dashboard' && <MainContent />}
+      {path === '/dashboard/materiais' && <Materiais />}
+      {path === '/evolucao-de-obras' && <EvolucaoDeObras />}
     </main>
   );
 };

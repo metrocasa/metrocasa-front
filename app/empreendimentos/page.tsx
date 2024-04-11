@@ -14,30 +14,21 @@ import { Suspense } from 'react';
 const EmpreendimentosPage = () => {
   const { imoveis } = useImoveis();
 
-  const searchParams = useSearchParams();
-  const region = searchParams.get('region');
-  const status = searchParams.get('status');
-  const search = searchParams.get('search');
-  const zone = searchParams.get('zone');
-
   return (
-    <Suspense>
+    <>
       <Header />
       {imoveis.length ? (
         <div>
           <HeroSection title={'Empreendimentos'} />
           <Filter />
-          <EmpreendimentoList
-            region={region}
-            status={status}
-            search={search}
-            zone={zone}
-          />
+          <Suspense>
+            <EmpreendimentoList />
+          </Suspense>
         </div>
       ) : (
         <Loading />
       )}
-    </Suspense>
+    </>
   );
 };
 

@@ -17,11 +17,11 @@ const SignUpPage = () => {
   return (
     <div className="w-full flex justify-center items-center">
       <form action={authActions.createAccount}>
-        <Card className="mx-auto max-w-sm">
+        <Card className="min-w-[400px]">
           <CardHeader>
             <CardTitle className="text-xl">Sign Up</CardTitle>
             <CardDescription>
-              Enter your information to create an account
+              Insira as informações da sua conta
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -31,7 +31,7 @@ const SignUpPage = () => {
                 <Input
                   id="username"
                   name="username"
-                  placeholder="Max"
+                  placeholder="Fernanda Souza"
                   required
                 />
               </div>
@@ -42,23 +42,25 @@ const SignUpPage = () => {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="mail@metrocasa.com.br"
                   required
                 />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="password">Senha</Label>
-                <Input id="password" name="password" type="password" />
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="**********"
+                />
               </div>
               <Button type="submit" className="w-full">
-                Create an account
-              </Button>
-              <Button variant="outline" className="w-full">
-                Sign up with GitHub
+                Criar Conta
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
-              Already have an account?{' '}
+              Já tem uma conta?{' '}
               <Link href="/dashboard/sign-in" className="underline">
                 Login
               </Link>

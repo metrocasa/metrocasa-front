@@ -3,6 +3,7 @@ import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
+// Register
 async function createAccount(formData: FormData) {
   'use server';
 
@@ -33,13 +34,7 @@ async function createAccount(formData: FormData) {
     const data = await res.json();
 
     if (data.jwt) {
-      cookies().set('session', data.jwt, {
-        maxAge: 24 * 60 * 60,
-        path: '/',
-        httpOnly: true,
-        secure: true,
-        sameSite: 'strict',
-      });
+      cookies().set('session', data.jwt);
     }
   }
 
@@ -47,6 +42,7 @@ async function createAccount(formData: FormData) {
   redirect('/dashboard');
 }
 
+// Login
 async function login(formData: FormData) {
   'use server';
 
@@ -74,13 +70,7 @@ async function login(formData: FormData) {
   if (res.ok) {
     const data = await res.json();
 
-    cookies().set('session', data.jwt, {
-      maxAge: 24 * 60 * 60,
-      path: '/',
-      httpOnly: true,
-      secure: true,
-      sameSite: 'strict',
-    });
+    cookies().set('session', data.jwt);
 
     if (data.jwt) {
       redirect('/dashboard');
@@ -93,7 +83,32 @@ async function login(formData: FormData) {
   redirect('/dashboard');
 }
 
-// TODO: Verificar se a sessão é válida
+// Reset Pasword
+async function resetPassword(formData: FormData) {
+  'use server';
+
+  const email = formData.get('email') as string;
+
+  fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/auth/forgot-password`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email: email }), // user's email
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log('Your user received an email');
+    })
+    .catch((error) => {
+      console.error('An error occurred:', error);
+    });
+}
 
 async function isSessionVaid() {
   const sessionCookie = cookies().get('session');
@@ -102,6 +117,7 @@ async function isSessionVaid() {
 const authActions = {
   createAccount,
   login,
+  resetPassword,
 };
 
 export default authActions;

@@ -2,14 +2,18 @@ import { Imovel, useImoveis } from '@/contexts/imoveis-context';
 
 import { Card } from './card';
 import { Search } from './search';
+import { Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 export const List = ({
   imoveis,
-  search,
 }: {
   imoveis: Imovel[];
-  search: string | null;
+  search?: string | null;
 }) => {
+  const params = useSearchParams();
+  const search = params.get('search');
+
   const filteredImoveis = (paramTitle: string | null | undefined) => {
     // Transformar os parâmetros de filtro, se estiverem definidos
     const normalizedTitle = paramTitle
@@ -40,17 +44,19 @@ export const List = ({
 
   return (
     <>
-      {/* SEARCH */}
-      <Search />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-1">
-        {/* LISTAGEM */}
-        {filteredImoveis(search).map(
-          (imovel, i) =>
-            imovel.attributes.active_on_materiais && (
-              <Card key={i} imovel={imovel} />
-            ),
-        )}
-      </div>
+      <Suspense>
+        {/* SEARCH */}
+        <Search />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-1">
+          {/* LISTAGEM */}
+          {filteredImoveis(search).map(
+            (imovel, i) =>
+              imovel.attributes.active_on_materiais && (
+                <Card key={i} imovel={imovel} />
+              ),
+          )}
+        </div>
+      </Suspense>
     </>
   );
 };

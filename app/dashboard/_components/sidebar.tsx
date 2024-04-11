@@ -1,10 +1,17 @@
 'use client';
 
-import { BoxIcon, Building2Icon, StarIcon, Users2Icon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  BoxIcon,
+  Building2Icon,
+  LogOutIcon,
+  StarIcon,
+  Users2Icon,
+} from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import React from 'react';
+import { redirect, usePathname, useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 export const linksSidebar = [
   {
@@ -48,8 +55,15 @@ export const linksSidebar = [
 export const Sidebar = () => {
   const path = usePathname();
   const user = true;
+  const router = useRouter();
   const userRole = {
     role: 'marketing',
+  };
+
+  const handleLogout = () => {
+    Cookies.remove('session');
+
+    router.push('/sign-in');
   };
 
   return (
@@ -87,7 +101,17 @@ export const Sidebar = () => {
           </ul>
         </div>
 
-        <div className="self-start">USERBUTTON</div>
+        <div className="self-start">
+          <Button
+            className="flex gap-4"
+            variant={'primary'}
+            size={'lg'}
+            onClick={handleLogout}
+          >
+            LOGOUT
+            <LogOutIcon />
+          </Button>
+        </div>
       </div>
     </div>
   );

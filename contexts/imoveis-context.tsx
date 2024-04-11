@@ -3,6 +3,9 @@
 import { cache, createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
+import Cookies from 'js-cookie';
+import { usePathname } from 'next/navigation';
+
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
 // Definindo o tipo para o array de imóveis
@@ -105,14 +108,20 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
 
+  const path = usePathname();
+
   // Função para buscar imóveis
   const fetchImoveis = cache(async () => {
-    console.log('Imoveis fetched successfully.');
+    const isDashboardPage = path.startsWith('/dashboard');
+    const authorizationToken = isDashboardPage
+      ? Cookies.get('session')
+      : process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS;
+
     try {
       // CONFIG DA API TOKEN DE IMOVEIS
       const config = {
         headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS}`,
+          Authorization: `Bearer ${authorizationToken}`,
         },
       };
 
@@ -121,8 +130,6 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
         config,
       );
       setImoveis(response.data.data);
-
-      console.log('Imoveis fetched successfully.');
     } catch (error) {
       console.error('Erro ao buscar imóveis:', error);
     }
