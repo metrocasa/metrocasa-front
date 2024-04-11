@@ -33,22 +33,10 @@ export const linksSidebar = [
     role: ['admin', 'marketing', 'corretor', 'superintendente'],
   },
   {
-    label: 'Link 3',
-    href: '/dashboard/',
+    label: 'Blog',
+    href: '/dashboard/blog',
     icon: <StarIcon />,
-    role: ['admin', 'marketing'],
-  },
-  {
-    label: 'Link 4',
-    href: '/dashboard/',
-    icon: <Users2Icon />,
-    role: ['admin', 'marketing'],
-  },
-  {
-    label: 'Link 5',
-    href: '/dashboard/',
-    icon: <StarIcon />,
-    role: ['admin', 'marketing'],
+    role: ['admin', 'marketing', 'editor'],
   },
 ];
 

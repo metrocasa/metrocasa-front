@@ -65,6 +65,7 @@ export const zonas = [
 ];
 
 export const regions = [
+  'Selecione...',
   'Aclimação',
   'Aricanduva',
   'Artur Alvim',

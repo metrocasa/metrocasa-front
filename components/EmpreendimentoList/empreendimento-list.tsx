@@ -38,7 +38,7 @@ export const EmpreendimentoList = () => {
     paramZone: string | null | undefined,
   ) => {
     // Transformar os parâmetros de filtro, se estiverem definidos
-    const normalizedTitle = paramSearch
+    const normalizedSearch = paramSearch
       ? paramSearch.trim().toLowerCase().normalize()
       : null;
     const normalizedRegion = paramRegion
@@ -53,7 +53,7 @@ export const EmpreendimentoList = () => {
 
     // Verificar se todos os filtros estão vazios
     if (
-      !normalizedTitle &&
+      !normalizedSearch &&
       !normalizedRegion &&
       !normalizedStatus &&
       !normalizedZone
@@ -65,38 +65,44 @@ export const EmpreendimentoList = () => {
     // Aplicar os filtros individualmente se estiverem preenchidos
     let filtered = [...imoveis];
 
-    if (normalizedTitle) {
-      filtered = filtered.filter((imovel) =>
-        imovel.attributes.title
-          ?.trim()
-          .toLowerCase()
-          .normalize()
-          .includes(normalizedTitle),
-      );
+    if (normalizedSearch) {
+      filtered = filtered.filter((imovel) => {
+        const search = imovel.attributes.title;
+        return (
+          typeof search === 'string' &&
+          search.trim().toLowerCase().normalize() === normalizedSearch
+        );
+      });
     }
 
     if (normalizedRegion) {
-      filtered = filtered.filter(
-        (imovel) =>
-          imovel.attributes.neighborhoods?.trim().toLowerCase().normalize() ===
-          normalizedRegion,
-      );
+      filtered = filtered.filter((imovel) => {
+        const region = imovel.attributes.neighborhoods;
+        return (
+          typeof region === 'string' &&
+          region.trim().toLowerCase().normalize() === normalizedRegion
+        );
+      });
     }
 
     if (normalizedStatus) {
-      filtered = filtered.filter(
-        (imovel) =>
-          imovel.attributes.status?.trim().toLowerCase().normalize() ===
-          normalizedStatus,
-      );
+      filtered = filtered.filter((imovel) => {
+        const status = imovel.attributes.status;
+        return (
+          typeof status === 'string' &&
+          status.trim().toLowerCase().normalize() === normalizedStatus
+        );
+      });
     }
 
     if (normalizedZone) {
-      filtered = filtered.filter(
-        (imovel) =>
-          imovel.attributes.zone?.trim().toLowerCase().normalize() ===
-          normalizedZone,
-      );
+      filtered = filtered.filter((imovel) => {
+        const zone = imovel.attributes.zone;
+        return (
+          typeof search === 'string' &&
+          zone.trim().toLowerCase().normalize() === normalizedZone
+        );
+      });
     }
 
     return filtered;

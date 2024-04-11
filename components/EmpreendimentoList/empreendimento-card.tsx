@@ -19,8 +19,8 @@ export const EmpreendimentoCard = ({ data }: { data: any }) => {
         className={`object-cover transition h-[495px] w-full ${
           path === '/empreendimentos' ? '' : 'rounded-lg'
         }`}
-        width={400}
-        height={400}
+        width={900}
+        height={900}
         priority
       />
 

@@ -76,7 +76,10 @@ export const Filter = () => {
                 </FormControl>
                 <SelectContent>
                   {regions.map((item, i) => (
-                    <SelectItem key={i} value={item}>
+                    <SelectItem
+                      key={i}
+                      value={item === 'Selecione' ? '' : item}
+                    >
                       {item}
                     </SelectItem>
                   ))}
@@ -100,6 +103,7 @@ export const Filter = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
+                  <SelectItem value=" ">Selecione...</SelectItem>
                   <SelectItem value="Lançamento">Lançamento</SelectItem>
                   <SelectItem value="Em Obras">Em Obras</SelectItem>
                   <SelectItem value="Pronto para Morar">
