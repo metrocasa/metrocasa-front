@@ -6,6 +6,7 @@ import {
   Building2Icon,
   LogOutIcon,
   StarIcon,
+  User2Icon,
   Users2Icon,
 } from 'lucide-react';
 import Image from 'next/image';
@@ -89,7 +90,7 @@ export const Sidebar = () => {
           </ul>
         </div>
 
-        <div className="self-start">
+        <div className="self-start flex gap-4">
           <Button
             className="flex gap-4"
             variant={'primary'}
@@ -99,6 +100,12 @@ export const Sidebar = () => {
             LOGOUT
             <LogOutIcon />
           </Button>
+
+          <Link href={'/dashboard/profile'}>
+            <Button className="flex gap-4" variant={'primary'} size={'lg'}>
+              <User2Icon />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
