@@ -4,7 +4,9 @@ import { Button } from '@/components/ui/button';
 import {
   BoxIcon,
   Building2Icon,
+  ListStartIcon,
   LogOutIcon,
+  Paperclip,
   StarIcon,
   User2Icon,
   Users2Icon,
@@ -13,41 +15,39 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { redirect, usePathname, useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { useUser } from '@/contexts/user-context';
 
 export const linksSidebar = [
   {
     label: 'Inicio',
     href: '/dashboard',
-    icon: <BoxIcon className="w-5 h-5 text-white" />,
-    role: ['admin', 'marketing', 'corretor', 'rh', 'superintendente'],
+    icon: <ListStartIcon className="w-5 h-5 text-white" />,
+    role: ['Admin', 'Marketing', 'Corretor', 'RH', 'CAC', 'Superintendente'],
   },
   {
     label: 'Materiais',
     href: '/dashboard/materiais',
     icon: <BoxIcon className="w-5 h-5 text-white" />,
-    role: ['admin', 'marketing', 'corretor', 'superintendente'],
+    role: ['Admin', 'Marketing', 'Corretor', 'Superintendente'],
   },
   {
     label: 'Evolução de Obras',
     href: '/dashboard/evolucao-de-obras',
     icon: <Building2Icon />,
-    role: ['admin', 'marketing', 'corretor', 'superintendente'],
+    role: ['Admin', 'Marketing', 'Corretor', 'Superintendente'],
   },
   {
     label: 'Blog',
     href: '/dashboard/blog',
-    icon: <StarIcon />,
-    role: ['admin', 'marketing', 'editor'],
+    icon: <Paperclip />,
+    role: ['Admin', 'Marketing', 'Editor', 'Corretor', 'Superintendente'],
   },
 ];
 
 export const Sidebar = () => {
   const path = usePathname();
-  const user = true;
+  const { user } = useUser();
   const router = useRouter();
-  const userRole = {
-    role: 'marketing',
-  };
 
   const handleLogout = () => {
     Cookies.remove('session');
@@ -72,9 +72,12 @@ export const Sidebar = () => {
           </Link>
 
           <ul className="flex flex-col text-white font-bold gap-4">
-            {linksSidebar.map(
-              (link, i) =>
-                link.role.includes(userRole.role) && (
+            {linksSidebar.map((link, i) => {
+              const cargoIndex = link.role.findIndex((role) =>
+                user?.cargos.includes(role),
+              );
+              if (cargoIndex !== -1) {
+                return (
                   <Link
                     key={i}
                     href={link.href}
@@ -85,8 +88,11 @@ export const Sidebar = () => {
                     {link.icon}
                     <li className="">{link.label}</li>
                   </Link>
-                ),
-            )}
+                );
+              } else {
+                return null; // Não corresponde a nenhum cargo do usuário
+              }
+            })}
           </ul>
         </div>
 

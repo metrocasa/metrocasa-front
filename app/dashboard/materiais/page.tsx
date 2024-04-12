@@ -7,12 +7,20 @@ import { Loader2Icon } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 
 import Cookies from 'js-cookie';
+import { Button } from '@/components/ui/button';
 
 const Materiais = () => {
-  const { imoveis } = useImoveis();
+  const { imoveis, fetchImoveis, meta, currentPageSize } = useImoveis();
+  const [loading, setLoading] = useState(false);
 
-  // const searchParams = useSearchParams();
-  // const search = searchParams.get('search');
+  const handleShowMore = () => {
+    const total = meta.pagination.total;
+    setLoading(true);
+
+    fetchImoveis(currentPageSize).then(() => {
+      setLoading(false);
+    });
+  };
 
   return (
     <section className="bg-tertiary-black w-full flex flex-col lg:pl-[400px] min-h-screen n md:p-14 p-10">
@@ -23,6 +31,20 @@ const Materiais = () => {
         //TODO: ADD A SKELETON IF NEEDED
         <Suspense>
           <List imoveis={imoveis} />
+          {meta.pagination.pageSize <= meta.pagination.total && (
+            <Button
+              onClick={() => handleShowMore()}
+              variant="primary"
+              size="lg"
+              className={`${loading && 'pointer-events-none self-center'}`}
+            >
+              {loading ? (
+                <Loader2Icon className="animate-spin text-white w-6 h-6" />
+              ) : (
+                'MOSTRAR MAIS'
+              )}
+            </Button>
+          )}
         </Suspense>
       ) : (
         <div className="w-full h-full flex items-center justify-center">
