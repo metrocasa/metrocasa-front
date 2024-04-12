@@ -77,7 +77,7 @@ const Blog = () => {
             </TableHeader>
             <TableBody>
               {posts?.data.map((post) => (
-                <TableRow className="text-white">
+                <TableRow className="text-white" key={post.id}>
                   <TableCell>
                     <Image
                       alt={post.attributes.title}

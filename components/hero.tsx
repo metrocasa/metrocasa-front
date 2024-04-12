@@ -1,22 +1,23 @@
-import { EmblaOptionsType } from "embla-carousel";
+import { EmblaOptionsType } from 'embla-carousel';
 
-import { cn } from "@/lib/utils";
-import { Be_Vietnam_Pro } from "next/font/google";
+import { cn } from '@/lib/utils';
+import { Be_Vietnam_Pro } from 'next/font/google';
 
-import CarouselHero from "@/components/carousel";
-import Image from "next/image";
-import { useImoveis } from "@/contexts/imoveis-context";
-import { HeroForm } from "@/components/forms/hero-form";
-import { OurNumbers } from "@/components/page-components/our-numbers";
-import { useMediaQuery } from "react-responsive";
+import CarouselHero from '@/components/carousel';
+
+import { useImoveis } from '@/contexts/imoveis-context';
+
+import { OurNumbers } from '@/components/page-components/our-numbers';
+import { useMediaQuery } from 'react-responsive';
+import { HeroForm } from '@/components/Forms/hero-form';
 
 const font = Be_Vietnam_Pro({
-  subsets: ["latin"],
-  weight: ["200", "400", "700", "900"],
+  subsets: ['latin'],
+  weight: ['200', '400', '700', '900'],
 });
 
 export const Hero = () => {
-  const isMobile = useMediaQuery({ query: "(max-width: 624px)" });
+  const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
 
   const { imoveis, quantityImoveis } = useImoveis();
 
@@ -30,16 +31,16 @@ export const Hero = () => {
           {/* CTA AREA */}
           <div className="w-full max-w-[530px] flex flex-col gap-5">
             <h1
-              className={cn("font-bold text-5xl md:text-7xl", font.className)}
+              className={cn('font-bold text-5xl md:text-7xl', font.className)}
             >
               Lorem ipsum sit
               <span className="text-secondary-red font-extrabold">
-                {" amet dolor "}
+                {' amet dolor '}
               </span>
               <br />
               ensenctum
             </h1>
-            <p className={cn("font-normal", font.className)}>
+            <p className={cn('font-normal', font.className)}>
               How much will it cost the target audience is makes and famles aged
               zero and up, for i&apos;ll pay you in a week we don&apos;t need to
               pay upfront i hope you understand yet i&apos;ll know it when i see
@@ -52,7 +53,7 @@ export const Hero = () => {
                 className="gap-5 items-center flex-col md:flex-row "
                 errorMessage={isMobile ? true : false}
                 label={isMobile ? true : false}
-                variant={"primary"}
+                variant={'primary'}
               />
             </div>
           </div>
