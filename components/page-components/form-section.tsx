@@ -1,5 +1,5 @@
-import React from "react";
-import { MainForm } from "../forms/main-form";
+import React from 'react';
+import { MainForm } from '../Forms/main-form';
 
 interface IProps {
   title: string;
@@ -18,7 +18,7 @@ export const FormSection = ({ title, subtitle }: IProps) => {
           </h2>
           <span className="text-main-red text-3xl">{subtitle}</span>
         </div>
-        <MainForm className="flex-col" variant={"primary"} />
+        <MainForm className="flex-col" variant={'primary'} />
       </div>
     </section>
   );
