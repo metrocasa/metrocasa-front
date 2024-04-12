@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { cache, createContext, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+import { cache, createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
 
-import Cookies from 'js-cookie';
-import { usePathname } from 'next/navigation';
+import Cookies from "js-cookie";
+import { usePathname } from "next/navigation";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
@@ -21,7 +21,7 @@ export interface Imovel {
       className: string;
       height: string;
       width: string;
-      loading: 'eager' | 'lazy';
+      loading: "eager" | "lazy";
       src: string;
       style: {
         border: number;
@@ -94,10 +94,14 @@ export interface Imovel {
 // Criando o contexto
 const ImoveisContext = createContext<{
   imoveis: Imovel[];
-  fetchImoveis: () => Promise<void>;
+  meta: any;
+  setMeta: (meta: any) => void;
+  fetchImoveis: (page?: number, pageSize?: number) => Promise<void>;
   quantityImoveis: (n: number) => Imovel[];
 }>({
   imoveis: [],
+  meta: null,
+  setMeta: (meta: any) => {},
   fetchImoveis: async () => {},
   quantityImoveis: (n: number) => [],
 });
@@ -107,14 +111,15 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
+  const [meta, setMeta] = useState<number>();
 
   const path = usePathname();
 
   // Função para buscar imóveis
-  const fetchImoveis = cache(async () => {
-    const isDashboardPage = path.startsWith('/dashboard');
+  const fetchImoveis = cache(async (page = 1, pageSize = 4) => {
+    const isDashboardPage = path.startsWith("/dashboard");
     const authorizationToken = isDashboardPage
-      ? Cookies.get('session')
+      ? Cookies.get("session")
       : process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS;
 
     try {
@@ -126,12 +131,13 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
       };
 
       const response = await axios.get(
-        `${BASE_URL}/api/imoveis?populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url&populate[materiais][populate]=*`,
-        config,
+        `${BASE_URL}/api/imoveis?pagination[page]=${page}&pagination[pageSize]=${pageSize}&populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url&populate[materiais][populate]=*`,
+        config
       );
       setImoveis(response.data.data);
+      setMeta(response.data.meta);
     } catch (error) {
-      console.error('Erro ao buscar imóveis:', error);
+      console.error("Erro ao buscar imóveis:", error);
     }
   });
 
@@ -144,7 +150,9 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   return (
-    <ImoveisContext.Provider value={{ imoveis, fetchImoveis, quantityImoveis }}>
+    <ImoveisContext.Provider
+      value={{ imoveis, meta, setMeta, fetchImoveis, quantityImoveis }}
+    >
       {children}
     </ImoveisContext.Provider>
   );

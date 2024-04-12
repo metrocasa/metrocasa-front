@@ -1,11 +1,11 @@
-import { Imovel } from '@/contexts/imoveis-context';
+import { Imovel } from "@/contexts/imoveis-context";
 
-import { Title } from '@/components/title';
+import { Title } from "@/components/title";
 
 export const MapsSection = ({ imovel }: { imovel: Imovel }) => {
   const { address_json } = imovel.attributes;
   return (
-    <section className="w-full pb-24 px-[15px]">
+    <section className="w-full pb-24 md:px-0">
       <iframe
         src={address_json?.src}
         width={address_json?.width}

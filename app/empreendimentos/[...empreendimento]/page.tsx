@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import { Loading } from '@/components/loading';
-import axios from 'axios';
+import { Loading } from "@/components/loading";
+import axios from "axios";
 
-import { useEffect, useState } from 'react';
-import { Header } from '@/components/globals/Header';
-import { Imovel } from '@/contexts/imoveis-context';
-import { HeroSection } from '../_components/hero-section';
-import { MainContent } from '../_components/main-content';
+import { useEffect, useState } from "react";
+import { Header } from "@/components/globals/Header";
+import { Imovel } from "@/contexts/imoveis-context";
+import { HeroSection } from "../_components/hero-section";
+import { MainContent } from "../_components/main-content";
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
-import { MainGallery } from '../_components/main-gallery';
-import { TourVirtual } from '../_components/tour-virtual';
-import { Plantas } from '../_components/plantas-section';
-import FacilitiesSection from '../_components/facilities-section';
-import { MapsSection } from '../_components/maps-section';
-import { FormSection } from '@/components/page-components/form-section';
-import { Footer } from '@/components/globals/Footer';
+import { MainGallery } from "../_components/main-gallery";
+import { TourVirtual } from "../_components/tour-virtual";
+import { Plantas } from "../_components/plantas-section";
+import FacilitiesSection from "../_components/facilities-section";
+import { MapsSection } from "../_components/maps-section";
+import { FormSection } from "@/components/page-components/form-section";
+import { Footer } from "@/components/globals/Footer";
 
 interface ParamsValues {
   empreendimento: string[];
@@ -45,11 +45,11 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
         const response = await axios.get(
           `${BASE_URL}/api/imoveis/${id}?populate[planta_comp][populate][planta_image][fields]=*url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
 
-          config,
+          config
         );
         setImovel(response.data.data);
       } catch (error) {
-        console.error('Erro ao buscar imóveis:', error);
+        console.error("Erro ao buscar imóveis:", error);
       }
     };
 
@@ -75,8 +75,8 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
                   <Tab
                     className={
                       selectedTab === 0
-                        ? 'text-3xl cursor-pointer font-bold focus:outline-none'
-                        : 'text-3xl cursor-pointer font-normal'
+                        ? "text-3xl cursor-pointer font-bold focus:outline-none"
+                        : "text-3xl cursor-pointer font-normal"
                     }
                     onClick={() => setSelectedTab(0)}
                   >
@@ -87,8 +87,8 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
                   <Tab
                     className={
                       selectedTab === 1
-                        ? 'text-3xl cursor-pointer font-bold focus:outline-none'
-                        : 'text-3xl cursor-pointer font-normal'
+                        ? "text-3xl cursor-pointer font-bold focus:outline-none"
+                        : "text-3xl cursor-pointer font-normal"
                     }
                     onClick={() => setSelectedTab(1)}
                   >

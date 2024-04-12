@@ -1,33 +1,34 @@
-import { menusFooter } from '@/constants';
+import { menusFooter } from "@/constants";
 import {
   FacebookIcon,
   InstagramIcon,
   LinkedinIcon,
   YoutubeIcon,
-} from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
+// TODO: Change Icons
 const socials = [
   {
-    social: 'Facebook',
-    link: 'https://www.facebook.com/construtorametrocasa',
+    social: "Facebook",
+    link: "https://www.facebook.com/construtorametrocasa",
     icon: <FacebookIcon />,
   },
   {
-    social: 'Instagram',
-    link: 'https://www.instagram.com/construtorametrocasa/',
+    social: "Instagram",
+    link: "https://www.instagram.com/construtorametrocasa/",
     icon: <InstagramIcon />,
   },
   {
-    social: 'LinkedIn',
-    link: 'https://www.linkedin.com/company/metrocasa/',
+    social: "LinkedIn",
+    link: "https://www.linkedin.com/company/metrocasa/",
     icon: <LinkedinIcon />,
   },
   {
-    social: 'Youtube',
-    link: 'https://www.youtube.com/@ConstrutoraMetrocasa',
+    social: "Youtube",
+    link: "https://www.youtube.com/@ConstrutoraMetrocasa",
     icon: <YoutubeIcon />,
   },
   // {
@@ -109,7 +110,7 @@ export const Footer = () => {
               {/* CAC */}
               <div className="flex flex-col md:flex-row items-center gap-4 w-full rounded-md text-white bg-main-red p-5">
                 <Image
-                  src={'/icons/whatsapp-i.svg'}
+                  src={"/icons/whatsapp-i.svg"}
                   alt="WhatsApp Icone"
                   width={40}
                   height={40}

@@ -1,24 +1,23 @@
-'use client';
+"use client";
 
-import { EmpreendimentoList } from '@/components/EmpreendimentoList/empreendimento-list';
+import { EmpreendimentoList } from "@/components/empreendimento-list/empreendimento-list";
 
-import { FormSection } from '@/components/page-components/form-section';
+import { FormSection } from "@/components/page-components/form-section";
 
-import { Loading } from '@/components/loading';
+import { Loading } from "@/components/loading";
 
-import { useImoveis } from '@/contexts/imoveis-context';
+import { useImoveis } from "@/contexts/imoveis-context";
 
-import { LancamentoSection } from '@/components/page-components/lancamento-section';
+import { LancamentoSection } from "@/components/page-components/lancamento-section";
 
-import { Zonas } from '@/components/page-components/zonas-slide';
+import { Zonas } from "@/components/page-components/zonas-slide";
 
-import { FaqSection } from '@/components/page-components/faq';
-import { Footer } from '@/components/globals/Footer';
-import { Hero } from '@/components/hero';
-import { AboutUs } from '@/components/page-components/about-us';
-import { Header } from '@/components/globals/Header';
-import { Filter } from '@/components/globals/Filter';
-import { Suspense } from 'react';
+import { FaqSection } from "@/components/page-components/faq";
+import { Footer } from "@/components/globals/Footer";
+import { Hero } from "@/components/hero";
+import { AboutUs } from "@/components/page-components/about-us";
+import { Header } from "@/components/globals/Header";
+import { Filter } from "@/components/globals/Filter";
 
 export default function Home() {
   const { imoveis } = useImoveis();
