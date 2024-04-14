@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
+import React from "react";
 
-import { useUser } from '@/contexts/user-context';
+import { useUser } from "@/contexts/user-context";
 
 import {
   Dialog,
@@ -11,10 +11,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { EditProfile } from './_components/edit-profile';
-import Image from 'next/image';
-import { EditImage } from './_components/edit-image';
+} from "@/components/ui/dialog";
+import { EditProfile } from "./_components/edit-profile";
+import Image from "next/image";
+import { EditImage } from "./_components/edit-image";
 
 const Profile = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -27,9 +27,9 @@ const Profile = () => {
           src={
             user?.profile_image?.url
               ? `${BASE_URL}${user?.profile_image?.url}`
-              : '/user-icon.svg'
+              : "/user-icon.svg"
           }
-          alt={'Perfil'}
+          alt={"Perfil"}
           className={`object-cover transition h-[170px] w-[170px] rounded-full`}
           width={900}
           height={900}
@@ -37,7 +37,7 @@ const Profile = () => {
         />
         <h2 className="text-white">{user?.username}</h2>
         {/*TODO: EDITAR IMAGE */}
-        {/* <Dialog>
+        <Dialog>
           <DialogTrigger className="text-white p-3 px-5 bg-main-red rounded ">
             Editar perfil
           </DialogTrigger>
@@ -49,7 +49,7 @@ const Profile = () => {
               </DialogDescription>
             </DialogHeader>
           </DialogContent>
-        </Dialog> */}
+        </Dialog>
 
         {/* EDITAR PERFIL */}
         <Dialog>
