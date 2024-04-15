@@ -106,7 +106,7 @@ const ImoveisContext = createContext<{
   setMeta: (meta: any) => {},
   fetchImoveis: async () => {},
   quantityImoveis: (n: number) => [],
-  currentPageSize: 4, // Add this line
+  currentPageSize: 4,
   setCurrentPageSize: () => {},
 });
 

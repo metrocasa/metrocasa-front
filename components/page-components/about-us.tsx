@@ -34,7 +34,7 @@ export const AboutUs = () => {
             alt="Metrocasa Jardim Botânico"
             width={700}
             height={700}
-            className="object-cover h-full w-full rounded-xl bg-gradient-to-r from-cyan-500"
+            className="object-cover h-full w-full rounded-xl"
           />
 
           {/* CONTENT */}

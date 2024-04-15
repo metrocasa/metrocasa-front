@@ -17,6 +17,7 @@ async function createAccount(formData: FormData) {
     username: username,
     email: email,
     password: hashPassword,
+    cargos: ['Corretor'],
   };
 
   const res = await fetch(
