@@ -61,7 +61,9 @@ const EmpreendimentosPage = () => {
               </Button>
             )}
           </div>
-          <EtapaSection />
+          <div className="mt-14">
+            <EtapaSection />
+          </div>
           <FormSection
             title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento."
             subtitle="Não perca a chance, venha participar do nosso Feirão de Imóveis e aproveite ofertas imperdíveis somente este final de semana!"

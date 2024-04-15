@@ -90,7 +90,7 @@ export const EditProfile = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* USERNAME */}
-        <FormField
+        {/* <FormField
           control={form.control}
           name="username"
           render={({ field }) => (
@@ -103,7 +103,7 @@ export const EditProfile = () => {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         {/* Password */}
         <FormField
@@ -111,7 +111,7 @@ export const EditProfile = () => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Senha</FormLabel>
+              <FormLabel>Nova Senha</FormLabel>
               <FormControl>
                 <Input placeholder="********" {...field} required={false} />
               </FormControl>

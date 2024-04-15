@@ -17,7 +17,7 @@ export const FaqSection = () => {
         </h1>
         <p>
           <strong>
-            Encontre respostas seguras para suas principais dúvidas a seguir.
+            Encontre respostas seguras para suas principais dúvidas a seguir.{' '}
           </strong>
           Estamos aqui para tornar sua busca por informações mais fácil e
           esclarecedora.

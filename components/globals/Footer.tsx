@@ -40,7 +40,7 @@ const socials = [
 
 export const Footer = () => {
   return (
-    <>
+    <footer>
       <div className="w-full py-24 px-[15px]">
         <div className="w-full max-w-[1216px] mx-auto flex flex-col md:flex-row gap-24 justify-between">
           {/* IMAGES */}
@@ -127,7 +127,7 @@ export const Footer = () => {
         </div>
       </div>
       {/* COPYRIGHT */}
-      <footer className="w-full bg-secondary-red px-[15px]">
+      <div className="w-full bg-secondary-red px-[15px]">
         <div className="flex flex-col-reverse md:flex-row text-center md:text-start gap-8 justify-between items-center max-w-[1216px] mx-auto py-14">
           <p className="text-white">
             Copyright © 2023 Construtora Metrocasa | Todos os Direitos
@@ -145,7 +145,7 @@ export const Footer = () => {
             ))}
           </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 };
