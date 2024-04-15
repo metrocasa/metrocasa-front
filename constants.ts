@@ -1,3 +1,19 @@
+export const contatoInfo = [
+  {
+    title: 'Telefone',
+    value: '+55 (11) 3214-2300',
+  },
+  {
+    title: 'E-mail',
+    value: 'contato@metrocasa.com.br',
+  },
+  {
+    title: 'Endereço',
+    value:
+      'Av. Ipiranga, 344 – 37º andar - Edifício Itália República - São Paulo – SP CEP: 01046-010',
+  },
+];
+
 export const links = [
   {
     label: 'Home',
@@ -9,7 +25,7 @@ export const links = [
   },
   {
     label: 'Blog',
-    href: '/blog',
+    href: 'https://blog.metrocasa.com.br',
   },
   {
     label: 'Contato',

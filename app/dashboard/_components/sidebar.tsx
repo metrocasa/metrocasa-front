@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   BoxIcon,
   Building2Icon,
@@ -10,37 +10,31 @@ import {
   StarIcon,
   User2Icon,
   Users2Icon,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { redirect, usePathname, useRouter } from "next/navigation";
-import Cookies from "js-cookie";
-import { useUser } from "@/contexts/user-context";
+} from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { redirect, usePathname, useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
+import { useUser } from '@/contexts/user-context';
 
 export const linksSidebar = [
   {
-    label: "Inicio",
-    href: "/dashboard",
+    label: 'Inicio',
+    href: '/dashboard',
     icon: <ListStartIcon className="w-5 h-5 text-white" />,
-    role: ["Super", "Marketing", "Corretor", "RH", "CAC", "Superintendente"],
+    role: ['Super', 'Marketing', 'Corretor', 'RH', 'CAC', 'Superintendente'],
   },
   {
-    label: "Materiais",
-    href: "/dashboard/materiais",
+    label: 'Materiais',
+    href: '/dashboard/materiais',
     icon: <BoxIcon className="w-5 h-5 text-white" />,
-    role: ["Super", "Marketing", "Corretor", "Superintendente"],
+    role: ['Super', 'Marketing', 'Corretor', 'Superintendente'],
   },
   {
-    label: "Evolução de Obras",
-    href: "/dashboard/evolucao-de-obras",
+    label: 'Evolução de Obras',
+    href: '/dashboard/evolucao-de-obras',
     icon: <Building2Icon />,
-    role: ["Super", "Marketing", "Corretor", "Superintendente"],
-  },
-  {
-    label: "Blog",
-    href: "/dashboard/blog",
-    icon: <Paperclip />,
-    role: ["Super", "Marketing", "Editor", "Corretor", "Superintendente"],
+    role: ['Super', 'Marketing', 'Corretor', 'Superintendente'],
   },
 ];
 
@@ -50,9 +44,9 @@ export const Sidebar = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    Cookies.remove("session");
+    Cookies.remove('session');
 
-    router.push("/sign-in");
+    router.push('/sign-in');
   };
 
   return (
@@ -60,9 +54,9 @@ export const Sidebar = () => {
       <div className="h-full flex flex-col justify-between p-14">
         {/* TOPO */}
         <div className="flex flex-col gap-4">
-          <Link href={"/dashboard"}>
+          <Link href={'/dashboard'}>
             <Image
-              src={"/logo-red-white.svg"}
+              src={'/logo-red-white.svg'}
               alt="Logo metrocasa"
               width={215}
               height={100}
@@ -74,7 +68,7 @@ export const Sidebar = () => {
           <ul className="flex flex-col text-white font-bold gap-4">
             {linksSidebar.map((link, i) => {
               const cargoIndex = link.role.findIndex((role) =>
-                user?.cargos.includes(role)
+                user?.cargos.includes(role),
               );
               if (cargoIndex !== -1) {
                 return (
@@ -82,7 +76,7 @@ export const Sidebar = () => {
                     key={i}
                     href={link.href}
                     className={`w-full flex gap-5 items-center cursor-pointer p-4 rounded-lg hover:bg-black/40 transition ${
-                      path === link.href ? "bg-black/40" : ""
+                      path === link.href ? 'bg-black/40' : ''
                     }`}
                   >
                     {link.icon}
@@ -99,16 +93,16 @@ export const Sidebar = () => {
         <div className="self-start flex gap-4">
           <Button
             className="flex gap-4"
-            variant={"primary"}
-            size={"lg"}
+            variant={'primary'}
+            size={'lg'}
             onClick={handleLogout}
           >
             LOGOUT
             <LogOutIcon />
           </Button>
 
-          <Link href={"/dashboard/profile"}>
-            <Button className="flex gap-4" variant={"primary"} size={"lg"}>
+          <Link href={'/dashboard/profile'}>
+            <Button className="flex gap-4" variant={'primary'} size={'lg'}>
               <User2Icon />
             </Button>
           </Link>

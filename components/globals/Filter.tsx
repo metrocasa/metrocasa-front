@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
-import { z } from "zod";
+import { z } from 'zod';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -16,18 +16,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { regions } from "@/constants";
+} from '@/components/ui/select';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { regions } from '@/constants';
 
 const formSchema = z.object({
   region: z.string(),
@@ -42,17 +42,17 @@ export const Filter = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      region: "",
-      status: "",
-      search: "",
-      zone: "",
+      region: '',
+      status: '',
+      search: '',
+      zone: '',
     },
   });
 
   // onSubmit Form
   function onSubmit(values: z.infer<typeof formSchema>) {
     router.push(
-      `/empreendimentos?region=${values.region}&status=${values.status}&search=${values.search}`
+      `/empreendimentos?region=${values.region}&status=${values.status}&search=${values.search}`,
     );
   }
 
@@ -78,7 +78,7 @@ export const Filter = () => {
                   {regions.map((item, i) => (
                     <SelectItem
                       key={i}
-                      value={item === "Selecione" ? "" : item}
+                      value={item === 'Selecione' ? '' : item}
                     >
                       {item}
                     </SelectItem>

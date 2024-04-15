@@ -18,6 +18,8 @@ import { Button } from '@/components/ui/button';
 import { MouseEvent } from 'react';
 import { pages } from 'next/dist/build/templates/app-page';
 import { Loader2Icon } from 'lucide-react';
+import { EtapaSection } from '@/components/page-components/EtapaSection/etapa-section';
+import { FormSection } from '@/components/page-components/form-section';
 
 const EmpreendimentosPage = () => {
   const { imoveis, fetchImoveis, meta, currentPageSize } = useImoveis();
@@ -59,6 +61,11 @@ const EmpreendimentosPage = () => {
               </Button>
             )}
           </div>
+          <EtapaSection />
+          <FormSection
+            title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento."
+            subtitle="Não perca a chance, venha participar do nosso Feirão de Imóveis e aproveite ofertas imperdíveis somente este final de semana!"
+          />
           <Footer />
         </div>
       ) : (
