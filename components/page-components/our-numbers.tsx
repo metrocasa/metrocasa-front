@@ -1,25 +1,27 @@
-import { Building2Icon, HandshakeIcon, StarIcon } from "lucide-react";
-import React from "react";
+'use client';
+
+import { Building2Icon, HandshakeIcon, StarIcon } from 'lucide-react';
+import React from 'react';
 
 const data = [
   {
-    number: "400",
-    label: "Happy Customers",
+    number: '400',
+    label: 'Happy Customers',
     icon: <Building2Icon className="h-[40px] w-[40px] text-main-red" />,
   },
   {
-    number: "+3400",
-    label: "Acordos Fechados",
+    number: '+3400',
+    label: 'Acordos Fechados',
     icon: <HandshakeIcon className="h-[40px] w-[40px] text-main-red" />,
   },
   {
-    number: "400",
-    label: "Happy Customers",
+    number: '400',
+    label: 'Happy Customers',
     icon: <StarIcon className="h-[40px] w-[40px] text-main-red" />,
   },
   {
-    number: "TOP 10",
-    label: "Reclame Aqui",
+    number: 'TOP 10',
+    label: 'Reclame Aqui',
     icon: <Building2Icon className="h-[40px] w-[40px] text-main-red" />,
   },
 ];

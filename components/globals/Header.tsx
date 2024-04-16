@@ -1,26 +1,23 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { links } from "@/constants";
-import { Button } from "@/components/ui/button";
-import { Sidebar } from "../sidebar";
-import { PhoneIcon } from "lucide-react";
+import { links } from '@/constants';
+import { Button } from '@/components/ui/button';
+import { Sidebar } from '../sidebar';
+import { PhoneIcon } from 'lucide-react';
 
 export const Header = () => {
-  const router = useRouter;
-
   return (
     <header className="px-[15px] bg-white py-6 md:py-6 lg:py-2 border-b-2 border-slate-100 fixed top-0 z-50 w-full shadow">
       <div className="max-w-[1216px] mx-auto flex justify-between items-center">
         <div className="flex gap-8 items-center ">
-          <Link href={"/"}>
+          <Link href={'/'}>
             <Image
-              src={"/logo-red.svg"}
+              src={'/logo-red.svg'}
               alt="Logo metrocasa"
               width={215}
               height={100}
@@ -29,7 +26,7 @@ export const Header = () => {
             />
           </Link>
 
-          <Link href={"#"}>
+          <Link href={'#'}>
             <div className="hidden md:flex gap-2">
               <PhoneIcon strokeWidth={1} className="text-main-red" />
               <span>(11) 5061-0022</span>
@@ -49,7 +46,7 @@ export const Header = () => {
                 </Link>
               </li>
             ))}
-            <Button variant="primary" size={"lg"}>
+            <Button variant="primary" size={'lg'}>
               Fazer Simulação
             </Button>
           </ul>

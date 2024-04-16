@@ -1,5 +1,3 @@
-import { EmblaOptionsType } from 'embla-carousel';
-
 import { cn } from '@/lib/utils';
 import { Be_Vietnam_Pro } from 'next/font/google';
 
