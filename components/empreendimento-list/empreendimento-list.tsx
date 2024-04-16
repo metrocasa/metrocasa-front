@@ -19,6 +19,7 @@ import { Title } from '../title';
 import { Button } from '../ui/button';
 import { Loader2Icon } from 'lucide-react';
 import { Loading } from '../loading';
+import { Skeleton } from '../ui/skeleton';
 
 export const EmpreendimentoList = () => {
   const { imoveis, quantityImoveis, fetchImoveis, meta, currentPageSize } =
@@ -216,7 +217,19 @@ export const EmpreendimentoList = () => {
           )}
         </>
       ) : (
-        <Loader2Icon className="text-main-red w-6 h-6 animate-spin" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6">
+          {[1, 2, 3, 4].map((item) => (
+            <div>
+              <div className="flex flex-col space-y-3">
+                <Skeleton className="h-[400px] w-[340px] rounded-xl bg-main-red/10" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-[250px] bg-main-red/10" />
+                  <Skeleton className="h-4 w-[200px] bg-main-red/10" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
     </>
   );

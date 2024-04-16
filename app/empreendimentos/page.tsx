@@ -7,7 +7,7 @@ import { Header } from '@/components/globals/Header';
 import { Filter } from '@/components/globals/Filter';
 import { Footer } from '@/components/globals/Footer';
 
-import { EtapaSection } from '@/components/page-components/EtapaSection/etapa-section';
+import { EtapaSection } from '@/components/page-components/etapa-section/etapa-section';
 import { FormSection } from '@/components/page-components/form-section';
 
 const EmpreendimentosPage = () => {
@@ -30,8 +30,8 @@ const EmpreendimentosPage = () => {
           title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento."
           subtitle="Não perca a chance, venha participar do nosso Feirão de Imóveis e aproveite ofertas imperdíveis somente este final de semana!"
         />
-        <Footer />
       </div>
+      <Footer />
     </>
   );
 };

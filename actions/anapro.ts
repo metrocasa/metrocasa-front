@@ -5,7 +5,5 @@ export async function anapro(FormData: FormData) {
   const email = FormData.get('email') as string;
   const phone = FormData.get('phone') as string;
 
-  console.log(name, email, phone);
-
   // return name;
 }

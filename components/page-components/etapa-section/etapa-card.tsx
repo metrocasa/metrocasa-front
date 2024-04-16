@@ -14,7 +14,7 @@ export const Card = ({ title, icon, description }: IProps) => {
     <div className="h-auto bg-white rounded-lg p-8 flex flex-col gap-2">
       {icon}
       <h2 className="text-white font-bold text-2xl">{title}</h2>
-      <p>{description}</p>
+      <p className="mb-5">{description}</p>
       <Button variant="primary">Ver Emprendimentos</Button>
     </div>
   );

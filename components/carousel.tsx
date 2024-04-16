@@ -9,6 +9,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Imovel, useImoveis } from '@/contexts/imoveis-context';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Skeleton } from './ui/skeleton';
 
 const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -107,8 +108,21 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
           </div>
         </Link>
       ) : (
-        // TODO: Add Skeleton
-        <p>Loading...</p>
+        <div className="md:-mr-[445px] flex gap-4 overflow-hidden ">
+          <div className="relative w-full md:max-w-[433px] md:h-[474px] h-[400px] rounded-2xl overflow-hidden">
+            <Skeleton className="w-full h-full rounded-lg bg-main-red/10" />
+          </div>
+
+          <div className="hidden md:block relative w-[290px] h-[474px] rounded-lg">
+            <Skeleton className="w-full h-full rounded-lg bg-main-red/10" />
+          </div>
+          <div className="hidden md:block relative w-[290px] h-[474px] rounded-lg">
+            <Skeleton className="w-full h-full rounded-lg bg-main-red/10" />
+          </div>
+          <div className="hidden md:block relative w-[290px] h-[474px] rounded-lg">
+            <Skeleton className="w-full h-full rounded-lg bg-main-red/10" />
+          </div>
+        </div>
       )}
     </>
   );

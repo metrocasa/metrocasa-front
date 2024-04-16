@@ -9,7 +9,7 @@ import { useImoveis } from '@/contexts/imoveis-context';
 
 import { OurNumbers } from '@/components/page-components/our-numbers';
 import { useMediaQuery } from 'react-responsive';
-import { HeroForm } from '@/components/Forms/hero-form';
+import { HeroForm } from '@/components/forms/hero-form';
 
 const font = Be_Vietnam_Pro({
   subsets: ['latin'],
@@ -19,7 +19,7 @@ const font = Be_Vietnam_Pro({
 export const Hero = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
 
-  const { imoveis, quantityImoveis } = useImoveis();
+  const { quantityImoveis } = useImoveis();
 
   const imoveisData = quantityImoveis(1)[0];
 

@@ -59,7 +59,7 @@ export const EtapaSection = () => {
         </div>
 
         {/* TEXT TITLES */}
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
           {cards.map((card, i) => (
             <Card
               key={i}
