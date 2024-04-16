@@ -1,4 +1,6 @@
 import { cn } from '@/lib/utils';
+import { useContent } from '@croct/plug-react';
+
 import { MoveRight } from 'lucide-react';
 import { Be_Vietnam_Pro } from 'next/font/google';
 
