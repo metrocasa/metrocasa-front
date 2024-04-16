@@ -9,7 +9,7 @@ import { useImoveis } from '@/contexts/imoveis-context';
 
 import { OurNumbers } from '@/components/page-components/our-numbers';
 import { useMediaQuery } from 'react-responsive';
-import { HeroForm } from '@/components/forms/hero-form';
+import { HeroForm } from '@/components/forms/hero';
 
 const font = Be_Vietnam_Pro({
   subsets: ['latin'],
