@@ -218,8 +218,8 @@ export const EmpreendimentoList = () => {
         </>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6">
-          {[1, 2, 3, 4].map((item) => (
-            <div>
+          {[1, 2, 3, 4].map((item, i) => (
+            <div key={i}>
               <div className="flex flex-col space-y-3">
                 <Skeleton className="h-[400px] w-[340px] rounded-xl bg-main-red/10" />
                 <div className="space-y-2">
