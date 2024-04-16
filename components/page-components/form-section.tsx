@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MainForm } from '../forms/main-form';
+import { MainForm } from '../forms/main';
 
 interface IProps {
   title: string;

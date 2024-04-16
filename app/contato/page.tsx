@@ -1,4 +1,4 @@
-import { MainForm } from '@/components/forms/main-form';
+import { MainForm } from '@/components/forms/main';
 import { Footer } from '@/components/globals/Footer';
 import { Header } from '@/components/globals/Header';
 import { HeroSection } from '@/components/page-components/hero-section';

@@ -1,6 +1,5 @@
 'use client';
 
-import { Loading } from '@/components/loading';
 import { Header } from '@/components/globals/Header';
 
 import { HeroSection } from '../_components/hero-section';
