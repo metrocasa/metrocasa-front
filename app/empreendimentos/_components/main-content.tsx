@@ -3,8 +3,6 @@ import { MapIcon, MapPinnedIcon, TramFront } from 'lucide-react';
 import React from 'react';
 
 export const MainContent = ({ imovel }: { imovel: Imovel }) => {
-  console.log(imovel);
-
   return (
     <section className="w-full px-[15px] md:px-0 py-24">
       <div className="w-full max-w-[1216px] mx-auto">
@@ -33,10 +31,11 @@ export const MainContent = ({ imovel }: { imovel: Imovel }) => {
               </h4>
               <span className="flex gap-2 mb-1">
                 <MapPinnedIcon />
-                Alameda dos Ubiatans, 238 - Saúde São Paulo - SP
+                Av. Ipiranga, 344 – 37º Andar <br />
+                Edifício Itália República - São Paulo – SP CEP: 01046-010
               </span>
               <span className="flex gap-2">
-                <TramFront />4 min. 350m Estação São Judas
+                <TramFront />4 min. Estação República
               </span>
             </div>
 

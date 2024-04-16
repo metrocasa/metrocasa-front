@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import Image from 'next/image';
@@ -18,7 +16,7 @@ export const Header = () => {
           <Link href={'/'}>
             <Image
               src={'/logo-red.svg'}
-              alt="Logo metrocasa"
+              alt="Logo Construtora Metrocasa"
               width={215}
               height={100}
               priority
@@ -29,7 +27,7 @@ export const Header = () => {
           <Link href={'#'}>
             <div className="hidden md:flex gap-2">
               <PhoneIcon strokeWidth={1} className="text-main-red" />
-              <span>(11) 5061-0022</span>
+              <span>(11) 3214-2300</span>
             </div>
           </Link>
         </div>
@@ -41,13 +39,14 @@ export const Header = () => {
                 <Link
                   href={link.href}
                   className="text-primary-dark hover:text-main-red p-4 py-7 transition"
+                  target={link.target && '_blank'}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
             <Button variant="primary" size={'lg'}>
-              Fazer Simulação
+              <Link href={'/contato'}>Fazer Simulação</Link>
             </Button>
           </ul>
         </nav>

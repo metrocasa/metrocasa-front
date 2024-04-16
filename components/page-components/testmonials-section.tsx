@@ -1,3 +1,5 @@
+'use client';
+
 import { testmonialVideos } from '@/constants';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';

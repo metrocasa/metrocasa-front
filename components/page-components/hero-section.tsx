@@ -1,13 +1,5 @@
 'use client';
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
 import { usePathname } from 'next/navigation';
 
 export const HeroSection = ({ title }: { title: string }) => {

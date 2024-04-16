@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
 // TODO: Change Icons
 const socials = [
@@ -126,6 +125,7 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+
       {/* COPYRIGHT */}
       <div className="w-full bg-secondary-red px-[15px]">
         <div className="flex flex-col-reverse md:flex-row text-center md:text-start gap-8 justify-between items-center max-w-[1216px] mx-auto py-14">

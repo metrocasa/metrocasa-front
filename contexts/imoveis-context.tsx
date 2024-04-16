@@ -91,20 +91,24 @@ export interface Imovel {
   };
 }
 
-// Criando o contexto
-const ImoveisContext = createContext<{
+type ExtendedImoveisContextProps = {
   imoveis: Imovel[];
   meta: any;
   setMeta: (meta: any) => void;
   fetchImoveis: (page?: number, pageSize?: number) => Promise<void>;
+  fetchImovelById: (n: number) => Promise<Imovel | null>;
   quantityImoveis: (n: number) => Imovel[];
   currentPageSize: number;
   setCurrentPageSize: (pageSize: number) => void;
-}>({
+};
+
+// Criando o contexto
+const ImoveisContext = createContext<ExtendedImoveisContextProps>({
   imoveis: [],
   meta: null,
   setMeta: (meta: any) => {},
   fetchImoveis: async () => {},
+  fetchImovelById: async (n: number) => null,
   quantityImoveis: (n: number) => [],
   currentPageSize: 4,
   setCurrentPageSize: () => {},
@@ -115,13 +119,14 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
+
   const [meta, setMeta] = useState<number>();
   const [currentPageSize, setCurrentPageSize] = useState<number>(8);
 
   const path = usePathname();
 
   // Função para buscar imóveis
-  const fetchImoveis = cache(async (pageSize = currentPageSize) => {
+  const fetchImoveis = async (pageSize = currentPageSize) => {
     const isDashboardPage = path.startsWith('/dashboard');
     const authorizationToken = isDashboardPage
       ? Cookies.get('session')
@@ -145,8 +150,30 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
     } catch (error) {
       console.error('Erro ao buscar imóveis:', error);
     }
-  });
+  };
 
+  // Função para buscar imóvel por ID
+  const fetchImovelById = async (id: number) => {
+    try {
+      // CONFIG DA API TOKEN DE IMOVEIS
+      const config = {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS}`,
+        },
+      };
+
+      const response = await axios.get(
+        `${BASE_URL}/api/imoveis/${id}?populate[planta_comp][populate][planta_image][fields]=*url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
+        config,
+      );
+
+      return response.data.data;
+    } catch (error) {
+      console.error('Erro ao buscar imóvel por ID:', error);
+    }
+  };
+
+  // Função para buscar imóveis por quantidade
   const quantityImoveis = (quantity: number): Imovel[] => {
     return imoveis.slice(0, quantity);
   };
@@ -162,6 +189,7 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
         meta,
         setMeta,
         fetchImoveis,
+        fetchImovelById,
         quantityImoveis,
         currentPageSize,
         setCurrentPageSize,

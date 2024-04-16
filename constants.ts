@@ -26,6 +26,7 @@ export const links = [
   {
     label: 'Blog',
     href: 'https://blog.metrocasa.com.br',
+    target: '_blank',
   },
   {
     label: 'Contato',
