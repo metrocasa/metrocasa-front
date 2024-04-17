@@ -70,7 +70,7 @@ export const Filter = () => {
               <FormLabel>Região</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label={'Selecione a Região'}>
                     <SelectValue placeholder="Selecione..." />
                   </SelectTrigger>
                 </FormControl>
@@ -78,7 +78,6 @@ export const Filter = () => {
                   {regions.map((item, i) => (
                     <SelectItem
                       key={i}
-                      aria-label={`Região: ${item}`}
                       value={item === 'Selecione' ? '' : item}
                     >
                       {item}
@@ -99,20 +98,14 @@ export const Filter = () => {
               <FormLabel>Status</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger aria-label="Selecione o Status">
                     <SelectValue placeholder="Selecione..." />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem aria-label="Selecione..." value=" ">
-                    Selecione...
-                  </SelectItem>
-                  <SelectItem aria-label="Lançamento" value="Lançamento">
-                    Lançamento
-                  </SelectItem>
-                  <SelectItem aria-label="Em Obras" value="Em Obras">
-                    Em Obras
-                  </SelectItem>
+                  <SelectItem value=" ">Selecione...</SelectItem>
+                  <SelectItem value="Lançamento">Lançamento</SelectItem>
+                  <SelectItem value="Em Obras">Em Obras</SelectItem>
                   <SelectItem
                     aria-label="Pronto Para Morar"
                     value="Pronto para Morar"
