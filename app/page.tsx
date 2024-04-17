@@ -9,6 +9,7 @@ import { AboutUs } from '@/components/page-components/about-us';
 import { Header } from '@/components/globals/Header';
 import { Filter } from '@/components/globals/Filter';
 import { Testmonials } from '@/components/page-components/testmonials-section';
+import Script from 'next/script';
 
 export default async function Home() {
   return (
