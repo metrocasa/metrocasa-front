@@ -37,6 +37,7 @@ export const Header = () => {
             {links.map((link, i) => (
               <li key={i}>
                 <Link
+                  aria-label={`${link.label}`}
                   href={link.href}
                   className="text-primary-dark hover:text-main-red p-4 py-7 transition"
                   target={link.target && '_blank'}
@@ -45,7 +46,7 @@ export const Header = () => {
                 </Link>
               </li>
             ))}
-            <Button variant="primary" size={'lg'}>
+            <Button aria-label="Fazer Simulação" variant="primary" size={'lg'}>
               <Link href={'/contato'}>Fazer Simulação</Link>
             </Button>
           </ul>

@@ -78,6 +78,7 @@ export const Filter = () => {
                   {regions.map((item, i) => (
                     <SelectItem
                       key={i}
+                      aria-label={`Região: ${item}`}
                       value={item === 'Selecione' ? '' : item}
                     >
                       {item}
@@ -103,10 +104,19 @@ export const Filter = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value=" ">Selecione...</SelectItem>
-                  <SelectItem value="Lançamento">Lançamento</SelectItem>
-                  <SelectItem value="Em Obras">Em Obras</SelectItem>
-                  <SelectItem value="Pronto para Morar">
+                  <SelectItem aria-label="Selecione..." value=" ">
+                    Selecione...
+                  </SelectItem>
+                  <SelectItem aria-label="Lançamento" value="Lançamento">
+                    Lançamento
+                  </SelectItem>
+                  <SelectItem aria-label="Em Obras" value="Em Obras">
+                    Em Obras
+                  </SelectItem>
+                  <SelectItem
+                    aria-label="Pronto Para Morar"
+                    value="Pronto para Morar"
+                  >
                     Pronto para Morar
                   </SelectItem>
                 </SelectContent>
