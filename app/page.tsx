@@ -23,7 +23,7 @@ export default async function Home() {
       <LancamentoSection />
       <Zonas />
       <FormSection title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento." />
-      <Testmonials />
+      {/* <Testmonials /> */}
       <FaqSection />
 
       <Footer />

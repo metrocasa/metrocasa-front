@@ -101,6 +101,7 @@ export const Footer = () => {
                     key={rede.social}
                     href={rede.link}
                     className="hover:text-main-red transition p-2"
+                    aria-label={`Siga na(o) ${rede.social}`}
                   >
                     {rede.icon}
                   </Link>
@@ -139,6 +140,7 @@ export const Footer = () => {
                 key={rede.social}
                 href={rede.link}
                 className="text-white hover:text-slate-400 transition p-2"
+                aria-label={`Siga na(o) ${rede.social}`}
               >
                 {rede.icon}
               </Link>

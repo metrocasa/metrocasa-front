@@ -39,7 +39,7 @@ export const Zonas = () => {
                 {/* DESKTOP */}
                 <Image
                   src={slide.image}
-                  alt={slide.zone}
+                  alt={`Veja apartamentos no(a) ${slide.zone}`}
                   width={500}
                   height={500}
                   className="w-full h-[426px] rounded-xl object-cover"

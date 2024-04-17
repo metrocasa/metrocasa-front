@@ -21,6 +21,7 @@ const config = {
       colors: {
         'main-red': '#EC1C24',
         'secondary-red': '#B6211D',
+        'tertiary-red': '#DB2E29',
         'primary-dark': '#404041',
         'secondary-dark': '#232323',
         'tertiary-black': '#0A0909',

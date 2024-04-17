@@ -9,7 +9,7 @@ import { links } from '@/constants';
 export const Sidebar = () => {
   return (
     <Sheet>
-      <SheetTrigger>
+      <SheetTrigger aria-label="Ver menu principal">
         <MenuIcon />
       </SheetTrigger>
       <SheetContent className="p-0">

@@ -27,7 +27,9 @@ export const FaqSection = () => {
         <Accordion type="single" collapsible>
           {faqQuestions.map((question, i) => (
             <AccordionItem key={i} value={question.question}>
-              <AccordionTrigger>{question.question}</AccordionTrigger>
+              <AccordionTrigger aria-label="Mostrar FAQ">
+                {question.question}
+              </AccordionTrigger>
               <AccordionContent>{question.content}</AccordionContent>
             </AccordionItem>
           ))}

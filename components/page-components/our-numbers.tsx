@@ -36,7 +36,7 @@ export const OurNumbers = () => {
         >
           {item.icon}
           <div className="flex flex-col items-center">
-            <h4 className="font-extrabold text-3xl">{item.number}</h4>
+            <h5 className="font-extrabold text-3xl">{item.number}</h5>
             <span className="text-normal uppercase">{item.label}</span>
           </div>
         </div>
