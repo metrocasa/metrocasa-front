@@ -14,7 +14,7 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 import { redirect, usePathname, useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
+import Cookie from 'js-cookie';
 import { useUser } from '@/contexts/user-context';
 
 export const linksSidebar = [
@@ -44,7 +44,7 @@ export const Sidebar = () => {
   const router = useRouter();
 
   const handleLogout = () => {
-    Cookies.remove('session');
+    Cookie.remove('session');
 
     router.push('/sign-in');
   };

@@ -18,7 +18,7 @@ import { useMediaQuery } from 'react-responsive';
 import { Title } from '../title';
 import { Button } from '../ui/button';
 import { Loader2Icon } from 'lucide-react';
-import { Loading } from '../loading';
+
 import { Skeleton } from '../ui/skeleton';
 
 export const EmpreendimentoList = () => {
@@ -76,7 +76,7 @@ export const EmpreendimentoList = () => {
         const search = imovel.attributes.title;
         return (
           typeof search === 'string' &&
-          search.trim().toLowerCase().normalize() === normalizedSearch
+          search.trim().toLowerCase().normalize().startsWith(normalizedSearch)
         );
       });
     }

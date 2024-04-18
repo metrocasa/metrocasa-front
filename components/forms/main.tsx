@@ -86,11 +86,11 @@ export const MainForm = ({
     const endpoint =
       'https://crm.anapro.com.br/webcrm/webapi/integracao/v2/CadastrarProspect';
 
-    const key = process.env.ANAPRO_KEY;
-    const canal_key = process.env.ANAPRO_CANAL_KEY;
-    const campanha_key = process.env.ANAPRO_CAMPANHA_KEY;
-    const key_integradora = process.env.ANAPRO_KEY_INTEGRADORA;
-    const key_agencia = process.env.ANAPRO_KEY_AGENCIA;
+    const key = process.env.NEXT_PUBLIC_ANAPRO_KEY;
+    const canal_key = process.env.NEXT_PUBLIC_ANAPRO_CANAL_KEY;
+    const campanha_key = process.env.NEXT_PUBLIC_ANAPRO_CAMPANHA_KEY;
+    const key_integradora = process.env.NEXT_PUBLIC_ANAPRO_KEY_INTEGRADORA;
+    const key_agencia = process.env.NEXT_PUBLIC_ANAPRO_KEY_AGENCIA;
 
     const body = {
       Key: key,
@@ -98,7 +98,6 @@ export const MainForm = ({
       CampanhaKey: campanha_key,
       KeyIntegradora: key_integradora,
       KeyAgencia: key_agencia,
-
       PoliticaPrivacidadeKey: '',
       PessoaNome: values.name,
       PessoaEmail: values.email,

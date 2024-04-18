@@ -1,8 +1,8 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -10,10 +10,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
 // SCHEMA
 const formSchema = z.object({
@@ -24,10 +24,10 @@ const formSchema = z.object({
 
 // FORMAT PHONE NUMBER
 const parseAndFormatPhoneNumber = (value: string) => {
-  const unformattedValue = value.replace(/\D/g, "");
+  const unformattedValue = value.replace(/\D/g, '');
   const formattedValue = unformattedValue.replace(
     /(\d{2})(\d{5})(\d{4})/,
-    "$1 $2-$3"
+    '$1 $2-$3',
   );
   return formattedValue;
 };
@@ -42,7 +42,7 @@ export const HeroForm = ({
   label = true,
 }: {
   className?: string;
-  variant?: "default" | "primary" | "outline" | "ghost" | null | undefined;
+  variant?: 'default' | 'primary' | 'outline' | 'ghost' | null | undefined;
   name?: boolean;
   email?: boolean;
   phone?: boolean;
@@ -52,33 +52,33 @@ export const HeroForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      phone: "",
-      email: "",
+      name: '',
+      phone: '',
+      email: '',
     },
   });
 
   // Update the `phone` field's value using the `parseAndFormatPhoneNumber` function
-  const formattedPhone = form.watch("phone");
+  const formattedPhone = form.watch('phone');
   const formattedPhoneValue = formattedPhone
     ? parseAndFormatPhoneNumber(formattedPhone)
-    : "";
+    : '';
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     const endpoint =
-      "https://crm.anapro.com.br/webcrm/webapi/integracao/v2/CadastrarProspect";
+      'https://crm.anapro.com.br/webcrm/webapi/integracao/v2/CadastrarProspect';
 
-    const key = process.env.ANAPRO_KEY;
-    const canal_key = process.env.ANAPRO_CANAL_KEY;
-    const campanha_key = process.env.ANAPRO_CAMPANHA_KEY;
-    const key_integradora = process.env.ANAPRO_KEY_INTEGRADORA;
-    const key_agencia = process.env.ANAPRO_KEY_AGENCIA;
+    const key = process.env.NEXT_PUBLIC_ANAPRO_KEY;
+    const canal_key = process.env.NEXT_PUBLIC_ANAPRO_CANAL_KEY;
+    const campanha_key = process.env.NEXT_PUBLIC_ANAPRO_CAMPANHA_KEY;
+    const key_integradora = process.env.NEXT_PUBLIC_ANAPRO_KEY_INTEGRADORA;
+    const key_agencia = process.env.NEXT_PUBLIC_ANAPRO_KEY_AGENCIA;
 
     const body = {
       Key: key,
       CanalKey: canal_key,
       CampanhaKey: campanha_key,
-      PoliticaPrivacidadeKey: "",
+      PoliticaPrivacidadeKey: '',
       PessoaNome: values.name,
       PessoaEmail: values.email,
       KeyIntegradora: key_integradora,
@@ -95,20 +95,20 @@ export const HeroForm = ({
     const postData = async () => {
       try {
         const response = await fetch(endpoint, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(body),
         });
 
         if (!response.ok) {
-          throw new Error("Failed to submit form");
+          throw new Error('Failed to submit form');
         }
 
-        console.log("Form submitted successfully");
+        console.log('Form submitted successfully');
       } catch (error) {
-        console.error("Error submitting form:", error);
+        console.error('Error submitting form:', error);
       }
     };
     postData();
@@ -118,7 +118,7 @@ export const HeroForm = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn("flex gap-y-7 w-full", className)}
+        className={cn('flex gap-y-7 w-full', className)}
       >
         {/* Nome */}
         {name && (
@@ -153,11 +153,11 @@ export const HeroForm = ({
                     value={formattedPhoneValue}
                     onBlur={() => {
                       form.setValue(
-                        "phone",
+                        'phone',
                         parseAndFormatPhoneNumber(formattedPhoneValue),
                         {
                           shouldValidate: true,
-                        }
+                        },
                       );
                     }}
                     maxLength={11}

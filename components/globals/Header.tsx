@@ -9,6 +9,9 @@ import { Sidebar } from '../sidebar';
 import { PhoneIcon } from 'lucide-react';
 
 export const Header = () => {
+  const wppUrl =
+    'https://api.whatsapp.com/send?phone=551132142300&text=Ol%C3%A1%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20empreendimentos!';
+
   return (
     <header className="px-[15px] bg-white py-6 md:py-6 lg:py-2 border-b-2 border-slate-100 fixed top-0 z-50 w-full shadow">
       <div className="max-w-[1216px] mx-auto flex justify-between items-center">
@@ -24,7 +27,7 @@ export const Header = () => {
             />
           </Link>
 
-          <Link href={'#'}>
+          <Link href={wppUrl}>
             <div className="hidden md:flex gap-2">
               <PhoneIcon strokeWidth={1} className="text-main-red" />
               <span>(11) 3214-2300</span>
