@@ -105,7 +105,7 @@ export const EmpreendimentoList = () => {
       filtered = filtered.filter((imovel) => {
         const zone = imovel.attributes.zone;
         return (
-          typeof search === 'string' &&
+          typeof zone === 'string' &&
           zone.trim().toLowerCase().normalize() === normalizedZone
         );
       });

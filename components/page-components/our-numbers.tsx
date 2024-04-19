@@ -32,12 +32,14 @@ export const OurNumbers = () => {
       {data.map((item, i) => (
         <div
           key={i}
-          className="flex flex-col items-center gap-5 border-r md:border-main-red/20 last:border-r-0 md:pr-14 w-full max-w-[250px]"
+          className="flex flex-col items-center gap-5 border-b pb-6 md:border-r md:border-b-0 md:border-main-red/20 last:border-r-0 md:pr-14 w-full max-w-[250px]"
         >
           {item.icon}
           <div className="flex flex-col items-center">
-            <h5 className="font-extrabold text-3xl">{item.number}</h5>
-            <span className="text-normal uppercase">{item.label}</span>
+            <h5 className="font-extrabold text-3xl ">{item.number}</h5>
+            <span className="text-normal uppercase text-center">
+              {item.label}
+            </span>
           </div>
         </div>
       ))}
