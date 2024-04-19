@@ -3,7 +3,12 @@ import { withNextVideo } from "next-video/process";
 const nextConfig = {
   distDir: 'build',
   images: {
-    domains: ["localhost", "res.cloudinary.com", "img.clerk.com"],
+    remotePatterns: [
+      {
+        protocol: "http",
+      hostname: "localhost"
+      }
+    ]
   },
 };
 

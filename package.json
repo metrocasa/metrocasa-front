@@ -41,7 +41,6 @@
     "next-videos": "^1.4.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-grid-gallery": "^1.0.1-alpha.0",
     "react-hook-form": "^7.51.0",
     "react-responsive": "^9.0.2",
     "react-tabs": "^6.0.2",

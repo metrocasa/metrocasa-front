@@ -6,6 +6,7 @@ import { ImoveisProvider } from '@/contexts/imoveis-context';
 import Script from 'next/script';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Footer } from '@/components/globals/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
