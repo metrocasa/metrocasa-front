@@ -63,7 +63,7 @@ export const Footer = () => {
           <div className="flex flex-col md:flex-row gap-14 w-full">
             {/* MENU: EMPRESA */}
             <div className="flex items-center md:items-start flex-col gap-2 w-full">
-              <h2 className="text-2xl font-bold text-main-red mb-4">Suporte</h2>
+              <h2 className="text-2xl font-bold text-main-red mb-4">Empresa</h2>
 
               {menusFooter.empresa.map((item, i) => (
                 <Link
