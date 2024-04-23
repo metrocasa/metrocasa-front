@@ -7,7 +7,11 @@ const nextConfig = {
       {
         protocol: "http",
       hostname: "localhost"
-      }
+      },
+      {
+        protocol: "https",
+      hostname: "metrocasa-strapi.onrender.com"
+      },
     ]
   },
 };
