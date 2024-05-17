@@ -32,7 +32,7 @@ export const Header = () => {
   return (
     <>
       {session && (
-        <header className="lg:hidden flex w-full  h-[85px] lg:px-24 px-10 border-b-2 border-main-red/20 bg-main-red/10">
+        <div className="lg:hidden flex w-full  h-[85px] lg:px-24 px-10 border-b-2 border-main-red/20 bg-main-red/10">
           <div className="flex justify-between items-center h-full text-white w-full">
             <Link href={'/dashboard'}>
               <Image
@@ -103,7 +103,7 @@ export const Header = () => {
               </SheetContent>
             </Sheet>
           </div>
-        </header>
+        </div>
       )}
     </>
   );

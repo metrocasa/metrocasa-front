@@ -17,7 +17,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     <UserProvider>
       <BlogProvider>
         <MateriaisProvider>
-          <main className="bg-tertiary-black">
+          <Header />
+          <div className="bg-tertiary-black">
             {path === '/dashboard' ||
             path === '/dashboard/materiais' ||
             path === '/dashboard/evolucao-de-obras' ||
@@ -26,10 +27,8 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             path === '/dashboard/linkX' ? (
               <Sidebar />
             ) : null}
-
-            <Header />
             {children}
-          </main>
+          </div>
         </MateriaisProvider>
       </BlogProvider>
     </UserProvider>

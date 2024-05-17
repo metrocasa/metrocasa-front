@@ -127,22 +127,9 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Função para buscar imóveis
   const fetchImoveis = async (pageSize = currentPageSize) => {
-    const isDashboardPage = path.startsWith('/dashboard');
-    const authorizationToken = isDashboardPage
-      ? Cookies.get('session')
-      : process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS;
-
     try {
-      // CONFIG DA API TOKEN DE IMOVEIS
-      const config = {
-        headers: {
-          Authorization: `Bearer ${authorizationToken}`,
-        },
-      };
-
       const response = await axios.get(
         `${BASE_URL}/api/imoveis?pagination[page]=1&pagination[pageSize]=${pageSize}&populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url&populate[materiais][populate]=*`,
-        config,
       );
       setCurrentPageSize(pageSize + 8);
       setImoveis(response.data.data);

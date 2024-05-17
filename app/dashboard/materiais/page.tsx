@@ -33,8 +33,6 @@ const Materiais = () => {
   const linksUteis = materiais?.data.attributes.links_uteis;
   const materiaisGraficos = materiais?.data.attributes.materiais_graficos;
 
-  console.log(materiais?.data.attributes);
-
   const [loading, setLoading] = useState(false);
 
   const handleShowMore = () => {
