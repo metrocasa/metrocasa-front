@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { useBlog } from "@/contexts/blog-context";
-import { PlusIcon } from "lucide-react";
-import React, { useState } from "react";
-import { NewPost } from "./_components/new-post";
-import { CloseIcon } from "yet-another-react-lightbox";
+import { Button } from '@/components/ui/button';
+import { useBlog } from '@/contexts/blog-context';
+import { PlusIcon } from 'lucide-react';
+import React, { useState } from 'react';
+import { NewPost } from './_components/new-post';
+import { CloseIcon } from 'yet-another-react-lightbox';
 
 import {
   Table,
@@ -15,19 +15,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
-import Image from "next/image";
-import Link from "next/link";
-import { useUser } from "@/contexts/user-context";
+} from '@/components/ui/table';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useUser } from '@/contexts/user-context';
 
-const { format } = require("date-fns");
-const { ptBR } = require("date-fns/locale");
+const { format } = require('date-fns');
+const { ptBR } = require('date-fns/locale');
 
 const Blog = () => {
   const { posts } = useBlog();
   const { user } = useUser();
-
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
   const [addingNewPost, setAddingNewPost] = useState(false);
 
@@ -38,8 +36,7 @@ const Blog = () => {
           <h1 className="text-3xl font-bold text-main-red md:mb-[15px]">
             Blog
           </h1>
-          {user?.cargos?.includes("Editor") && (
-            // <Link href={`${BASE_URL}/admin`} target="_blank">
+          {user?.cargos?.includes('Editor') && (
             <Button
               variant="primary"
               className="flex gap-2"
@@ -83,8 +80,8 @@ const Blog = () => {
                       alt={post.attributes.title}
                       src={
                         post?.attributes?.capa?.data?.attributes?.url
-                          ? `${BASE_URL}${post?.attributes?.capa?.data?.attributes?.url}`
-                          : ""
+                          ? `${post?.attributes?.capa?.data?.attributes?.url}`
+                          : ''
                       }
                       width={200}
                       height={200}
@@ -96,12 +93,12 @@ const Blog = () => {
                     {post.attributes.title}
                   </TableCell>
                   <TableCell>
-                    {format(post.attributes.createdAt, "dd/MM/yyyy - HH:mm", {
+                    {format(post.attributes.createdAt, 'dd/MM/yyyy - HH:mm', {
                       locale: ptBR,
                     })}
                   </TableCell>
                   <TableCell>
-                    {format(post.attributes.updatedAt, "dd/MM/yyyy - HH:mm", {
+                    {format(post.attributes.updatedAt, 'dd/MM/yyyy - HH:mm', {
                       locale: ptBR,
                     })}
                   </TableCell>

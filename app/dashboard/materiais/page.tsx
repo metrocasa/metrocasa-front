@@ -185,7 +185,7 @@ const Materiais = () => {
                     target="_blank"
                   >
                     <Image
-                      src={`${BASE_URL}${ad.attributes.url}`}
+                      src={`${ad.attributes.url}`}
                       width={500}
                       height={500}
                       alt="ADS"

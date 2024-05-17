@@ -42,7 +42,7 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   ]);
 
   const allImagesMapped = allImages.map((url) => ({
-    src: `${BASE_URL}${url[0]}`,
+    src: `${url[0]}`,
     alt: 'Planta',
     height: Number(url[1]),
     width: Number(url[2]),
@@ -83,7 +83,7 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
                 </h3>
 
                 <Image
-                  src={`${BASE_URL}${planta.planta_image.data.attributes.url}`}
+                  src={`${planta.planta_image.data.attributes.url}`}
                   width={550}
                   height={550}
                   alt="Imagem da Planta"

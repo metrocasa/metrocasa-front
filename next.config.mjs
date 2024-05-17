@@ -6,7 +6,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "http",
-      hostname: "localhost"
+        hostname: "localhost"
+      },
+      {
+        protocol: "https",
+        hostname: "cdn-metrocasa.s3.us-east-1.amazonaws.com"
       }
     ]
   },

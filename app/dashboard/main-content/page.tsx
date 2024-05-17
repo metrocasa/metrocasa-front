@@ -9,15 +9,13 @@ import { useUser } from '@/contexts/user-context';
 const MainContent = () => {
   const { user } = useUser();
 
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   return user ? (
     <main className="w-full flex flex-col lg:ml-[350px] h-screen md:p-14 p-10">
       <div className="flex flex-col gap-5">
         <Image
           src={
             user?.profile_image?.url
-              ? `${BASE_URL}${user?.profile_image?.url}`
+              ? `${user?.profile_image?.url}`
               : '/user-icon.svg'
           }
           alt={'Perfil'}

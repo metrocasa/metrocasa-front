@@ -17,8 +17,8 @@ import Image from 'next/image';
 import { EditImage } from './_components/edit-image';
 
 const Profile = () => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const { user } = useUser();
+
   return (
     <section className="bg-tertiary-black w-full lg:pl-[400px] min-h-screen n md:p-14 p-10">
       <div className="w-full h-full items-center justify-center flex flex-col gap-5">
@@ -26,7 +26,7 @@ const Profile = () => {
         <Image
           src={
             user?.profile_image?.url
-              ? `${BASE_URL}${user?.profile_image?.url}`
+              ? `${user?.profile_image?.url}`
               : '/user-icon.svg'
           }
           alt={'Perfil'}

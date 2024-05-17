@@ -7,8 +7,6 @@ import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
 
 export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   const isMobile = useMediaQuery({ query: '(max-width: 850px)' });
 
   return (
@@ -17,7 +15,7 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
         {!isMobile ? (
           <BackgroundVideo
             src={isMobile ? '' : imovel.attributes.video_background}
-            poster={`${BASE_URL}${imovel.attributes.fachada.data.attributes.url}`}
+            poster={`${imovel.attributes.fachada.data.attributes.url}`}
             className="w-full h-[520px] object-cover absolute"
           >
             <div className="absolute top-0 left-0 w-full h-full bg-black/70" />
@@ -36,7 +34,7 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
                     <strong>{imovel.attributes.neighborhoods}</strong>
                   </span>
                   <Image
-                    src={`${BASE_URL}${imovel.attributes.logo.data.attributes.url}`}
+                    src={`${imovel.attributes.logo.data.attributes.url}`}
                     alt={`Logo Metrocasa ${imovel.attributes.title}`}
                     width={500}
                     height={500}
@@ -53,7 +51,7 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
         ) : (
           <section className="w-full h-[520px] mt-[100px]">
             <Image
-              src={`${BASE_URL}${imovel.attributes.fachada.data.attributes.url}`}
+              src={`${imovel.attributes.fachada.data.attributes.url}`}
               alt={imovel.attributes.title}
               width={1900}
               height={1900}
@@ -67,7 +65,7 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
                   <strong>{imovel.attributes.neighborhoods}</strong>
                 </span>
                 <Image
-                  src={`${BASE_URL}${imovel.attributes.logo.data.attributes.url}`}
+                  src={`${imovel.attributes.logo.data.attributes.url}`}
                   alt={`Logo Metrocasa ${imovel.attributes.title}`}
                   width={500}
                   height={500}

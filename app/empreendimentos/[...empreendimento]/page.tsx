@@ -19,8 +19,6 @@ interface ParamsValues {
 }
 
 const EmpreendimentoDetails = async ({ params }: { params: ParamsValues }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   const { fetchImovelById } = useImoveis();
   const imovel = await fetchImovelById(Number(params.empreendimento[1]));
 

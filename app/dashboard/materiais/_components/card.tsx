@@ -7,8 +7,6 @@ import Link from 'next/link';
 import React from 'react';
 
 export const Card = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   return (
     <Link
       href={`${imovel.attributes.slug}/${imovel.id}`}
@@ -16,7 +14,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
     >
       <div key={imovel.id}>
         <Image
-          src={`${BASE_URL}${imovel.attributes.fachada.data.attributes.url}`}
+          src={`${imovel.attributes.fachada.data.attributes.url}`}
           alt={'Fachada'}
           className={`object-cover transition h-[400px] w-full rounded-lg`}
           width={900}
