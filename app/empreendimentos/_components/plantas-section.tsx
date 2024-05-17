@@ -42,7 +42,7 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   ]);
 
   const allImagesMapped = allImages.map((url) => ({
-    src: `${url[0]}`,
+    src: `${BASE_URL}${url[0]}`,
     alt: 'Planta',
     height: Number(url[1]),
     width: Number(url[2]),

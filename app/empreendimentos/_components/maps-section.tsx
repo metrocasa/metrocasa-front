@@ -1,6 +1,6 @@
-import { Imovel } from "@/contexts/imoveis-context";
+import { Imovel } from '@/contexts/imoveis-context';
 
-import { Title } from "@/components/title";
+import { Title } from '@/components/title';
 
 export const MapsSection = ({ imovel }: { imovel: Imovel }) => {
   const { address_json } = imovel.attributes;
@@ -14,7 +14,7 @@ export const MapsSection = ({ imovel }: { imovel: Imovel }) => {
         style={{ border: 0 }}
         loading={address_json?.loading}
       />
-      <div className="w-full max-w-[1216px] mx-auto mb-20">
+      <div className="w-full max-w-[1216px] mx-auto mb-20 px-[15px] md:px-0 pt-6">
         <Title subtitle="Lorem Ipsum" title="Conheça a região" />
 
         <div
