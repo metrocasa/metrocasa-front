@@ -6,14 +6,13 @@ import BackgroundVideo from 'next-video/background-video';
 
 import { useMediaQuery } from 'react-responsive';
 
-import { Imovel, useImoveis } from '@/contexts/imoveis-context';
+import { useImoveis } from '@/contexts/imoveis-context';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Skeleton } from './ui/skeleton';
+import { Imovel } from '@/types/global';
 
 const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   const isMobile = useMediaQuery({ query: '(max-width: 770px)' });
 
   const { quantityImoveis } = useImoveis();

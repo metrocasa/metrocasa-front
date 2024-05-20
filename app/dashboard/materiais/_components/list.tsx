@@ -1,9 +1,10 @@
-import { Imovel, useImoveis } from '@/contexts/imoveis-context';
+import { useImoveis } from '@/contexts/imoveis-context';
 
 import { Card } from './card';
 import { Search } from './search';
 import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Imovel } from '@/types/global';
 
 export const List = ({
   imoveis,
