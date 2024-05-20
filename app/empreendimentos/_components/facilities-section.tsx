@@ -1,5 +1,5 @@
-import { Imovel } from '@/contexts/imoveis-context';
 import { Title } from '@/components/title';
+import { Imovel } from '@/types/global';
 import {
   DumbbellIcon,
   WavesIcon,

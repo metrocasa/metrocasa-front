@@ -6,7 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 
 import { MainGallery } from '../_components/main-gallery';
 import { TourVirtual } from '../_components/tour-virtual';
-import { Imovel } from '@/contexts/imoveis-context';
+import { Imovel } from '@/types/global';
 
 const TabsSection = ({ imovel }: { imovel: Imovel }) => {
   const [selectedTab, setSelectedTab] = useState(0);

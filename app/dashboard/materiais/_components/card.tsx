@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
-import { Imovel } from '@/contexts/imoveis-context';
+import { Imovel } from '@/types/global';
+
 import { DownloadIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';

@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Imovel } from '@/contexts/imoveis-context';
-
 import Image from 'next/image';
 
 import { SwiperSlide, Swiper, useSwiper } from 'swiper/react';
@@ -27,6 +25,7 @@ import 'yet-another-react-lightbox/styles.css';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
+import { Imovel } from '@/types/global';
 
 export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
   const swiper = useSwiper();

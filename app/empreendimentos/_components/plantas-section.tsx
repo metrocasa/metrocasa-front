@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Imovel } from '@/contexts/imoveis-context';
-
 import Image from 'next/image';
 
 import { useMediaQuery } from 'react-responsive';
@@ -23,10 +21,9 @@ import 'yet-another-react-lightbox/styles.css';
 // Import Swiper styles
 import 'swiper/css';
 import { Title } from '@/components/title';
+import { Imovel } from '@/types/global';
 
 export const Plantas = ({ imovel }: { imovel: Imovel }) => {
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   const plantas = imovel.attributes.planta_comp;
 
   const slideshowRef = React.useRef<SlideshowRef>(null);
@@ -42,7 +39,7 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   ]);
 
   const allImagesMapped = allImages.map((url) => ({
-    src: `${BASE_URL}${url[0]}`,
+    src: `${url[0]}`,
     alt: 'Planta',
     height: Number(url[1]),
     width: Number(url[2]),

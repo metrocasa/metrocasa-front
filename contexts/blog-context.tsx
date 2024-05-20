@@ -2,40 +2,10 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { usePathname } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { Posts } from '@/types/global';
 
 // INTERFACE
-export interface Posts {
-  data: {
-    id: string;
-    attributes: {
-      title: string;
-      createdAt: Date;
-      updatedAt: Date;
-      author: {
-        data: {
-          attributes: {
-            username: string;
-          };
-        };
-      };
-      capa: {
-        data: {
-          attributes: {
-            url: string;
-          };
-        };
-      };
-    };
-  }[];
-  meta: {
-    pagination: {
-      page: number;
-      pageCount: number;
-      pageSize: number;
-      total: number;
-    };
-  };
-}
+
 const BlogContext = createContext<{ posts: Posts | null }>({
   posts: null,
 });

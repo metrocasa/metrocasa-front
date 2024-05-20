@@ -1,4 +1,4 @@
-import { Imovel } from '@/contexts/imoveis-context';
+import { Imovel } from '@/types/global';
 
 export const TourVirtual = ({ imovel }: { imovel: Imovel }) => {
   return (

@@ -1,95 +1,11 @@
 'use client';
 
-import { cache, createContext, useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-
+import { createContext, useContext, useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import { usePathname } from 'next/navigation';
+import { Imovel } from '@/types/global';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
-
-// Definindo o tipo para o array de imóveis
-export interface Imovel {
-  id: number;
-  attributes: {
-    slug: string;
-    title: string;
-    description: string;
-    subtitle: string;
-    address: string;
-    address_json: {
-      className: string;
-      height: string;
-      width: string;
-      loading: 'eager' | 'lazy';
-      src: string;
-      style: {
-        border: number;
-      };
-    };
-    fachada: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      };
-    };
-    active_on_materiais: boolean;
-    materiais: {
-      ri: string;
-      books: {
-        a3: string;
-        fase_2: {
-          link: string;
-          disponivel: boolean;
-        };
-        fase_3: {
-          link: string;
-          disponivel: boolean;
-        };
-      };
-    };
-
-    facilities: string[];
-    about_the_region: string;
-    video_hero: string;
-    video_background: string;
-    tour_virtual: string;
-    logo: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      };
-    };
-    main_gallery: {
-      data: {
-        id: number;
-        attributes: {
-          url: string;
-        };
-      }[];
-    };
-    activate_planta_section: boolean;
-    zone: string;
-    neighborhoods: string;
-    status: string;
-    hash: string;
-    planta_comp: {
-      id: string;
-      planta_title: string;
-      planta_image: {
-        data: {
-          attributes: {
-            url: string;
-            width: string;
-            height: string;
-          };
-        };
-      };
-    }[];
-  };
-}
 
 type ExtendedImoveisContextProps = {
   imoveis: Imovel[];
@@ -119,21 +35,22 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [imoveis, setImoveis] = useState<Imovel[]>([]);
-
   const [meta, setMeta] = useState<number>();
   const [currentPageSize, setCurrentPageSize] = useState<number>(8);
-
-  const path = usePathname();
 
   // Função para buscar imóveis
   const fetchImoveis = async (pageSize = currentPageSize) => {
     try {
-      const response = await axios.get(
+      const response = await fetch(
         `${BASE_URL}/api/imoveis?pagination[page]=1&pagination[pageSize]=${pageSize}&populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url&populate[materiais][populate]=*`,
       );
+      if (!response.ok) {
+        throw new Error('Erro ao buscar imóveis');
+      }
+      const data = await response.json();
       setCurrentPageSize(pageSize + 8);
-      setImoveis(response.data.data);
-      setMeta(response.data.meta);
+      setImoveis(data.data);
+      setMeta(data.meta);
     } catch (error) {
       console.error('Erro ao buscar imóveis:', error);
     }
@@ -143,18 +60,25 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
   const fetchImovelById = async (id: number) => {
     try {
       // CONFIG DA API TOKEN DE IMOVEIS
-      const config = {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS}`,
-        },
-      };
+      const headers = new Headers({
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS}`,
+      });
 
-      const response = await axios.get(
+      const response = await fetch(
         `${BASE_URL}/api/imoveis/${id}?populate[planta_comp][populate][planta_image][fields]=*url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
-        config,
+        {
+          headers: headers,
+          cache: 'force-cache',
+          next: {
+            revalidate: 3600, // 1h
+          },
+        },
       );
-
-      return response.data.data;
+      if (!response.ok) {
+        throw new Error('Erro ao buscar imóvel por ID');
+      }
+      const data = await response.json();
+      return data.data;
     } catch (error) {
       console.error('Erro ao buscar imóvel por ID:', error);
     }

@@ -2,69 +2,9 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { usePathname } from 'next/navigation';
 import Cookies from 'js-cookie';
+import { Materiais } from '@/types/global';
 
 // INTERFACE
-export interface Materiais {
-  data: {
-    attributes: {
-      books_valorizacao: {
-        title: string;
-        book_de_valorizacao: {
-          data: {
-            attributes: {
-              url: string;
-            };
-          };
-        };
-      }[];
-      campanha_semanal: {
-        criativo_desktop: {
-          data: {
-            attributes: {
-              url: string;
-            };
-          };
-        };
-        criativo_mobile: {
-          data: {
-            attributes: {
-              url: string;
-            };
-          };
-        };
-        flyers: {
-          data: {
-            attributes: {
-              url: string;
-            };
-          };
-        };
-      };
-      fb_google_ads: {
-        data: {
-          id: number;
-          attributes: {
-            url: string;
-          };
-        }[];
-      };
-      links_uteis: {
-        title: string;
-        link: string;
-      }[];
-      materiais_graficos: {
-        title: string;
-        media: {
-          data: {
-            attributes: {
-              url: string;
-            };
-          };
-        };
-      }[];
-    };
-  };
-}
 
 const MateriaisContext = createContext<{ materiais: Materiais | null }>({
   materiais: null,
@@ -91,6 +31,7 @@ const MateriaisProvider: React.FC<{ children: React.ReactNode }> = ({
           headers: {
             Authorization: `Bearer ${authorizationToken}`,
           },
+          cache: 'force-cache',
         };
 
         const response = await axios.get<Materiais>(

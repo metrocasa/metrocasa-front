@@ -1,4 +1,4 @@
-import { Imovel } from '@/contexts/imoveis-context';
+import { Imovel } from '@/types/global';
 import { MapIcon, MapPinnedIcon, TramFront } from 'lucide-react';
 import React from 'react';
 

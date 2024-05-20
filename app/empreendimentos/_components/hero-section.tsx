@@ -1,10 +1,9 @@
 import BackgroundVideo from 'next-video/background-video';
 
-import { Imovel } from '@/contexts/imoveis-context';
-
 import React from 'react';
 import Image from 'next/image';
 import { useMediaQuery } from 'react-responsive';
+import { Imovel } from '@/types/global';
 
 export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 850px)' });
