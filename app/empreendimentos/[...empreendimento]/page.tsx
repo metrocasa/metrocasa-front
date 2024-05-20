@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { Header } from '@/components/globals/Header';
 
 import { HeroSection } from '../_components/hero-section';
@@ -13,14 +14,33 @@ import { Footer } from '@/components/globals/Footer';
 
 import { useImoveis } from '@/contexts/imoveis-context';
 import TabsSection from '../_components/tabs-section';
+import { Imovel } from '@/types/global';
 
 interface ParamsValues {
   empreendimento: string[];
 }
 
-const EmpreendimentoDetails = async ({ params }: { params: ParamsValues }) => {
+const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
+  const [imovel, setImovelData] = React.useState<Imovel | null>(null);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const imovelData = await fetchImovelById(
+          Number(params.empreendimento[1]),
+        );
+        if (!imovelData) {
+          throw new Error('Imóvel não encontrado');
+        }
+        setImovelData(imovelData);
+      } catch (error) {
+        console.log('Erro ao buscar imóvel', error);
+      }
+    };
+    fetchData();
+  }, []);
+
   const { fetchImovelById } = useImoveis();
-  const imovel = await fetchImovelById(Number(params.empreendimento[1]));
 
   return (
     <>

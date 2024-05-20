@@ -39,6 +39,20 @@ export interface Imovel {
         };
       };
     };
+    panoramas: {
+      id: number;
+      link_id: string;
+      links_to: string;
+      name: string;
+      position: string;
+      panorama_image: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        };
+      };
+    }[];
 
     facilities: string[];
     about_the_region: string;

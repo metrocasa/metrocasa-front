@@ -55,6 +55,7 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
               width={800}
               height={800}
               className="absolute w-full h-full object-cover bg-center "
+              priority
             />
             <div className="absolute top-0 left-0 w-full h-full bg-black/70" />
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/40" />
@@ -72,6 +73,7 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
                   width={600}
                   height={600}
                   className="max-w-[320px] md:w-full"
+                  priority
                 />
 
                 <h2 className="w-full self-center text-secondary-dark bg-white p-2 px-4 rounded md:self-start text-center md:text-start text-wrap">

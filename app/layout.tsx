@@ -40,6 +40,7 @@ export default function RootLayout({
               width={60}
               height={60}
               className="drop-shadow-2xl drop-shadow-main-red"
+              priority
             />
           </Link>
         </ImoveisProvider>

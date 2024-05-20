@@ -65,7 +65,7 @@ export const ImoveisProvider: React.FC<{ children: React.ReactNode }> = ({
       });
 
       const response = await fetch(
-        `${BASE_URL}/api/imoveis/${id}?populate[planta_comp][populate][planta_image][fields]=*url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url`,
+        `${BASE_URL}/api/imoveis/${id}?populate[planta_comp][populate][planta_image][fields]=*url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url&populate[panoramas][populate]=*`,
         {
           headers: headers,
           cache: 'force-cache',
