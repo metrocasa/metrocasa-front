@@ -6,30 +6,6 @@ import { Canvas, useLoader } from '@react-three/fiber';
 import { Html, Preload, OrbitControls } from '@react-three/drei';
 import { Popconfirm } from 'antd';
 
-const store = [
-  {
-    name: 'banheiro',
-    color: 'lightpink',
-    position: [10, 0, -15],
-    url: '/static/pan3.jpg',
-    link: [2, 3],
-  },
-  {
-    name: 'quarto',
-    color: 'lightpink',
-    position: [10, 0, -15],
-    url: '/static/pan1.jpg',
-    link: [0, 3],
-  },
-  {
-    name: 'sala',
-    color: 'lightblue',
-    position: [15, 0, 0],
-    url: '/static/pan2.jpg',
-    link: [1, 2],
-  },
-];
-
 function Dome({
   name,
   position,
@@ -72,30 +48,23 @@ function Dome({
 
 function Portals({ imovel }: { imovel: Imovel }) {
   const panoramas = imovel.attributes.panoramas;
+  console.log(panoramas);
 
   const [index, set] = useState(0);
-  const { links_to, ...props } = panoramas[index];
-  const maps = useLoader(THREE.TextureLoader, panoramas.map((entry) => entry.panorama_image.data.attributes.url)) // prettier-ignore
+  const { link, ...props } = panoramas[index];
+  const maps = useLoader(THREE.TextureLoader, panoramas.map((entry) => entry.url)) // prettier-ignore
   // const position = new THREE.Vector3(...props.position); // convert position tuple to Vector3
-
-  console.log(panoramas[1].panorama_image.data.attributes.url);
-
-  console.log(links_to);
 
   return (
     <>
-      {panoramas.map((panorama, i) => (
-        <Dome
-          key={i}
-          onClick={() => {
-            const linksToArray = JSON.parse(panorama.links_to);
-            set(linksToArray.map(Number));
-          }}
-          {...props}
-          position={JSON.parse(panorama.position).map(Number)}
-          texture={maps[index]}
-        />
-      ))}
+      <Dome
+        onClick={() => {
+          set(link[0]);
+        }}
+        {...props}
+        position={panoramas[index].position}
+        texture={maps[index]}
+      />
     </>
   );
 }
