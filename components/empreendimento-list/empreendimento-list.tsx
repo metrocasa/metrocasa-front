@@ -20,6 +20,7 @@ import { Button } from '../ui/button';
 import { Loader2Icon } from 'lucide-react';
 
 import { Skeleton } from '../ui/skeleton';
+import posthog from 'posthog-js';
 
 export const EmpreendimentoList = () => {
   const { imoveis, quantityImoveis, fetchImoveis, meta, currentPageSize } =
@@ -167,6 +168,15 @@ export const EmpreendimentoList = () => {
                   <SwiperSlide key={i}>
                     <Link
                       href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
+                      onClick={() => {
+                        posthog.capture('acessou_imovel', {
+                          property: 'value',
+                        });
+                        posthog.group(
+                          'Interesse em: ',
+                          imovel.attributes.title,
+                        );
+                      }}
                     >
                       <EmpreendimentoCard key={imovel.id} data={imovel} />
                     </Link>
@@ -188,6 +198,15 @@ export const EmpreendimentoList = () => {
                       className={`flex flex-1  ${
                         search || region || (status && 'md:max-w-[350px]')
                       }`}
+                      onClick={() => {
+                        posthog.capture(`${imovel.attributes.slug}`, {
+                          property: 'value',
+                        });
+                        posthog.group(
+                          'Interesse em: ',
+                          imovel.attributes.title,
+                        );
+                      }}
                     >
                       <EmpreendimentoCard key={imovel.id} data={imovel} />
                     </Link>

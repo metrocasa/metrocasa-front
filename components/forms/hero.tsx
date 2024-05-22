@@ -14,6 +14,7 @@ import {
 import { Input } from '@/components/ui/input';
 
 import { cn } from '@/lib/utils';
+import posthog from 'posthog-js';
 
 // SCHEMA
 const formSchema = z.object({
@@ -187,7 +188,14 @@ export const HeroForm = ({
           />
         )}
 
-        <Button type="submit" variant={variant} className="self-end">
+        <Button
+          type="submit"
+          variant={variant}
+          className="self-end"
+          onClick={() => {
+            posthog.identify(form.getValues().email);
+          }}
+        >
           Enviar
         </Button>
       </form>
