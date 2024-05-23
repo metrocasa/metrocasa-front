@@ -169,7 +169,7 @@ export const EmpreendimentoList = () => {
                     <Link
                       href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
                       onClick={() => {
-                        posthog.capture('acessou_imovel', {
+                        posthog.capture(`${imovel.attributes.slug}`, {
                           property: 'value',
                         });
                         posthog.group(
