@@ -32,6 +32,7 @@ export const Hero = () => {
           <div className="w-full max-w-[530px] flex flex-col gap-5">
             <h1
               className={cn('font-bold text-5xl md:text-7xl', font.className)}
+              rel="preload"
             >
               Lorem ipsum sit
               <span className="text-secondary-red font-extrabold">
