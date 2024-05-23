@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { Be_Vietnam_Pro } from 'next/font/google';
 
-import CarouselHero from '@/components/carousel';
+import CarouselHero from '@/components/carousel-hero';
 
 import { useImoveis } from '@/contexts/imoveis-context';
 

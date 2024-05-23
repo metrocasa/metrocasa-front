@@ -43,6 +43,7 @@ export const Zonas = () => {
                   alt={`Veja apartamentos no(a) ${slide.zone}`}
                   width={500}
                   height={500}
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
                   className="w-full h-[426px] rounded-xl object-cover"
                 />
               </div>

@@ -57,7 +57,8 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
                   alt={imoveisData?.attributes.title}
                   width={500}
                   height={500}
-                  className="active w-full h-full rounded-xl object-cover bg-center "
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  className="active w-full h-full rounded-xl object-cover bg-center"
                 />
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
                 <div className="absolute top-0 p-5 flex flex-col gap-2">
@@ -78,6 +79,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
               alt={imoveisData?.attributes.title}
               width={600}
               height={600}
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="active w-full h-full rounded-xl object-cover bg-center "
             />
 
@@ -89,6 +91,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
               alt={imoveisData?.attributes.title}
               width={600}
               height={600}
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="active w-full h-full rounded-xl object-cover bg-center "
             />
 
@@ -100,6 +103,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
               alt={imoveisData?.attributes.title}
               width={600}
               height={600}
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
               className="active w-full h-full rounded-xl object-cover bg-center "
             />
 

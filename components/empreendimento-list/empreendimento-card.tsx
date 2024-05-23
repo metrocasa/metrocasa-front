@@ -13,12 +13,13 @@ export const EmpreendimentoCard = ({ data }: { data: any }) => {
     >
       <Image
         src={`${data.attributes.fachada.data.attributes.url}`}
-        alt={'Fachada'}
+        alt={`Fachada - ${data.attributes.title}`}
         className={`object-cover transition h-[495px] w-full ${
           path === '/empreendimentos' ? '' : 'rounded-lg'
         }`}
         width={900}
         height={900}
+        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
         priority
       />
 
