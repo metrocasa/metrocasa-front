@@ -19,7 +19,6 @@ export const EmpreendimentoCard = ({ data }: { data: any }) => {
         }`}
         width={900}
         height={900}
-        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
         priority
       />
 

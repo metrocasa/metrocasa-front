@@ -30,7 +30,7 @@ export const AboutUs = () => {
         <div className="w-full flex flex-col justify-between gap-5">
           {/* IMAGE */}
           <Image
-            src={'/sobre/praca-da-arvore-fachada.jpg'}
+            src={'/sobre/praca-da-arvore-fachada.png'}
             alt="Metrocasa Jardim Botânico"
             width={700}
             height={700}
