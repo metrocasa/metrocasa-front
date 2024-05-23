@@ -8,6 +8,7 @@ import Link from 'next/link';
 
 import { CSPostHogProvider } from './providers';
 import PostHogPageView from './PostHogPageView';
+import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -30,7 +31,9 @@ export default function RootLayout({
         <body className={inter.className + 'px-[15px]'}>
           <ImoveisProvider>
             <div>
-              <PostHogPageView />
+              <Suspense>
+                <PostHogPageView />
+              </Suspense>
               {children}
             </div>
 
