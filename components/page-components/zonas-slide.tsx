@@ -3,15 +3,6 @@
 import * as React from 'react';
 import Autoplay from 'embla-carousel-autoplay';
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
 import { zonas } from '@/constants';
 import Image from 'next/image';
 import Link from 'next/link';

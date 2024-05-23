@@ -37,7 +37,7 @@ export const links = [
 export const zonas = [
   {
     zone: 'Centro',
-    image: '/zonas/centro.webp',
+    image: '/zonas/centro.jpg',
     link: '/empreendimentos',
     description: `<strong>No coração pulsante de São Paulo</strong>, a Região Central se destaca por sua proximidade a renomadas escolas, universidades e hospitais. Com uma mobilidade urbana facilitada por ciclofaixas, linhas de trem, metrô e redes de ônibus, conecta-se rapidamente a diferentes pontos da metrópole. Além disso, abriga a icônica Avenida Paulista, a mais famosa da cidade. 
     <br /> <br />
@@ -45,7 +45,7 @@ export const zonas = [
   },
   {
     zone: 'Sul',
-    image: '/zonas/zona-sul.webp',
+    image: '/zonas/zona-sul.jpg',
     link: '/empreendimentos',
     description: `<strong>A maior região da cidade, a Zona Sul de São Paulo</strong>, encanta
   por sua diversidade de bairros que atendem a todos os estilos e gostos.
@@ -63,7 +63,7 @@ export const zonas = [
   },
   {
     zone: 'Leste',
-    image: '/zonas/zona-leste.webp',
+    image: '/zonas/zona-leste.jpg',
     link: '/empreendimentos',
     description: `<div class="elementor-widget-container">
      <p><strong>Com investimentos em melhorias constantes</strong>, a Zona Leste é uma escolha excepcional para quem busca por bairros bem conectados por transporte público, oferecendo opções de lazer e uma infraestrutura que atende a todas as expectativas. Cada bairro apresenta características distintas que se adequam a diversos perfis, proporcionando uma gama diversificada de opções para todos os gostos. Aliás, a Zona Leste é a região mais populosa da cidade, atraindo uma demanda significativa por imóveis, portanto, certamente, você encontrará um empreendimento que atenda às suas preferências.</p>
@@ -72,7 +72,7 @@ export const zonas = [
   },
   {
     zone: 'Oeste',
-    image: '/zonas/zona-oeste.webp',
+    image: '/zonas/zona-oeste.jpg',
     link: '/empreendimentos',
     description: `<div class="elementor-widget-container">
      <p><b>A Zona Oeste é uma das áreas mais valorizadas da cidade,</b><span style="font-weight: 400;"> conhecida pela diversidade de comércios, instituições de ensino e opções culturais e de entretenimento. Além disso, oferece excelente acesso aos meios de transporte público, com opções de estações de trem e metrô, linhas de ônibus e ciclovias.
