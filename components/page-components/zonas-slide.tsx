@@ -35,6 +35,7 @@ export const Zonas = () => {
                   width={500}
                   height={500}
                   className="w-full h-[426px] rounded-xl object-cover"
+                  loading="lazy"
                 />
               </div>
             </Link>

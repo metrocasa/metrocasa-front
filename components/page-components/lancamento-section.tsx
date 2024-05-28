@@ -11,6 +11,7 @@ export const LancamentoSection = () => {
           src={'/conheca-artur-alvim.png'}
           width={700}
           height={700}
+          loading="lazy"
         />
 
         <div className="flex flex-col gap-5 max-w-[700px] px-[20px]">
