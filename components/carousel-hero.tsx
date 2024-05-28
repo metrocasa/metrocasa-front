@@ -37,7 +37,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
             {!isMobile ? (
               <BackgroundVideo
                 src={isMobile ? '' : imoveisData?.attributes.video_hero}
-                // poster={`${imoveisData?.attributes.fachada.data?.attributes.url}`}
+                poster={`${imoveisData?.attributes.fachada.data?.attributes.url}`}
                 className="active w-full h-full rounded-xl object-cover bg-center "
               >
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
