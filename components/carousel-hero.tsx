@@ -37,7 +37,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
             {!isMobile ? (
               <BackgroundVideo
                 src={isMobile ? '' : imoveisData?.attributes.video_hero}
-                poster={`${imoveisData?.attributes.fachada.data?.attributes.url}`}
+                // poster={`${imoveisData?.attributes.fachada.data?.attributes.url}`}
                 className="active w-full h-full rounded-xl object-cover bg-center "
               >
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
@@ -55,9 +55,10 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
                 <Image
                   src={`${imoveisData?.attributes.fachada.data.attributes.url}`}
                   alt={imoveisData?.attributes.title}
-                  width={500}
-                  height={500}
+                  width={450}
+                  height={450}
                   className="active w-full h-full rounded-xl object-cover bg-center"
+                  priority
                 />
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg-reversed rounded-lg" />
                 <div className="absolute top-0 p-5 flex flex-col gap-2">
@@ -79,6 +80,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
               width={600}
               height={600}
               className="active w-full h-full rounded-xl object-cover bg-center "
+              priority
             />
 
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg rounded-lg" />
@@ -90,6 +92,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
               width={600}
               height={600}
               className="active w-full h-full rounded-xl object-cover bg-center "
+              priority
             />
 
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg rounded-lg" />
@@ -101,6 +104,7 @@ const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
               width={600}
               height={600}
               className="active w-full h-full rounded-xl object-cover bg-center "
+              priority
             />
 
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-bg rounded-lg" />
