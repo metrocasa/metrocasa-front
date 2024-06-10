@@ -1,4 +1,13 @@
 // Imovel
+export interface Meta {
+  pagination: {
+    page: number;
+    pageCount: number;
+    pageSize: number;
+    total: number;
+  };
+}
+
 export interface Imovel {
   id: number;
   attributes: {
@@ -84,6 +93,11 @@ export interface Imovel {
       };
     }[];
   };
+}
+
+export interface Imoveis {
+  data: Imovel[];
+  meta: Meta;
 }
 
 // Materiais

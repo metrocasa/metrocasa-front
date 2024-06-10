@@ -1,4 +1,4 @@
-import { useImoveis } from '@/contexts/imoveis-context';
+import { MetaProvider } from '@/contexts/meta-context';
 
 import { Card } from './card';
 import { Search } from './search';

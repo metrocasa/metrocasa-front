@@ -5,11 +5,13 @@ import { Be_Vietnam_Pro } from 'next/font/google';
 
 import CarouselHero from '@/components/carousel-hero';
 
-import { useImoveis } from '@/contexts/imoveis-context';
+import { MetaProvider } from '@/contexts/meta-context';
 
 import { OurNumbers } from '@/components/page-components/our-numbers';
 import { useMediaQuery } from 'react-responsive';
 import { HeroForm } from '@/components/forms/hero';
+import { useImoveis } from '@/utils/queries';
+import { Loading } from './loading';
 
 const font = Be_Vietnam_Pro({
   subsets: ['latin'],
@@ -19,9 +21,12 @@ const font = Be_Vietnam_Pro({
 export const Hero = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
 
-  const { quantityImoveis } = useImoveis();
+  const quantityImoveis = useImoveis(1).data?.data;
+  const randomNumber = Math.floor(Math.random() * 4) + 1;
 
-  const imoveisData = quantityImoveis(1)[0];
+  const imoveisData = quantityImoveis?.[0];
+
+  if (!imoveisData) return <Loading />;
 
   return (
     <section className="px-[15px] w-full py-24 pt-32 md:pt-48 overflow-x-hidden ">

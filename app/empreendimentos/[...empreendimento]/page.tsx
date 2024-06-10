@@ -12,35 +12,22 @@ import { MapsSection } from '../_components/maps-section';
 import { FormSection } from '@/components/page-components/form-section';
 import { Footer } from '@/components/globals/Footer';
 
-import { useImoveis } from '@/contexts/imoveis-context';
+// import { useImoveis } from '@/contexts/imoveis-context';
 import TabsSection from '../_components/tabs-section';
 import { Imovel } from '@/types/global';
+import { useImoveis, useImovelById } from '@/utils/queries';
+import Loading from '../loading';
 
 interface ParamsValues {
   empreendimento: string[];
 }
 
 const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
-  const [imovel, setImovelData] = React.useState<Imovel | null>(null);
+  // const imoveis = useImoveis(10);
+  const imovelId = Number(params.empreendimento[1]);
+  const imovel = useImovelById(imovelId).data;
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const imovelData = await fetchImovelById(
-          Number(params.empreendimento[1]),
-        );
-        if (!imovelData) {
-          throw new Error('Imóvel não encontrado');
-        }
-        setImovelData(imovelData);
-      } catch (error) {
-        console.log('Erro ao buscar imóvel', error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const { fetchImovelById } = useImoveis();
+  if (!imovel) return <Loading />;
 
   return (
     <>

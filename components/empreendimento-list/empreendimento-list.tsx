@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import { EmpreendimentoCard } from './empreendimento-card';
 import Link from 'next/link';
 
@@ -12,7 +12,6 @@ import 'swiper/css';
 import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
 import 'swiper/css/effect-fade';
 
-import { useImoveis } from '@/contexts/imoveis-context';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useMediaQuery } from 'react-responsive';
 import { Title } from '../title';
@@ -21,11 +20,25 @@ import { Loader2Icon } from 'lucide-react';
 
 import { Skeleton } from '../ui/skeleton';
 import posthog from 'posthog-js';
+import { useImoveis } from '@/utils/queries';
+import { useMetaContext } from '@/contexts/meta-context';
+import { Loading } from '../loading';
+import { Imovel } from '@/types/global';
+import { useIsFetching } from '@tanstack/react-query';
 
 export const EmpreendimentoList = () => {
-  const { imoveis, quantityImoveis, fetchImoveis, meta, currentPageSize } =
-    useImoveis();
-  const [loading, setLoading] = useState(false);
+  const { currentPageSize, setMeta, setCurrentPageSize } = useMetaContext();
+
+  const [imoveisList, setImoveisList] = React.useState<Imovel[]>([]);
+  const imoveis = useImoveis(currentPageSize);
+  const imoveisQuantity = useImoveis(15);
+  const meta = imoveis.data?.meta;
+
+  React.useEffect(() => {
+    if (imoveis.data?.data) {
+      setImoveisList(imoveis.data.data);
+    }
+  }, [imoveis.data?.data]);
 
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
 
@@ -38,95 +51,18 @@ export const EmpreendimentoList = () => {
   const search = searchParams.get('search');
   const zone = searchParams.get('zone');
 
-  // TODO: Melhorar filtro
-  const filteredImoveis = (
-    paramSearch: string | null | undefined,
-    paramRegion: string | null | undefined,
-    paramStatus: string | null | undefined,
-    paramZone: string | null | undefined,
-  ) => {
-    // Transformar os parâmetros de filtro, se estiverem definidos
-    const normalizedSearch = paramSearch
-      ? paramSearch.trim().toLowerCase().normalize()
-      : null;
-    const normalizedRegion = paramRegion
-      ? paramRegion.trim().toLowerCase().normalize()
-      : null;
-    const normalizedStatus = paramStatus
-      ? paramStatus.trim().toLowerCase().normalize()
-      : null;
-    const normalizedZone = paramZone
-      ? paramZone.trim().toLowerCase().normalize()
-      : null;
-
-    // Verificar se todos os filtros estão vazios
-    if (
-      !normalizedSearch &&
-      !normalizedRegion &&
-      !normalizedStatus &&
-      !normalizedZone
-    ) {
-      // Se nenhum filtro estiver preenchido, retornar todos os imóveis
-      return imoveis;
-    }
-
-    // Aplicar os filtros individualmente se estiverem preenchidos
-    let filtered = [...imoveis];
-
-    if (normalizedSearch) {
-      filtered = filtered.filter((imovel) => {
-        const search = imovel.attributes.title;
-        return (
-          typeof search === 'string' &&
-          search.trim().toLowerCase().normalize().startsWith(normalizedSearch)
-        );
-      });
-    }
-
-    if (normalizedRegion) {
-      filtered = filtered.filter((imovel) => {
-        const region = imovel.attributes.neighborhoods;
-        return (
-          typeof region === 'string' &&
-          region.trim().toLowerCase().normalize() === normalizedRegion
-        );
-      });
-    }
-
-    if (normalizedStatus) {
-      filtered = filtered.filter((imovel) => {
-        const status = imovel.attributes.status;
-        return (
-          typeof status === 'string' &&
-          status.trim().toLowerCase().normalize() === normalizedStatus
-        );
-      });
-    }
-
-    if (normalizedZone) {
-      filtered = filtered.filter((imovel) => {
-        const zone = imovel.attributes.zone;
-        return (
-          typeof zone === 'string' &&
-          zone.trim().toLowerCase().normalize() === normalizedZone
-        );
-      });
-    }
-
-    return filtered;
-  };
+  // TODO: CRIAR UM FILTRO AQUI
 
   const handleShowMore = () => {
-    setLoading(true);
-
-    fetchImoveis(currentPageSize).then(() => {
-      setLoading(false);
-    });
+    setCurrentPageSize(currentPageSize + 8);
   };
+
+  if (imoveisQuantity.isLoading && imoveis.isLoading && meta)
+    return <Loading />;
 
   return (
     <>
-      {imoveis.length ? (
+      {imoveisList.length ? (
         <>
           {/* RENDERIZAR NA PAGINA HOME */}
           {path === '/' && (
@@ -165,7 +101,7 @@ export const EmpreendimentoList = () => {
                 }}
                 modules={[Autoplay, Pagination, EffectFade]}
               >
-                {quantityImoveis(15).map((imovel, i) => (
+                {imoveisQuantity.data?.data.map((imovel, i) => (
                   <SwiperSlide key={i}>
                     <Link
                       href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
@@ -191,45 +127,50 @@ export const EmpreendimentoList = () => {
           {path.startsWith('/empreendimentos') && (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6">
-                {filteredImoveis(search, region, status, zone).map(
-                  (imovel, i) => (
-                    <Link
-                      key={i}
-                      href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
-                      className={`flex flex-1  ${
-                        search || region || (status && 'md:max-w-[350px]')
-                      }`}
-                      onClick={() => {
-                        posthog.capture(`${imovel.attributes.slug}`, {
-                          property: 'value',
-                        });
-                        posthog.group(
-                          'Interesse em: ',
-                          imovel.attributes.title,
-                        );
-                      }}
-                    >
-                      <EmpreendimentoCard key={imovel.id} data={imovel} />
-                    </Link>
-                  ),
-                )}
+                {imoveisList.map((imovel: Imovel, i: number) => (
+                  <Link
+                    key={i}
+                    href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
+                    className={`flex flex-1  ${
+                      search || region || (status && 'md:max-w-[350px]')
+                    }`}
+                    onClick={() => {
+                      posthog.capture(`${imovel.attributes.slug}`, {
+                        property: 'value',
+                      });
+                      posthog.group('Interesse em: ', imovel.attributes.title);
+                    }}
+                  >
+                    <EmpreendimentoCard key={imovel.id} data={imovel} />
+                  </Link>
+                ))}
               </div>
 
+              {/* IDLE */}
               <div className="w-full max-w-[1216px] mx-auto flex items-center justify-center">
-                {meta.pagination.pageSize <= meta.pagination.total && (
+                {imoveis.data?.meta.pagination.page !==
+                  imoveis.data?.meta.pagination.pageSize && (
                   <Button
                     onClick={() => handleShowMore()}
                     variant="primary"
                     size="lg"
-                    className={`${
-                      loading && 'pointer-events-none bg-main-red/50'
-                    }`}
+                    className="bg-main-red"
                   >
-                    {loading ? (
-                      <Loader2Icon className="animate-spin text-white w-6 h-6" />
-                    ) : (
-                      'MOSTRAR MAIS'
-                    )}
+                    MOSTRAR MAIS
+                  </Button>
+                )}
+              </div>
+
+              {/* LOADING */}
+              <div className="w-full flex  justify-center">
+                {imoveis.isFetching && (
+                  <Button
+                    onClick={() => handleShowMore()}
+                    variant="primary"
+                    size="lg"
+                    className="pointer-events-none bg-main-red/50"
+                  >
+                    <Loader2Icon className="animate-spin text-white w-6 h-6" />
                   </Button>
                 )}
               </div>

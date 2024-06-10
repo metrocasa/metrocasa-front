@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
-import { ImoveisProvider } from '@/contexts/imoveis-context';
+import { MetaProvider } from '@/contexts/meta-context';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="pt-br">
       <CSPostHogProvider>
         <body className={inter.className + 'px-[15px]'}>
-          <ImoveisProvider>
+          <MetaProvider>
             <Suspense>
               <div>
                 <Providers>{children}</Providers>
@@ -53,7 +53,7 @@ export default function RootLayout({
                 />
               </Link>
             </Suspense>
-          </ImoveisProvider>
+          </MetaProvider>
         </body>
       </CSPostHogProvider>
     </html>

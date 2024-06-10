@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { MouseEvent } from 'react';
 
 import {
   Pagination,
@@ -8,12 +8,10 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
-import { useImoveis } from "@/contexts/imoveis-context";
+} from '@/components/ui/pagination';
+import { MetaProvider } from '@/contexts/meta-context';
 
 export const PaginationComp: React.FC<any> = ({ onFetchImoveis, meta }) => {
-  const { setMeta } = useImoveis();
-
   const pageCount = meta.pagination.pageCount;
 
   const handleShowMore = (e: MouseEvent<HTMLAnchorElement>) => {

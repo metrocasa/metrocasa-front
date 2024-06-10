@@ -6,20 +6,21 @@ import BackgroundVideo from 'next-video/background-video';
 
 import { useMediaQuery } from 'react-responsive';
 
-import { useImoveis } from '@/contexts/imoveis-context';
+import { MetaProvider } from '@/contexts/meta-context';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Skeleton } from './ui/skeleton';
-import { Imovel } from '@/types/global';
+import { Imoveis, Imovel } from '@/types/global';
+import { useImoveis } from '@/utils/queries';
 
 const CarouselHero = ({ imovel }: { imovel: Imovel }) => {
   const isMobile = useMediaQuery({ query: '(max-width: 770px)' });
 
-  const { quantityImoveis } = useImoveis();
+  const quantityImoveis = useImoveis(5).data?.data;
   const randomNumber = Math.floor(Math.random() * 4) + 1;
 
   // TODO: Create dynamic field to chooe 5 imoveis inside strapi
-  const imoveisData = quantityImoveis(5)[randomNumber];
+  const imoveisData = quantityImoveis?.[randomNumber];
 
   const getRandomImages = (i: number) => {
     const images = imoveisData?.attributes.main_gallery.data[i]?.attributes.url;

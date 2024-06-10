@@ -2,7 +2,7 @@
 
 import React, { Suspense, useEffect, useState } from 'react';
 import { List } from './_components/list';
-import { useImoveis } from '@/contexts/imoveis-context';
+import { MetaProvider, useMetaContext } from '@/contexts/meta-context';
 import {
   DownloadIcon,
   Laptop2Icon,
@@ -17,59 +17,83 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { useMateriais } from '@/contexts/materiais-context';
+// import { useMateriais } from '@/contexts/materiais-context';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Imovel } from '@/types/global';
+import { useImoveis, useMateriais } from '@/utils/queries';
+import { Loading } from '@/components/loading';
 
 const Materiais = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  const { imoveis, fetchImoveis, meta, currentPageSize } = useImoveis();
+  const { currentPageSize, setMeta, setCurrentPageSize } = useMetaContext();
 
-  const { materiais } = useMateriais();
-  const campanhaSemanal = materiais?.data.attributes.campanha_semanal;
-  const booksDeValorizacao = materiais?.data.attributes.books_valorizacao;
-  const ads = materiais?.data.attributes.fb_google_ads.data;
-  const linksUteis = materiais?.data.attributes.links_uteis;
-  const materiaisGraficos = materiais?.data.attributes.materiais_graficos;
+  // Imoveis
+  const [imoveisList, setImoveisList] = React.useState<Imovel[]>([]);
+  const imoveis = useImoveis(currentPageSize);
+  const imoveisQuantity = useImoveis(15);
+  const meta = imoveis.data?.meta;
 
-  const [loading, setLoading] = useState(false);
+  // Materiais
+  const materiais = useMateriais();
+  const linksUteis = materiais.data?.data.attributes.links_uteis;
+  const ads = materiais.data?.data.attributes.fb_google_ads.data;
+  const materiaisGraficos = materiais.data?.data.attributes.materiais_graficos;
+  const campanhaSemanal = materiais.data?.data.attributes.campanha_semanal;
+  const booksDeValorizacao = materiais.data?.data.attributes.books_valorizacao;
+
+  React.useEffect(() => {
+    if (imoveis.data?.data) {
+      setImoveisList(imoveis.data.data);
+    }
+  }, [imoveis.data?.data]);
 
   const handleShowMore = () => {
-    const total = meta.pagination.total;
-    setLoading(true);
-
-    fetchImoveis(currentPageSize + 4).then(() => {
-      setLoading(false);
-    });
+    setCurrentPageSize(currentPageSize + 8);
   };
+
+  if (imoveisQuantity.isLoading && imoveis.isLoading && meta && materiais)
+    return <Loading />;
 
   return (
     <section className="bg-tertiary-black w-full flex flex-col lg:pl-[400px] min-h-screen n md:p-14 p-10">
       <h1 className="text-3xl font-bold text-main-red md:mb-[15px]">
         Materiais
       </h1>
-      {imoveis.length || materiais?.data ? (
+      {imoveisList.length || materiais?.data ? (
         <>
           <Suspense>
-            <List imoveis={imoveis} />
-            {meta.pagination.pageSize <= meta.pagination.total && (
+            <List imoveis={imoveisList} />
+          </Suspense>
+          {/* IDLE */}
+          <div className="w-full max-w-[1216px] mx-auto flex items-center justify-center">
+            {imoveis.data?.meta.pagination.page !==
+              imoveis.data?.meta.pagination.pageSize && (
               <Button
                 onClick={() => handleShowMore()}
                 variant="primary"
                 size="lg"
-                className={`${
-                  loading && 'pointer-events-none self-center'
-                } mb-24`}
+                className="bg-main-red"
               >
-                {loading ? (
-                  <Loader2Icon className="animate-spin text-white w-6 h-6" />
-                ) : (
-                  'MOSTRAR MAIS'
-                )}
+                MOSTRAR MAIS
               </Button>
             )}
-          </Suspense>
+          </div>
+
+          {/* LOADING */}
+          <div className="w-full flex  justify-center">
+            {imoveis.isFetching && (
+              <Button
+                onClick={() => handleShowMore()}
+                variant="primary"
+                size="lg"
+                className="pointer-events-none bg-main-red/50"
+              >
+                <Loader2Icon className="animate-spin text-white w-6 h-6" />
+              </Button>
+            )}
+          </div>
           <Accordion type="single" collapsible>
             {/* Campanha Semannal */}
             <AccordionItem value="campanha-semanal">
@@ -106,7 +130,7 @@ const Materiais = () => {
                   {/* Material de Apoio*/}
                   <Button variant={'primary'} className="w-full md:w-fit">
                     <Link
-                      href={`${BASE_URL}${materiais?.data.attributes.campanha_semanal.flyers}`}
+                      href={`${BASE_URL}${campanhaSemanal?.flyers}`}
                       target="_blank"
                       className="flex gap-2 items-center"
                       download
