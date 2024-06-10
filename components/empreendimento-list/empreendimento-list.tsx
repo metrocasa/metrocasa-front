@@ -38,6 +38,7 @@ export const EmpreendimentoList = () => {
   const search = searchParams.get('search');
   const zone = searchParams.get('zone');
 
+  // TODO: Melhorar filtro
   const filteredImoveis = (
     paramSearch: string | null | undefined,
     paramRegion: string | null | undefined,
@@ -131,8 +132,8 @@ export const EmpreendimentoList = () => {
           {path === '/' && (
             <section className="w-full pt-24 px-[15px] md:px-0 mb-6">
               <Title
+                subtitle="De leste a Oeste"
                 title="Conheça seu novo Apartamento"
-                subtitle="Seu mais novo"
               />
 
               <Swiper

@@ -1,7 +1,6 @@
 'use client';
 
 import * as React from 'react';
-import Autoplay from 'embla-carousel-autoplay';
 
 import { zonas } from '@/constants';
 import Image from 'next/image';
@@ -9,8 +8,6 @@ import Link from 'next/link';
 import { Title } from '../title';
 
 export const Zonas = () => {
-  const plugin = React.useRef(Autoplay({ delay: 4000 }));
-
   return (
     <section className=" w-full h-auto py-24 px-[15px]">
       <div className="w-full max-w-[1216px] mx-auto flex flex-col gap-14 items-center">

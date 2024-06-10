@@ -8,7 +8,7 @@ import { Title } from '../title';
 
 export const AboutUs = () => {
   return (
-    <section className="w-full py-10 md:py-24 px-[15px]">
+    <section className="w-full py-10 md:py-10 px-[15px]">
       <div className="w-full max-w-[1216px] mx-auto flex flex-col md:flex-row gap-2 md:gap-14">
         {/* LEFT */}
         <div className="w-full flex flex-col gap-8">

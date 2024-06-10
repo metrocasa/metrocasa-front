@@ -14,31 +14,25 @@ import Cookies from 'js-cookie';
 import InitialScreen from '@/components/initial-screen';
 
 import { cookies } from 'next/headers';
+import { useFeirao } from '@/utils/queries';
 
 export default function Home() {
-  const firstTime = cookies().get('ft');
-
   return (
     <>
-      {!firstTime ? (
-        <InitialScreen />
-      ) : (
-        <>
-          <Header />
+      <InitialScreen />
+      <Header />
 
-          <Hero />
-          <AboutUs />
-          <EmpreendimentoList />
-          <Filter />
-          <LancamentoSection />
-          <Zonas />
-          <FormSection title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento." />
-          {/* <Testmonials /> */}
-          <FaqSection />
+      <Hero />
+      <AboutUs />
+      <EmpreendimentoList />
+      <Filter />
+      <LancamentoSection />
+      <Zonas />
+      <FormSection title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento." />
+      <Testmonials />
+      <FaqSection />
 
-          <Footer />
-        </>
-      )}
+      <Footer />
     </>
   );
 }

@@ -31,7 +31,7 @@ export const EtapaSection = () => {
   ];
 
   return (
-    <section className="w-full bg-dark-bg bg-cover bg-no-repeat mx-auto h-auto py-24 px-[15px]">
+    <section className="w-full bg-dark-bg bg-cover bg-no-repeat mx-auto h-auto py-14 px-[15px]">
       <div className="w-full max-w-[1216px] mx-auto flex justify-center flex-col gap-24 ">
         {/* TEXT TITLES */}
         <div className="text-white text-center flex flex-col gap-4 w-full ">

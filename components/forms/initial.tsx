@@ -149,54 +149,56 @@ export const InitialForm = ({
         className={cn('flex gap-y-7 w-full', className)}
       >
         {/* Nome */}
-        {name && (
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Nome</FormLabel>}
-                <FormControl>
-                  <Input placeholder="Maria dos Santos" {...field} />
-                </FormControl>
+        <div className="flex w-full gap-4">
+          {name && (
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  {label && <FormLabel>Nome</FormLabel>}
+                  <FormControl>
+                    <Input placeholder="Maria dos Santos" {...field} />
+                  </FormControl>
 
-                {errorMessage && <FormMessage />}
-              </FormItem>
-            )}
-          />
-        )}
+                  {errorMessage && <FormMessage />}
+                </FormItem>
+              )}
+            />
+          )}
 
-        {/* Número de Contato */}
-        {phone && (
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Número de Contato</FormLabel>}
-                <FormControl>
-                  <Input
-                    placeholder="11 91234-5678"
-                    {...field}
-                    value={formattedPhoneValue}
-                    onBlur={() => {
-                      form.setValue(
-                        'phone',
-                        parseAndFormatPhoneNumber(formattedPhoneValue),
-                        {
-                          shouldValidate: true,
-                        },
-                      );
-                    }}
-                    maxLength={11}
-                  />
-                </FormControl>
+          {/* Número de Contato */}
+          {phone && (
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  {label && <FormLabel>Número de Contato</FormLabel>}
+                  <FormControl>
+                    <Input
+                      placeholder="11 91234-5678"
+                      {...field}
+                      value={formattedPhoneValue}
+                      onBlur={() => {
+                        form.setValue(
+                          'phone',
+                          parseAndFormatPhoneNumber(formattedPhoneValue),
+                          {
+                            shouldValidate: true,
+                          },
+                        );
+                      }}
+                      maxLength={11}
+                    />
+                  </FormControl>
 
-                {errorMessage && <FormMessage />}
-              </FormItem>
-            )}
-          />
-        )}
+                  {errorMessage && <FormMessage />}
+                </FormItem>
+              )}
+            />
+          )}
+        </div>
 
         {/* E-mail */}
         {email && (
@@ -220,70 +222,72 @@ export const InitialForm = ({
         )}
 
         {/* Renda Mensal */}
-        {rendaMensal && (
-          <FormField
-            control={form.control}
-            name="rendaMensal"
-            render={({ field }) => (
-              <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Renda Mensal</FormLabel>}
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione..." />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="Abaixo de 2 Mil">
-                      Abaixo de 2 Mil
-                    </SelectItem>
-                    <SelectItem value="De 2 a 4 Mil">De 2 a 4 Mil</SelectItem>
-                    <SelectItem value="De 4 a 6 Mil">De 4 a 6 Mil</SelectItem>
-                    <SelectItem value="De 6 a 8 Mil">De 6 a 8 Mil</SelectItem>
-                    <SelectItem value="Acima de 8 Mil">
-                      Acima de 8 Mil
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-                {errorMessage && <FormMessage />}
-              </FormItem>
-            )}
-          />
-        )}
-
-        {/* Região de Interesse */}
-        {regiaoDeInteresse && (
-          <FormField
-            control={form.control}
-            name="regiaoDeInteresse"
-            render={({ field }) => (
-              <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Região de Interesse</FormLabel>}
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione..." />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {zonas.map((zona, i) => (
-                      <SelectItem key={i} value={zona.zone}>
-                        {zona.zone}
+        <div className="flex w-full gap-4">
+          {rendaMensal && (
+            <FormField
+              control={form.control}
+              name="rendaMensal"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  {label && <FormLabel>Renda Mensal</FormLabel>}
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione..." />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Abaixo de 2 Mil">
+                        Abaixo de 2 Mil
                       </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {errorMessage && <FormMessage />}
-              </FormItem>
-            )}
-          />
-        )}
+                      <SelectItem value="De 2 a 4 Mil">De 2 a 4 Mil</SelectItem>
+                      <SelectItem value="De 4 a 6 Mil">De 4 a 6 Mil</SelectItem>
+                      <SelectItem value="De 6 a 8 Mil">De 6 a 8 Mil</SelectItem>
+                      <SelectItem value="Acima de 8 Mil">
+                        Acima de 8 Mil
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {errorMessage && <FormMessage />}
+                </FormItem>
+              )}
+            />
+          )}
+
+          {/* Região de Interesse */}
+          {regiaoDeInteresse && (
+            <FormField
+              control={form.control}
+              name="regiaoDeInteresse"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  {label && <FormLabel>Região de Interesse</FormLabel>}
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione..." />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {zonas.map((zona, i) => (
+                        <SelectItem key={i} value={zona.zone}>
+                          {zona.zone}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errorMessage && <FormMessage />}
+                </FormItem>
+              )}
+            />
+          )}
+        </div>
 
         <div className="w-full">
           <Button type="submit" variant={variant} className="w-full">

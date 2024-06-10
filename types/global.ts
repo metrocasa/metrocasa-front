@@ -182,3 +182,21 @@ export interface Posts {
     };
   };
 }
+
+// FEIR'AO
+export interface FeiraoProps {
+  data: {
+    id: number;
+    attributes: {
+      title: string;
+      description: string;
+      imagem: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        };
+      };
+    };
+  };
+}

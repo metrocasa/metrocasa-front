@@ -10,7 +10,7 @@ import { faqQuestions } from '@/constants';
 
 export const FaqSection = () => {
   return (
-    <section className="w-full py-24 h-auto px-[15px] bg-white-bg bg-cover bg-no-repeat">
+    <section className="w-full py-10 h-auto px-[15px] bg-white-bg bg-cover bg-no-repeat">
       <div className="w-full max-w-[1216px] mx-auto flex flex-col gap-5">
         <h1 className="text-4xl font-bold text-main-red">
           Perguntas Frequentes

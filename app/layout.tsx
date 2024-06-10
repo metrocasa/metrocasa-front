@@ -10,6 +10,9 @@ import { CSPostHogProvider } from './providers';
 import PostHogPageView from './PostHogPageView';
 import { Suspense } from 'react';
 
+// React Query
+import Providers from '@/utils/Providers';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -32,8 +35,7 @@ export default function RootLayout({
           <ImoveisProvider>
             <Suspense>
               <div>
-                <PostHogPageView />
-                {children}
+                <Providers>{children}</Providers>
               </div>
 
               {/* Whatsapp Icon */}
