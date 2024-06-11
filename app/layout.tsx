@@ -6,7 +6,7 @@ import { MetaProvider } from '@/contexts/meta-context';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { CSPostHogProvider } from './providers';
+import { CSPostHogProvider } from './PosthogProvider';
 import PostHogPageView from './PostHogPageView';
 import { Suspense } from 'react';
 

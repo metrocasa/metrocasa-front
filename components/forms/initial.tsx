@@ -85,9 +85,7 @@ export const InitialForm = ({
     : '';
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const endpoint =
-      'https://crm.anapro.com.br/webcrm/webapi/integracao/v2/CadastrarProspect';
-
+    const endpoint = process.env.NEXT_PUBLIC_ANAPRO_ENDPOINT as string;
     const key = process.env.NEXT_PUBLIC_ANAPRO_KEY;
     const canal_key = process.env.NEXT_PUBLIC_ANAPRO_CANAL_KEY;
     const campanha_key = process.env.NEXT_PUBLIC_ANAPRO_CAMPANHA_KEY;
@@ -149,7 +147,7 @@ export const InitialForm = ({
         className={cn('flex gap-y-7 w-full', className)}
       >
         {/* Nome */}
-        <div className="flex w-full gap-4">
+        <div className="flex flex-col md:flex-row w-full gap-4">
           {name && (
             <FormField
               control={form.control}
@@ -222,7 +220,7 @@ export const InitialForm = ({
         )}
 
         {/* Renda Mensal */}
-        <div className="flex w-full gap-4">
+        <div className="flex flex-col md:flex-row w-full gap-4">
           {rendaMensal && (
             <FormField
               control={form.control}

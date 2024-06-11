@@ -25,7 +25,7 @@ const MateriaisProvider: React.FC<{ children: React.ReactNode }> = ({
       try {
         const authorizationToken = isDashboardPage
           ? Cookies.get('session')
-          : process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS;
+          : process.env.NEXT_PUBLIC_API_GENERAL_TOKEN;
 
         const config = {
           headers: {

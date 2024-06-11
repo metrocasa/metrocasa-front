@@ -17,6 +17,7 @@ import {
   DialogClose,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { FeiraoProps } from '@/types/global';
 
 const PopupFeirao = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -37,9 +38,9 @@ const PopupFeirao = () => {
 
   return (
     <Dialog defaultOpen={!firstTime}>
-      <DialogContent className="flex max-w-[80%] h-[80%] p-0">
+      <DialogContent className="flex md:max-w-[80%] md:h-[80%] p-0">
         {/* LEFT */}
-        <div className="h-full w-full md:w-[50%] ">
+        <div className="hidden lg:block h-full w-full md:w-[50%] ">
           <Image
             src={imageUrl}
             width={900}
@@ -51,7 +52,7 @@ const PopupFeirao = () => {
         </div>
 
         {/* RIGHT */}
-        <div className="h-full w-full md:w-[50%] p-16 items-center justify-center flex flex-col gap-8 bg-white">
+        <div className="h-full w-full lg:w-[50%] p-8 items-center justify-center flex flex-col gap-8">
           <Image
             src={'/logo-red.svg'}
             width={200}
@@ -59,7 +60,9 @@ const PopupFeirao = () => {
             alt="Logo Metrocasa"
           />
 
-          <h1 className="text-3xl">{feirao.data?.data.attributes.title}</h1>
+          <h1 className="text-3xl text-center">
+            {feirao.data?.data.attributes.title}
+          </h1>
           <div
             dangerouslySetInnerHTML={{
               __html: feirao.data?.data.attributes.description || '',

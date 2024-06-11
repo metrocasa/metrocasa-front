@@ -1,3 +1,5 @@
+'use client';
+
 import { menusFooter } from '@/constants';
 import {
   FacebookIcon,

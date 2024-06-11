@@ -1,6 +1,6 @@
 'use client';
 
-import React, { use, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { EmpreendimentoCard } from './empreendimento-card';
 import Link from 'next/link';
 
@@ -20,21 +20,20 @@ import { Loader2Icon } from 'lucide-react';
 
 import { Skeleton } from '../ui/skeleton';
 import posthog from 'posthog-js';
-import { useImoveis } from '@/utils/queries';
+import { useAllImoveis, useImoveis, useSearchImovel } from '@/utils/queries';
 import { useMetaContext } from '@/contexts/meta-context';
 import { Loading } from '../loading';
-import { Imovel } from '@/types/global';
-import { useIsFetching } from '@tanstack/react-query';
+import { Imoveis, Imovel } from '@/types/global';
 
 export const EmpreendimentoList = () => {
   const { currentPageSize, setMeta, setCurrentPageSize } = useMetaContext();
 
-  const [imoveisList, setImoveisList] = React.useState<Imovel[]>([]);
+  const [imoveisList, setImoveisList] = useState<Imovel[]>([]);
   const imoveis = useImoveis(currentPageSize);
   const imoveisQuantity = useImoveis(15);
   const meta = imoveis.data?.meta;
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (imoveis.data?.data) {
       setImoveisList(imoveis.data.data);
     }
@@ -42,17 +41,19 @@ export const EmpreendimentoList = () => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
 
+  // PARAMS
   const path = usePathname();
 
-  // PARAMS
   const searchParams = useSearchParams();
   const region = searchParams.get('region');
   const status = searchParams.get('status');
   const search = searchParams.get('search');
   const zone = searchParams.get('zone');
 
-  // TODO: CRIAR UM FILTRO AQUI
+  // FILTERED IMOVEIS
+  const searchImoveis = useSearchImovel(search as string).data;
 
+  // Show more imoveis
   const handleShowMore = () => {
     setCurrentPageSize(currentPageSize + 8);
   };
@@ -127,43 +128,49 @@ export const EmpreendimentoList = () => {
           {path.startsWith('/empreendimentos') && (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6">
-                {imoveisList.map((imovel: Imovel, i: number) => (
-                  <Link
-                    key={i}
-                    href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
-                    className={`flex flex-1  ${
-                      search || region || (status && 'md:max-w-[350px]')
-                    }`}
-                    onClick={() => {
-                      posthog.capture(`${imovel.attributes.slug}`, {
-                        property: 'value',
-                      });
-                      posthog.group('Interesse em: ', imovel.attributes.title);
-                    }}
-                  >
-                    <EmpreendimentoCard key={imovel.id} data={imovel} />
-                  </Link>
-                ))}
+                {(search ? searchImoveis?.data : imoveisList)?.map(
+                  (imovel: Imovel, i: number) => (
+                    <Link
+                      key={i}
+                      href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
+                      className={`flex flex-1  ${
+                        search || region || (status && 'md:max-w-[350px]')
+                      }`}
+                      onClick={() => {
+                        posthog.capture(`${imovel.attributes.slug}`, {
+                          property: 'value',
+                        });
+                        posthog.group(
+                          'Interesse em: ',
+                          imovel.attributes.title,
+                        );
+                      }}
+                    >
+                      <EmpreendimentoCard key={imovel.id} data={imovel} />
+                    </Link>
+                  ),
+                )}
               </div>
 
               {/* IDLE */}
               <div className="w-full max-w-[1216px] mx-auto flex items-center justify-center">
                 {imoveis.data?.meta.pagination.page !==
-                  imoveis.data?.meta.pagination.pageSize && (
-                  <Button
-                    onClick={() => handleShowMore()}
-                    variant="primary"
-                    size="lg"
-                    className="bg-main-red"
-                  >
-                    MOSTRAR MAIS
-                  </Button>
-                )}
+                  imoveis.data?.meta.pagination.pageSize &&
+                  !imoveis.isFetching && (
+                    <Button
+                      onClick={() => handleShowMore()}
+                      variant="primary"
+                      size="lg"
+                      className="bg-main-red"
+                    >
+                      MOSTRAR MAIS
+                    </Button>
+                  )}
               </div>
 
               {/* LOADING */}
-              <div className="w-full flex  justify-center">
-                {imoveis.isFetching && (
+              <div className="w-full flex justify-center max-w-[1280px] mx-auto">
+                {imoveis.isRefetching && (
                   <Button
                     onClick={() => handleShowMore()}
                     variant="primary"
@@ -178,15 +185,11 @@ export const EmpreendimentoList = () => {
           )}
         </>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6 max-w-[1350px] mx-auto">
           {[1, 2, 3, 4].map((item, i) => (
-            <div key={i}>
+            <div key={i} className="">
               <div className="flex flex-col space-y-3">
-                <Skeleton className="h-[400px] w-[340px] rounded-xl bg-main-red/10" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-[250px] bg-main-red/10" />
-                  <Skeleton className="h-4 w-[200px] bg-main-red/10" />
-                </div>
+                <Skeleton className="h-[400px] w-[300px] rounded-xl bg-main-red/10" />
               </div>
             </div>
           ))}

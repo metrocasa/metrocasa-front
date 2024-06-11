@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -51,6 +51,7 @@ export const Filter = () => {
 
   // onSubmit Form
   function onSubmit(values: z.infer<typeof formSchema>) {
+    const searchParams = new URLSearchParams(values).toString();
     router.push(
       `/empreendimentos?region=${values.region}&status=${values.status}&search=${values.search}`,
     );
@@ -62,6 +63,9 @@ export const Filter = () => {
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col md:flex-row items-center justify-center mx-auto gap-4 md:gap-8 bg-white  py-14 px-[45px] md:px-0"
       >
+        {/* W
+        //TODO: Implementar o filtro por zona
+
         <FormField
           control={form.control}
           name="region"
@@ -118,6 +122,8 @@ export const Filter = () => {
             </FormItem>
           )}
         />
+
+         */}
 
         <FormField
           control={form.control}

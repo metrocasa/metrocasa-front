@@ -9,8 +9,15 @@ import { Footer } from '@/components/globals/Footer';
 
 import { EtapaSection } from '@/components/page-components/etapa-section/etapa-section';
 import { FormSection } from '@/components/page-components/form-section';
+import {
+  HydrationBoundary,
+  dehydrate,
+  useQueryClient,
+} from '@tanstack/react-query';
+import { Imoveis } from '@/types/global';
+import { getAllImoveis } from '@/actions/get-imoveis';
 
-const EmpreendimentosPage = () => {
+const EmpreendimentosPage = async () => {
   return (
     <>
       <Header />

@@ -1,37 +1,72 @@
 import { getFeirao } from '@/actions/get-feirao';
-import { getImoveis, getImovelById } from '@/actions/get-imoveis';
+import {
+  getAllImoveis,
+  getImoveis,
+  getImovelById,
+  searchImoveis,
+} from '@/actions/get-imoveis';
 import { getMateriais } from '@/actions/get-materiais';
 import { FeiraoProps, Imoveis, Imovel, Materiais } from '@/types/global';
-import { useQuery } from '@tanstack/react-query';
+import {
+  dehydrate,
+  keepPreviousData,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 
-// GET FEIRÃO
+// FEIRÃO
+// get feirão
 export const useFeirao = () => {
   return useQuery<FeiraoProps>({
     queryKey: ['feirao'],
     queryFn: getFeirao,
+    placeholderData: keepPreviousData,
   });
 };
 
-// GET IMOVEIS
+// IMOVEIS
+// get imoveis
 export const useImoveis = (pageSize: number) => {
   return useQuery<Imoveis>({
     queryKey: ['imoveis', pageSize],
     queryFn: () => getImoveis(pageSize),
+    placeholderData: keepPreviousData,
   });
 };
 
-// GET IMOVEL BY ID
+// get imovel by id
 export const useImovelById = (id: number) => {
   return useQuery<Imovel>({
     queryKey: ['imovel', id],
     queryFn: () => getImovelById(id),
+    placeholderData: keepPreviousData,
   });
 };
 
-// GET MATERIAIS
+// search imovel
+export const useSearchImovel = (search: string) => {
+  return useQuery<Imoveis>({
+    queryKey: ['imovel', search],
+    queryFn: () => searchImoveis(search),
+    placeholderData: keepPreviousData,
+  });
+};
+
+// get all imoveis
+export const useAllImoveis = () => {
+  return useQuery<Imoveis>({
+    queryKey: ['allImoveis'],
+    queryFn: getAllImoveis,
+    placeholderData: keepPreviousData,
+  });
+};
+
+// MATERIAIS
+// get materiais
 export const useMateriais = () => {
   return useQuery<Materiais>({
     queryKey: ['materiais'],
     queryFn: getMateriais,
+    placeholderData: keepPreviousData,
   });
 };

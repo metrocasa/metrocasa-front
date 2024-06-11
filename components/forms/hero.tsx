@@ -66,9 +66,7 @@ export const HeroForm = ({
     : '';
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    const endpoint =
-      'https://crm.anapro.com.br/webcrm/webapi/integracao/v2/CadastrarProspect';
-
+    const endpoint = process.env.NEXT_PUBLIC_ANAPRO_ENDPOINT as string;
     const key = process.env.NEXT_PUBLIC_ANAPRO_KEY;
     const canal_key = process.env.NEXT_PUBLIC_ANAPRO_CANAL_KEY;
     const campanha_key = process.env.NEXT_PUBLIC_ANAPRO_CAMPANHA_KEY;

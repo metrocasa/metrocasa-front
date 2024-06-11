@@ -12,6 +12,7 @@ import { useMediaQuery } from 'react-responsive';
 import { HeroForm } from '@/components/forms/hero';
 import { useImoveis } from '@/utils/queries';
 import { Loading } from './loading';
+import { Imovel } from '@/types/global';
 
 const font = Be_Vietnam_Pro({
   subsets: ['latin'],
@@ -24,9 +25,7 @@ export const Hero = () => {
   const quantityImoveis = useImoveis(1).data?.data;
   const randomNumber = Math.floor(Math.random() * 4) + 1;
 
-  const imoveisData = quantityImoveis?.[0];
-
-  if (!imoveisData) return <Loading />;
+  const imoveisData = quantityImoveis?.[0] as Imovel;
 
   return (
     <section className="px-[15px] w-full py-24 pt-32 md:pt-48 overflow-x-hidden ">

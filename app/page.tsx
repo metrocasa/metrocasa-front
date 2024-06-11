@@ -11,12 +11,8 @@ import { Filter } from '@/components/globals/Filter';
 import { Testmonials } from '@/components/page-components/testmonials-section';
 
 import PopupFeirao from '@/components/popup-feirao';
-import Cookies from 'js-cookie';
 
-import { cookies } from 'next/headers';
-import { useFeirao } from '@/utils/queries';
-
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <PopupFeirao />

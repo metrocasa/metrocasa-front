@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
-const TOKEN = process.env.NEXT_PUBLIC_API_TOKEN_IMOVEIS!;
+const TOKEN = process.env.NEXT_PUBLIC_API_GENERAL_TOKEN!;
 
 export const getMateriais = async () => {
   const res = await axios.get(
