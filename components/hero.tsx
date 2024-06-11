@@ -22,8 +22,8 @@ const font = Be_Vietnam_Pro({
 export const Hero = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
 
-  const quantityImoveis = useImoveis(1).data?.data;
   const randomNumber = Math.floor(Math.random() * 4) + 1;
+  const quantityImoveis = useImoveis(randomNumber).data?.data;
 
   const imoveisData = quantityImoveis?.[0] as Imovel;
 
