@@ -18,7 +18,7 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 
-const InitialScreen = () => {
+const PopupFeirao = () => {
   const [showModal, setShowModal] = React.useState(false);
 
   const route = useRouter();
@@ -40,7 +40,7 @@ const InitialScreen = () => {
         {/* LEFT */}
         <div className="h-full w-full md:w-[50%] ">
           <Image
-            src={imageUrl as string}
+            src={imageUrl}
             width={900}
             height={900}
             alt="Banner Feirão Metrocasa"
@@ -75,4 +75,4 @@ const InitialScreen = () => {
   );
 };
 
-export default InitialScreen;
+export default PopupFeirao;
