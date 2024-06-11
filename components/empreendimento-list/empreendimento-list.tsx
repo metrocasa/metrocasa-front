@@ -24,13 +24,14 @@ import { useAllImoveis, useImoveis, useSearchImovel } from '@/utils/queries';
 import { useMetaContext } from '@/contexts/meta-context';
 import { Loading } from '../loading';
 import { Imoveis, Imovel } from '@/types/global';
+import { useQuery } from '@tanstack/react-query';
+import { getAllImoveis } from '@/actions/get-imoveis';
 
 export const EmpreendimentoList = () => {
   const { currentPageSize, setMeta, setCurrentPageSize } = useMetaContext();
 
   const [imoveisList, setImoveisList] = useState<Imovel[]>([]);
   const imoveis = useImoveis(currentPageSize);
-  const imoveisQuantity = useImoveis(15);
   const meta = imoveis.data?.meta;
 
   useEffect(() => {
@@ -58,12 +59,11 @@ export const EmpreendimentoList = () => {
     setCurrentPageSize(currentPageSize + 8);
   };
 
-  if (imoveisQuantity.isLoading && imoveis.isLoading && meta)
-    return <Loading />;
+  if (imoveis.isLoading && imoveis.isLoading && meta) return <Loading />;
 
   return (
     <>
-      {imoveisList.length ? (
+      {imoveis.isSuccess ? (
         <>
           {/* RENDERIZAR NA PAGINA HOME */}
           {path === '/' && (
@@ -102,7 +102,7 @@ export const EmpreendimentoList = () => {
                 }}
                 modules={[Autoplay, Pagination, EffectFade]}
               >
-                {imoveisQuantity.data?.data.map((imovel, i) => (
+                {imoveis.data?.data.map((imovel, i) => (
                   <SwiperSlide key={i}>
                     <Link
                       href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}

@@ -1,4 +1,7 @@
+
 import { withNextVideo } from "next-video/process";
+const NEXT_PUBLIC_STATIC_GENERATION_TIMEOUT = process.env.NEXT_PUBLIC_STATIC_GENERATION_TIMEOUT || 120 * 2
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   distDir: 'build',
@@ -15,6 +18,9 @@ const nextConfig = {
     ]
   },
   transpilePackages: ['three'],
+  experimental: {
+    staticPageGenerationTimeout:Number(NEXT_PUBLIC_STATIC_GENERATION_TIMEOUT)
+  }
 };
 
 export default withNextVideo(nextConfig);

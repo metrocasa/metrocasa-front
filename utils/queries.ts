@@ -46,7 +46,7 @@ export const useImovelById = (id: number) => {
 // search imovel
 export const useSearchImovel = (search: string) => {
   return useQuery<Imoveis>({
-    queryKey: ['imovel', search],
+    queryKey: ['imovelSearch', search],
     queryFn: () => searchImoveis(search),
     placeholderData: keepPreviousData,
   });
