@@ -30,7 +30,8 @@ const PopupFeirao = () => {
 
   // Get feirão Query
   const feirao = useFeirao();
-  const imageUrl = feirao.data?.data.attributes.imagem.data.attributes.url;
+  const imageUrl = feirao.data?.data?.attributes.imagem.data.attributes
+    .url as string;
 
   const firstTime = Cookies.get('ft');
 
@@ -44,7 +45,7 @@ const PopupFeirao = () => {
             width={900}
             height={900}
             alt="Banner Feirão Metrocasa"
-            className="w-full h-[100%] object-cover object-center rounded-md"
+            className="w-full h-[100%] object-cover object-start rounded-md"
             priority
           />
         </div>

@@ -3,7 +3,7 @@ import React from 'react';
 
 export const Loading: React.FC = () => {
   return (
-    <div className="h-screen w-full absolute flex items-center justify-center">
+    <div className="h-screen w-full absolute flex items-center justify-center bg-white">
       <Image
         src={'/metrocasa-icon.svg'}
         alt="Metrocasa"
