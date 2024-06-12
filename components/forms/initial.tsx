@@ -8,7 +8,6 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,22 +16,12 @@ import {
 import { Input } from '@/components/ui/input';
 
 import { cn } from '@/lib/utils';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { zonas } from '@/constants';
 
 // SCHEMA
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   phone: z.string().regex(/^\d{2}\s\d{5}\-\d{4}$/),
   email: z.string().min(2).max(50),
-  rendaMensal: z.string().min(2).max(50),
-  regiaoDeInteresse: z.string().min(2).max(50),
 });
 
 // FORMAT PHONE NUMBER
@@ -51,8 +40,6 @@ export const InitialForm = ({
   name = true,
   email = true,
   phone = true,
-  rendaMensal = true,
-  regiaoDeInteresse = true,
   errorMessage = true,
   label = true,
   handleContinue,
@@ -62,8 +49,6 @@ export const InitialForm = ({
   name?: boolean;
   email?: boolean;
   phone?: boolean;
-  rendaMensal?: boolean;
-  regiaoDeInteresse?: boolean;
   errorMessage?: boolean;
   label?: boolean;
   handleContinue?: () => void;
@@ -74,7 +59,6 @@ export const InitialForm = ({
       name: '',
       phone: '',
       email: '',
-      regiaoDeInteresse: '',
     },
   });
 
@@ -101,10 +85,6 @@ export const InitialForm = ({
       PoliticaPrivacidadeKey: '',
       PessoaNome: values.name,
       PessoaEmail: values.email,
-      Observacoes: `
-        Renda Mensal: ${values.rendaMensal},
-        Região De Interesse: ${values.regiaoDeInteresse},
-        `,
 
       PessoaTelefones: [
         {
@@ -134,6 +114,7 @@ export const InitialForm = ({
         console.error('Error submitting form:', error);
       }
     };
+    postData();
 
     if (handleContinue) {
       handleContinue();
@@ -218,74 +199,6 @@ export const InitialForm = ({
             )}
           />
         )}
-
-        {/* Renda Mensal */}
-        <div className="flex flex-col md:flex-row w-full gap-4">
-          {rendaMensal && (
-            <FormField
-              control={form.control}
-              name="rendaMensal"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  {label && <FormLabel>Renda Mensal</FormLabel>}
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selecione..." />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="Abaixo de 2 Mil">
-                        Abaixo de 2 Mil
-                      </SelectItem>
-                      <SelectItem value="De 2 a 4 Mil">De 2 a 4 Mil</SelectItem>
-                      <SelectItem value="De 4 a 6 Mil">De 4 a 6 Mil</SelectItem>
-                      <SelectItem value="De 6 a 8 Mil">De 6 a 8 Mil</SelectItem>
-                      <SelectItem value="Acima de 8 Mil">
-                        Acima de 8 Mil
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-                  {errorMessage && <FormMessage />}
-                </FormItem>
-              )}
-            />
-          )}
-
-          {/* Região de Interesse */}
-          {regiaoDeInteresse && (
-            <FormField
-              control={form.control}
-              name="regiaoDeInteresse"
-              render={({ field }) => (
-                <FormItem className="w-full">
-                  {label && <FormLabel>Região de Interesse</FormLabel>}
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Selecione..." />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {zonas.map((zona, i) => (
-                        <SelectItem key={i} value={zona.zone}>
-                          {zona.zone}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errorMessage && <FormMessage />}
-                </FormItem>
-              )}
-            />
-          )}
-        </div>
 
         <div className="w-full">
           <Button type="submit" variant={variant} className="w-full">

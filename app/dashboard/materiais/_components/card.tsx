@@ -10,7 +10,7 @@ import React from 'react';
 export const Card = ({ imovel }: { imovel: Imovel }) => {
   return (
     <Link
-      href={`${imovel.attributes.slug}/${imovel.id}`}
+      href={`/${imovel.attributes.slug}/${imovel.id}`}
       className={'relative'}
     >
       <div key={imovel.id}>

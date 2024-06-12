@@ -29,9 +29,7 @@ const MainContent = () => {
           Bem-vindo, <strong>{user.username.split(' ')[0]}</strong>!
         </h1>
         <hr className="text-white" />
-        <h2 className="text-main-red mt-14">
-          Veja as ultimas novidades da Metrocasa:
-        </h2>
+        <h2 className="text-main-red mt-14">{`{ UNDER DEVELOPMENT } ...`}</h2>
       </div>
     </main>
   ) : (

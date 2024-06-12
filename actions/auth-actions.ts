@@ -11,6 +11,12 @@ async function createAccount(formData: FormData) {
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
 
+  const emailRegex = /^[a-zA-Z0-9._-]+@metrocasa\.com\.br$/;
+
+  if (!emailRegex.test(email)) {
+    redirect('/dashboard/auth/signup');
+  }
+
   const hashPassword = await bcrypt.hash(password, 10);
 
   const body = {
@@ -67,7 +73,6 @@ async function login(formData: FormData) {
   );
 
   // const isMath = await bcrypt.compare(password, hashPassword);
-
   if (res.ok) {
     const data = await res.json();
 
