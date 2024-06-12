@@ -17,6 +17,7 @@ import TabsSection from '../_components/tabs-section';
 import { Imovel } from '@/types/global';
 import { useImoveis, useImovelById } from '@/utils/queries';
 import Loading from '../loading';
+import ChatbaseWidget from '@/components/chatbaseWidget';
 
 interface ParamsValues {
   empreendimento: string[];

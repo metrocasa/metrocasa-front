@@ -23,9 +23,13 @@ export const Hero = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
 
   const randomNumber = Math.floor(Math.random() * 4) + 1;
-  const quantityImoveis = useImoveis(randomNumber).data?.data;
+  const quantityImoveis = useImoveis(5).data?.data;
 
-  const imoveisData = quantityImoveis?.[0] as Imovel;
+  if (!quantityImoveis) {
+    return <Loading />;
+  }
+
+  const imoveisData = quantityImoveis[randomNumber] as Imovel;
 
   return (
     <section className="px-[15px] w-full py-24 pt-32 md:pt-48 overflow-x-hidden ">

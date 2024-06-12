@@ -1,49 +1,38 @@
 'use client';
 
-import { ReactNode } from 'react';
-import {
-  QueryClientProvider,
-  QueryClient,
-  isServer,
-  defaultShouldDehydrateQuery,
-} from '@tanstack/react-query';
+import { ReactNode, useEffect } from 'react';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { useState } from 'react';
 
-function makeQueryClient() {
-  return new QueryClient({
-    defaultOptions: {
-      queries: {
-        // With SSR, we usually want to set some default staleTime
-        // above 0 to avoid refetching immediately on the client
-        staleTime: Infinity,
-      },
-      dehydrate: {
-        shouldDehydrateQuery: (query) =>
-          defaultShouldDehydrateQuery(query) || query.state.status == 'pending',
-      },
-    },
-  });
-}
-
-let browserQueryClient: QueryClient | undefined = undefined;
-
-function getQueryClient() {
-  if (isServer) {
-    // Server: always make a new query client
-    return makeQueryClient();
-  } else {
-    // Browser: make a new query client if we don't already have one
-    // This is very important, so we don't re-make a new client if React
-    // suspends during the initial render. This may not be needed if we
-    // have a suspense boundary BELOW the creation of the query client
-    if (!browserQueryClient) browserQueryClient = makeQueryClient();
-    return browserQueryClient;
-  }
-}
+import { persistQueryClient } from '@tanstack/react-query-persist-client';
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
 
 const Providers = ({ children }: { children: ReactNode }) => {
-  const queryClient = getQueryClient();
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: 5,
+            refetchOnWindowFocus: false,
+            staleTime: Infinity,
+            gcTime: 1000 * 60 * 60 * 24, // 24 hours
+          },
+        },
+      }),
+  );
+
+  useEffect(() => {
+    const sessionStoragePersister = createSyncStoragePersister({
+      storage: window.sessionStorage,
+    });
+
+    persistQueryClient({
+      queryClient,
+      persister: sessionStoragePersister,
+    });
+  }, [queryClient]);
 
   return (
     <QueryClientProvider client={queryClient}>
