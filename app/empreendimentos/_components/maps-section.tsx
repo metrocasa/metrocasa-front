@@ -2,14 +2,14 @@ import { Title } from '@/components/title';
 import { Imovel } from '@/types/global';
 
 export const MapsSection = ({ imovel }: { imovel: Imovel }) => {
-  const { address_json } = imovel.attributes;
+  const { address_link } = imovel.attributes;
   return (
     <section className="w-full pb-24 md:px-0">
       <iframe
-        src={address_json?.src}
+        src={address_link}
         width={'100%'}
         height={'550px'}
-        className={address_json?.className}
+        className={address_link}
         style={{ border: 0 }}
         loading={'lazy'}
       />

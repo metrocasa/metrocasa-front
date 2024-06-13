@@ -17,14 +17,7 @@ export interface Imovel {
     subtitle: string;
     address: string;
     address_json: {
-      className: string;
-      height: string;
-      width: string;
-      loading: 'eager' | 'lazy';
       src: string;
-      style: {
-        border: number;
-      };
     };
     fachada: {
       data: {
@@ -33,22 +26,42 @@ export interface Imovel {
         };
       };
     };
-    active_on_materiais: boolean;
+    address_link: string;
     materiais: {
-      ri: string;
-      books: {
-        a3: string;
-        fase_1: {
-          link: string;
-          disponivel: boolean;
+      is_active: boolean;
+      ri: {
+        data: {
+          attributes: {
+            url: string;
+          };
         };
-        fase_2: {
-          link: string;
-          disponivel: boolean;
+      };
+      a3: {
+        data: {
+          attributes: {
+            url: string;
+          };
         };
-        fase_3: {
-          link: string;
-          disponivel: boolean;
+      };
+      fase_1: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        };
+      };
+      fase_2: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        };
+      };
+      fase_3: {
+        data: {
+          attributes: {
+            url: string;
+          };
         };
       };
     };
@@ -96,6 +109,22 @@ export interface Imovel {
         };
       };
     }[];
+    evolucao_obras: {
+      is_active: boolean;
+      acabamento: number;
+      demolicao: number;
+      estrutura: number;
+      fechamento: number;
+      fundacao_profunda: number;
+      fundacao_superficial: number;
+      gallery: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        }[];
+      };
+    };
   };
 }
 

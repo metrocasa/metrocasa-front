@@ -32,9 +32,9 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   const thumbnailsRef = React.useRef<ThumbnailsRef>(null);
 
   const allImages = imovel.attributes.planta_comp.map((planta) => [
-    planta.planta_image.data.attributes.url,
-    planta.planta_image.data.attributes.height,
-    planta.planta_image.data.attributes.url,
+    planta.planta_image?.data.attributes.url,
+    planta.planta_image?.data.attributes.height,
+    planta.planta_image?.data.attributes.url,
     planta.planta_title,
   ]);
 
@@ -79,8 +79,9 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
                   )}
                 </h3>
 
+                {/* TODO: Remove this "/#" see a better way to do this */}
                 <Image
-                  src={`${planta.planta_image.data.attributes.url}`}
+                  src={`${planta.planta_image?.data.attributes.url || '/#'}`}
                   width={550}
                   height={550}
                   alt="Imagem da Planta"

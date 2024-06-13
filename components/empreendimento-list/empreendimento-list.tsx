@@ -152,34 +152,24 @@ export const EmpreendimentoList = () => {
                 )}
               </div>
 
-              {/* IDLE */}
+              {/* BUTTON LOAD MORE */}
               <div className="w-full max-w-[1216px] mx-auto flex items-center justify-center">
-                {imoveis.data?.meta.pagination.page !==
-                  imoveis.data?.meta.pagination.pageSize &&
-                  !imoveis.isFetching && (
-                    <Button
-                      onClick={() => handleShowMore()}
-                      variant="primary"
-                      size="lg"
-                      className="bg-main-red"
-                    >
-                      MOSTRAR MAIS
-                    </Button>
-                  )}
-              </div>
-
-              {/* LOADING */}
-              <div className="w-full flex justify-center max-w-[1280px] mx-auto">
-                {imoveis.isRefetching && (
-                  <Button
-                    onClick={() => handleShowMore()}
-                    variant="primary"
-                    size="lg"
-                    className="pointer-events-none bg-main-red/50"
-                  >
+                <Button
+                  onClick={() => handleShowMore()}
+                  variant="primary"
+                  size="lg"
+                  className={
+                    imoveis.isFetching
+                      ? 'bg-main-red/30 pointer-events-none cursor-not-allowed'
+                      : 'bg-main-red'
+                  }
+                >
+                  {!imoveis.isFetching ? (
+                    'MOSTRAR MAIS'
+                  ) : (
                     <Loader2Icon className="animate-spin text-white w-6 h-6" />
-                  </Button>
-                )}
+                  )}
+                </Button>
               </div>
             </>
           )}
