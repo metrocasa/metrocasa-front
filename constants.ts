@@ -200,7 +200,7 @@ export const menusFooter = {
     { menu: 'Reportar Problema', link: '/contato' },
     {
       menu: 'Suporte Via Chat',
-      link: 'https://iterupsite.blob.core.windows.net/sites/81/chatbot.html',
+      link: 'https://api.whatsapp.com/send?phone=551150610022',
     },
     {
       menu: 'Relacionamento com investidores',
@@ -208,38 +208,7 @@ export const menusFooter = {
     },
     {
       menu: 'Área do Cliente',
-      link: 'https://iterupsite.blob.core.windows.net/sites/81/chatbot.html',
+      link: 'https://api.whatsapp.com/send?phone=551150610022',
     },
   ],
 };
-
-// DASHBOARD
-
-// HERO EMPREENDIMENTOS
-
-export const destaques = [
-  {
-    title: 'Alto do Ipiranga',
-    subtitle: 'Studio, 1 e 2 Dorms., 1 Dorm. + Office e Cobertura Duplex',
-    cover: '/public/destaques/alto-do-ipiranga.jpg',
-    slug: 'alto-do-ipiranga',
-  },
-  {
-    title: 'Alto de Pinheiros',
-    subtitle: 'Studio, 1 e 2 Dorms.',
-    cover: '/public/destaques/alto-de-pinheiros.jpg',
-    slug: 'alto-de-pinheiros',
-  },
-  {
-    title: 'Aclimação',
-    subtitle: '1 e 2 Dorms.',
-    cover: '/public/destaques/aclimacao.jpg',
-    slug: 'aclimacao',
-  },
-  {
-    title: 'Artur Alvim',
-    subtitle: 'Studio, 2 dorms., 1 dorm. + office e Cobertura Duplex',
-    cover: '/public/destaques/artur-alvim.jpg',
-    slug: 'artur-alvim',
-  },
-];

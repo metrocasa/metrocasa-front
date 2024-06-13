@@ -57,7 +57,7 @@ export const Hero = () => {
             </p>
 
             {/*  FORM AREA */}
-            <div className="p-8 rounded-md shadow-lg md:min-w-[780px] z-10 bg-white flex items-center justify-center">
+            <div className="p-8 rounded-md shadow-xl md:min-w-[780px] z-10 bg-white flex items-center justify-center border border-black/15">
               <HeroForm
                 className="gap-5 items-center flex-col md:flex-row "
                 errorMessage={isMobile ? true : false}

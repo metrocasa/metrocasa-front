@@ -102,7 +102,7 @@ const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ imovel }) => {
   });
 
   return (
-    <section className="w-full py-24 px-[15px] bg-red-hero-bg bg-no-repeat bg-cover">
+    <section className="w-full py-8 px-[15px] bg-main-red bg-no-repeat bg-cover">
       <div className="w-full max-w-[1216px] mx-auto">
         <Title
           subtitle="Mais facilidades para você"
