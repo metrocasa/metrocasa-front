@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import React from 'react';
 
 export const EmpreendimentoCard = ({ data }: { data: any }) => {
+  console.log(data);
   const path = usePathname();
 
   return (
