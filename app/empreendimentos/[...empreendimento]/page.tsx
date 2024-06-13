@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { Header } from '@/components/globals/Header';
+import React from "react";
+import { Header } from "@/components/globals/Header";
 
-import { HeroSection } from '../_components/hero-section';
-import { MainContent } from '../_components/main-content';
+import { HeroSection } from "../_components/hero-section";
+import { MainContent } from "../_components/main-content";
 
-import { Plantas } from '../_components/plantas-section';
-import FacilitiesSection from '../_components/facilities-section';
-import { MapsSection } from '../_components/maps-section';
-import { FormSection } from '@/components/page-components/form-section';
-import { Footer } from '@/components/globals/Footer';
+import { Plantas } from "../_components/plantas-section";
+import FacilitiesSection from "../_components/facilities-section";
+import { MapsSection } from "../_components/maps-section";
+import { FormSection } from "@/components/page-components/form-section";
+import { Footer } from "@/components/globals/Footer";
 
 // import { useImoveis } from '@/contexts/imoveis-context';
-import TabsSection from '../_components/tabs-section';
-import { Imovel } from '@/types/global';
-import { useImoveis, useImovelById } from '@/utils/queries';
-import Loading from '../loading';
-import ChatbaseWidget from '@/components/chatbaseWidget';
+import TabsSection from "../_components/tabs-section";
+import { Imovel } from "@/types/global";
+import { useImoveis, useImovelById } from "@/utils/queries";
+import Loading from "../loading";
+import ChatbaseWidget from "@/components/chatbaseWidget";
 
 interface ParamsValues {
   empreendimento: string[];
@@ -28,6 +28,7 @@ const EmpreendimentoDetails = ({ params }: { params: ParamsValues }) => {
   const imovelId = Number(params.empreendimento[1]);
   const imovel = useImovelById(imovelId).data;
 
+  if (!params.empreendimento[1]) throw new Error("Missing id");
   if (!imovel) return <Loading />;
 
   return (

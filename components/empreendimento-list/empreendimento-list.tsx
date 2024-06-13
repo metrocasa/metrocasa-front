@@ -1,31 +1,31 @@
-'use client';
+"use client";
 
-import React, { use, useEffect, useState } from 'react';
-import { EmpreendimentoCard } from './empreendimento-card';
-import Link from 'next/link';
+import React, { use, useEffect, useState } from "react";
+import { EmpreendimentoCard } from "./empreendimento-card";
+import Link from "next/link";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
-import 'swiper/css';
-import { Pagination, Autoplay, EffectFade } from 'swiper/modules';
-import 'swiper/css/effect-fade';
+import "swiper/css";
+import { Pagination, Autoplay, EffectFade } from "swiper/modules";
+import "swiper/css/effect-fade";
 
-import { usePathname, useSearchParams } from 'next/navigation';
-import { useMediaQuery } from 'react-responsive';
-import { Title } from '../title';
-import { Button } from '../ui/button';
-import { Loader2Icon } from 'lucide-react';
+import { usePathname, useSearchParams } from "next/navigation";
+import { useMediaQuery } from "react-responsive";
+import { Title } from "../title";
+import { Button } from "../ui/button";
+import { Loader2Icon } from "lucide-react";
 
-import { Skeleton } from '../ui/skeleton';
-import posthog from 'posthog-js';
-import { useAllImoveis, useImoveis, useSearchImovel } from '@/utils/queries';
-import { useMetaContext } from '@/contexts/meta-context';
-import { Loading } from '../loading';
-import { Imoveis, Imovel } from '@/types/global';
-import { useQuery } from '@tanstack/react-query';
-import { getAllImoveis } from '@/actions/get-imoveis';
+import { Skeleton } from "../ui/skeleton";
+import posthog from "posthog-js";
+import { useAllImoveis, useImoveis, useSearchImovel } from "@/utils/queries";
+import { useMetaContext } from "@/contexts/meta-context";
+import { Loading } from "../loading";
+import { Imoveis, Imovel } from "@/types/global";
+import { useQuery } from "@tanstack/react-query";
+import { getAllImoveis } from "@/actions/get-imoveis";
 
 export const EmpreendimentoList = () => {
   const { currentPageSize, setMeta, setCurrentPageSize } = useMetaContext();
@@ -40,16 +40,16 @@ export const EmpreendimentoList = () => {
     }
   }, [imoveis.data?.data]);
 
-  const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
+  const isMobile = useMediaQuery({ query: "(max-width: 424px)" });
 
   // PARAMS
   const path = usePathname();
 
   const searchParams = useSearchParams();
-  const region = searchParams.get('region');
-  const status = searchParams.get('status');
-  const search = searchParams.get('search');
-  const zone = searchParams.get('zone');
+  const region = searchParams.get("region");
+  const status = searchParams.get("status");
+  const search = searchParams.get("search");
+  const zone = searchParams.get("zone");
 
   // FILTERED IMOVEIS
   const searchImoveis = useSearchImovel(search as string).data;
@@ -66,7 +66,7 @@ export const EmpreendimentoList = () => {
       {imoveis.isSuccess ? (
         <>
           {/* RENDERIZAR NA PAGINA HOME */}
-          {path === '/' && (
+          {path === "/" && (
             <section className="w-full pt-24 px-[15px] md:px-0 mb-6">
               <Title
                 subtitle="De leste a Oeste"
@@ -79,7 +79,7 @@ export const EmpreendimentoList = () => {
                   delay: 3000,
                   disableOnInteraction: false,
                 }}
-                effect={isMobile ? 'fade' : ''}
+                effect={isMobile ? "fade" : ""}
                 pagination={{
                   clickable: true,
                 }}
@@ -108,11 +108,11 @@ export const EmpreendimentoList = () => {
                       href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
                       onClick={() => {
                         posthog.capture(`${imovel.attributes.slug}`, {
-                          property: 'value',
+                          property: "value",
                         });
                         posthog.group(
-                          'Interesse em: ',
-                          imovel.attributes.title,
+                          "Interesse em: ",
+                          imovel.attributes.title
                         );
                       }}
                     >
@@ -125,7 +125,7 @@ export const EmpreendimentoList = () => {
           )}
 
           {/* RENDER DA PAGINA EMPREENDIMENTOS */}
-          {path.startsWith('/empreendimentos') && (
+          {path.startsWith("/empreendimentos") && (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6">
                 {(search ? searchImoveis?.data : imoveisList)?.map(
@@ -134,21 +134,21 @@ export const EmpreendimentoList = () => {
                       key={i}
                       href={`/empreendimentos/${imovel.attributes.slug}/${imovel.id}`}
                       className={`flex flex-1  ${
-                        search || region || (status && 'md:max-w-[350px]')
+                        search || region || (status && "md:max-w-[350px]")
                       }`}
                       onClick={() => {
                         posthog.capture(`${imovel.attributes.slug}`, {
-                          property: 'value',
+                          property: "value",
                         });
                         posthog.group(
-                          'Interesse em: ',
-                          imovel.attributes.title,
+                          "Interesse em: ",
+                          imovel.attributes.title
                         );
                       }}
                     >
                       <EmpreendimentoCard key={imovel.id} data={imovel} />
                     </Link>
-                  ),
+                  )
                 )}
               </div>
 
@@ -160,12 +160,12 @@ export const EmpreendimentoList = () => {
                   size="lg"
                   className={
                     imoveis.isFetching
-                      ? 'bg-main-red/30 pointer-events-none cursor-not-allowed'
-                      : 'bg-main-red'
+                      ? "bg-main-red/30 pointer-events-none cursor-not-allowed"
+                      : "bg-main-red"
                   }
                 >
                   {!imoveis.isFetching ? (
-                    'MOSTRAR MAIS'
+                    "MOSTRAR MAIS"
                   ) : (
                     <Loader2Icon className="animate-spin text-white w-6 h-6" />
                   )}

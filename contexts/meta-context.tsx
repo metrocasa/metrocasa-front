@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useState } from 'react';
-import { Imovel } from '@/types/global';
+import { createContext, useContext, useState } from "react";
+import { Imovel } from "@/types/global";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL!;
 
@@ -25,7 +25,7 @@ export const MetaProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [meta, setMeta] = useState<number>();
-  const [currentPageSize, setCurrentPageSize] = useState<number>(8);
+  const [currentPageSize, setCurrentPageSize] = useState<number>(10);
 
   return (
     <MetaContext.Provider

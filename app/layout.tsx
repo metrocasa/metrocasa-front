@@ -1,25 +1,26 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
 
-import { MetaProvider } from '@/contexts/meta-context';
-import Image from 'next/image';
-import Link from 'next/link';
+import { MetaProvider } from "@/contexts/meta-context";
+import Image from "next/image";
+import Link from "next/link";
 
-import { CSPostHogProvider } from './PosthogProvider';
-import PostHogPageView from './PostHogPageView';
-import { Suspense } from 'react';
+import { CSPostHogProvider } from "./PosthogProvider";
+import PostHogPageView from "./PostHogPageView";
+import { Suspense } from "react";
 
 // React Query
-import Providers from '@/utils/Providers';
+import Providers from "@/utils/Providers";
+import BackToTopButton from "@/components/to-top";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Construtora Metrocasa',
-  description: 'Apartamentos em todas as regiões de São Paulo',
+  title: "Construtora Metrocasa",
+  description: "Apartamentos em todas as regiões de São Paulo",
   icons: {
-    icon: '/metrocasa-icon.svg',
+    icon: "/metrocasa-icon.svg",
   },
 };
 
@@ -31,12 +32,15 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <CSPostHogProvider>
-        <body className={inter.className + 'px-[15px]'}>
+        <body className={inter.className + "px-[15px]"}>
           <MetaProvider>
             <Suspense>
               <div>
                 <Providers>{children}</Providers>
               </div>
+
+              {/* Back to top button*/}
+              <BackToTopButton />
 
               {/* Whatsapp Icon */}
               <Link
@@ -44,7 +48,7 @@ export default function RootLayout({
                 className="fixed right-7 bottom-7 z-40 animate-in"
               >
                 <Image
-                  src={'/icons/whatsapp-color.svg'}
+                  src={"/icons/whatsapp-color.svg"}
                   alt="WhatsApp Metrocasa"
                   width={60}
                   height={60}

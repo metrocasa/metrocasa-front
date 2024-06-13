@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 // LIGHTBOX
 import Lightbox, {
@@ -10,18 +10,18 @@ import Lightbox, {
   SlideshowRef,
   ThumbnailsRef,
   ZoomRef,
-} from 'yet-another-react-lightbox';
-import Slideshow from 'yet-another-react-lightbox/plugins/slideshow';
-import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
-import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
-import Zoom from 'yet-another-react-lightbox/plugins/zoom';
-import 'yet-another-react-lightbox/plugins/thumbnails.css';
-import 'yet-another-react-lightbox/styles.css';
+} from "yet-another-react-lightbox";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/styles.css";
 
 // Import Swiper styles
-import 'swiper/css';
-import { Title } from '@/components/title';
-import { Imovel } from '@/types/global';
+import "swiper/css";
+import { Title } from "@/components/title";
+import { Imovel } from "@/types/global";
 
 export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   const plantas = imovel.attributes.planta_comp;
@@ -32,15 +32,15 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   const thumbnailsRef = React.useRef<ThumbnailsRef>(null);
 
   const allImages = imovel.attributes.planta_comp.map((planta) => [
-    planta.planta_image?.data.attributes.url,
-    planta.planta_image?.data.attributes.height,
-    planta.planta_image?.data.attributes.url,
+    planta.planta_image.data?.attributes?.url,
+    planta.planta_image.data?.attributes?.height,
+    planta.planta_image.data?.attributes?.url,
     planta.planta_title,
   ]);
 
   const allImagesMapped = allImages.map((url) => ({
     src: `${url[0]}`,
-    alt: 'Planta',
+    alt: "Planta",
     height: Number(url[1]),
     width: Number(url[2]),
     thumbnailCaption: url[3],
@@ -62,8 +62,10 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
     });
   }
 
+  if (!allImages) return null;
+
   return (
-    <section className="w-full px-[15px] md:px-0 py-24">
+    <section className="w-full px-[15px] md:px-0 pb-14">
       <div className="w-full">
         <Title subtitle="Veja mais" title="Plantas" />
 
@@ -74,14 +76,14 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
                 <h3 className="text-2xl font-bold text-main-red">
                   {capitalizeWords(
                     planta.planta_title
-                      .replaceAll('plus', '+')
-                      .replace(/_/g, ' '),
+                      .replaceAll("plus", "+")
+                      .replace(/_/g, " ")
                   )}
                 </h3>
 
                 {/* TODO: Remove this "/#" see a better way to do this */}
                 <Image
-                  src={`${planta.planta_image?.data.attributes.url || '/#'}`}
+                  src={`${planta.planta_image.data?.attributes?.url || "/#"}`}
                   width={550}
                   height={550}
                   alt="Imagem da Planta"

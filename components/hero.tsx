@@ -1,26 +1,26 @@
-'use client';
+"use client";
 
-import { cn } from '@/lib/utils';
-import { Be_Vietnam_Pro } from 'next/font/google';
+import { cn } from "@/lib/utils";
+import { Be_Vietnam_Pro } from "next/font/google";
 
-import CarouselHero from '@/components/carousel-hero';
+import CarouselHero from "@/components/carousel-hero";
 
-import { MetaProvider } from '@/contexts/meta-context';
+import { MetaProvider } from "@/contexts/meta-context";
 
-import { OurNumbers } from '@/components/page-components/our-numbers';
-import { useMediaQuery } from 'react-responsive';
-import { HeroForm } from '@/components/forms/hero';
-import { useImoveis } from '@/utils/queries';
-import { Loading } from './loading';
-import { Imovel } from '@/types/global';
+import { OurNumbers } from "@/components/page-components/our-numbers";
+import { useMediaQuery } from "react-responsive";
+import { HeroForm } from "@/components/forms/hero";
+import { useImoveis } from "@/utils/queries";
+import { Loading } from "./loading";
+import { Imovel } from "@/types/global";
 
 const font = Be_Vietnam_Pro({
-  subsets: ['latin'],
-  weight: ['200', '400', '700', '900'],
+  subsets: ["latin"],
+  weight: ["200", "400", "700", "900"],
 });
 
 export const Hero = () => {
-  const isMobile = useMediaQuery({ query: '(max-width: 624px)' });
+  const isMobile = useMediaQuery({ query: "(max-width: 624px)" });
 
   const randomNumber = Math.floor(Math.random() * 4) + 1;
   const quantityImoveis = useImoveis(5).data?.data;
@@ -39,17 +39,17 @@ export const Hero = () => {
           {/* CTA AREA */}
           <div className="w-full max-w-[530px] flex flex-col gap-5">
             <h1
-              className={cn('font-bold text-5xl md:text-7xl', font.className)}
+              className={cn("font-bold text-5xl md:text-7xl", font.className)}
               rel="preload"
             >
               Lorem ipsum sit
               <span className="text-secondary-red font-extrabold">
-                {' amet dolor '}
+                {" amet dolor "}
               </span>
               <br />
               ensenctum
             </h1>
-            <p className={cn('font-normal', font.className)}>
+            <p className={cn("font-normal", font.className)}>
               How much will it cost the target audience is makes and famles aged
               zero and up, for i&apos;ll pay you in a week we don&apos;t need to
               pay upfront i hope you understand yet i&apos;ll know it when i see
@@ -57,12 +57,12 @@ export const Hero = () => {
             </p>
 
             {/*  FORM AREA */}
-            <div className="p-8 rounded-md shadow-xl md:min-w-[780px] z-10 bg-white flex items-center justify-center border border-black/15">
+            <div className="p-8 rounded-md shadow-xl md:min-w-[780px] z-10 bg-white flex items-center justify-center">
               <HeroForm
                 className="gap-5 items-center flex-col md:flex-row "
                 errorMessage={isMobile ? true : false}
                 label={isMobile ? true : false}
-                variant={'primary'}
+                variant={"primary"}
               />
             </div>
           </div>
