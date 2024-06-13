@@ -1,14 +1,53 @@
 import { Button } from '@/components/ui/button';
 import { Imovel } from '@/types/global';
 
-import { DownloadIcon } from 'lucide-react';
+import { DownloadIcon, Loader2Icon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 export const Card = ({ imovel }: { imovel: Imovel }) => {
-  console.log(imovel);
+  const [imovelInfo, setImovelInfo] = useState<Imovel | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchImovel = async () => {
+      try {
+        const response = await fetch(`/api/imoveis/${imovel}`);
+        const data = await response.json();
+        setImovelInfo(data);
+      } catch (error) {
+        console.error('Erro ao buscar imóvel:', error);
+        // Lógica de tratamento de erro (opcional)
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchImovel();
+  }, [imovel]);
+
+  if (isLoading) {
+    return (
+      <div className="text-white/30  h-[400px] w-full rounded-lg flex items-center justify-center">
+        <Image
+          src={`${'/placeholder.jpg'}`}
+          alt={'Fachada'}
+          className={`object-cover transition h-[400px] w-full rounded-lg`}
+          width={900}
+          height={900}
+          priority
+        />
+
+        <Loader2Icon className="animate-spin w-8 h-8 text-white/50 absolute" />
+      </div>
+    ); // Exibir um indicador de carregamento
+  }
+
+  if (!imovel) {
+    return <div className="text-white">Erro ao carregar imóvel.</div>; // Exibir mensagem de erro
+  }
+
   return (
     <Link
       href={`/${imovel.attributes.slug}/${imovel.id}`}
@@ -16,7 +55,10 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
     >
       <div key={imovel.id}>
         <Image
-          src={`${imovel.attributes.fachada.data.attributes.url || '#'}`}
+          src={`${
+            imovel.attributes.fachada.data.attributes.url ||
+            '/public/placeholder.jpg'
+          }`}
           alt={'Fachada'}
           className={`object-cover transition h-[400px] w-full rounded-lg`}
           width={900}
@@ -29,9 +71,6 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
         />
 
         <div className="absolute bottom-0 p-5 flex flex-col gap-5">
-          {/* <span className="hover:bg-secondary-red transition bg-main-red text-white self-start p-1 px-5 rounded text-sm">
-            {imovel.attributes.status}
-          </span> */}
           <h2 className="text-white font-bold text-3xl">
             {imovel.attributes.title}
           </h2>
@@ -41,9 +80,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
             {/* RI */}
             {
               <Link
-                href={
-                  imovel.attributes.materiais?.ri.data.attributes.url || '#'
-                }
+                href={imovel.attributes.materiais?.ri.data.attributes.url || ''}
               >
                 <Button variant={'primary'} className="flex items-center gap-3">
                   <DownloadIcon className="w-4 h-4" />
@@ -58,7 +95,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
                 imovel.attributes.materiais?.a3.data && (
                   <Link
                     href={
-                      imovel.attributes.materiais?.a3.data.attributes.url || '#'
+                      imovel.attributes.materiais?.a3.data.attributes.url || ''
                     }
                   >
                     <Button
@@ -77,7 +114,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
                   <Link
                     href={
                       imovel.attributes.materiais?.fase_1.data.attributes.url ||
-                      '#'
+                      ''
                     }
                   >
                     <Button
@@ -96,7 +133,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
                   <Link
                     href={
                       imovel.attributes.materiais?.fase_2.data.attributes.url ||
-                      '#'
+                      ''
                     }
                   >
                     <Button
@@ -115,7 +152,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
                   <Link
                     href={
                       imovel.attributes.materiais?.fase_3.data.attributes.url ||
-                      '#'
+                      ''
                     }
                   >
                     <Button

@@ -38,11 +38,11 @@ const PopupFeirao = () => {
 
   return (
     <Dialog defaultOpen={!firstTime}>
-      <DialogContent className="flex md:max-w-[80%] md:h-[80%] p-0">
+      <DialogContent className="flex md:max-w-[80%] md:h-[80%] p-0 border-none">
         {/* LEFT */}
         <div className="hidden lg:block h-full w-full md:w-[50%] ">
           <Image
-            src={imageUrl}
+            src={imageUrl ?? '/feirao/feirao-default.jpg'}
             width={900}
             height={900}
             alt="Banner Feirão Metrocasa"
