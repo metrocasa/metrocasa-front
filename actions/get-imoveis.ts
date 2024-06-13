@@ -30,7 +30,7 @@ export const getImoveis = async (pageSize: number) => {
 export const getAllImoveis = async () => {
   try {
     const res = await axios.get(
-      `${BASE_URL}/api/imoveis?populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url&populate[materiais][populate]=*`,
+      `${BASE_URL}/api/imoveis?populate[planta_comp][populate][planta_image][fields][0]=url&populate[fachada][populate][fields][0]=url&populate[logo][populate][fields][0]=url&populate[main_gallery][populate][fields][0]=url&populate[materiais][populate]=*&populate[evolucao_obras][populate]=*`,
       {
         headers: {
           Authorization: `Bearer ${TOKEN}`,

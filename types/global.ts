@@ -38,6 +38,10 @@ export interface Imovel {
       ri: string;
       books: {
         a3: string;
+        fase_1: {
+          link: string;
+          disponivel: boolean;
+        };
         fase_2: {
           link: string;
           disponivel: boolean;

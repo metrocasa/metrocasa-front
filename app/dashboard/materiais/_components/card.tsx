@@ -8,6 +8,7 @@ import Link from 'next/link';
 import React from 'react';
 
 export const Card = ({ imovel }: { imovel: Imovel }) => {
+  console.log(imovel);
   return (
     <Link
       href={`/${imovel.attributes.slug}/${imovel.id}`}
@@ -36,14 +37,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
           </h2>
 
           {/* DOWNLOAD BUTTONS */}
-          <div
-            className={`flex gap-4 w-full ${
-              imovel.attributes.materiais.books.fase_2.disponivel ||
-              imovel.attributes.materiais.books.fase_3.disponivel
-                ? 'flex-col'
-                : ''
-            }`}
-          >
+          <div className="flex gap-4 w-full">
             {/* RI */}
             <Link href={imovel.attributes.materiais.ri}>
               <Button variant={'primary'} className="flex items-center gap-3">
@@ -53,16 +47,31 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
             </Link>
 
             <div className="flex gap-4">
-              {/* BOOK FASE 1 - Padrão */}
-              <Link href={imovel.attributes.materiais.books.a3}>
-                <Button variant={'primary'} className="flex items-center gap-3">
-                  <DownloadIcon className="w-4 h-4" />
-                  {imovel.attributes.materiais.books.fase_2.disponivel ||
-                  imovel.attributes.materiais.books.fase_3.disponivel
-                    ? 'FASE 1'
-                    : 'BOOK A3'}
-                </Button>
-              </Link>
+              {/* BOOK A3 */}
+              {imovel.attributes.materiais.books.a3 && (
+                <Link href={imovel.attributes.materiais.books.a3}>
+                  <Button
+                    variant={'primary'}
+                    className="flex items-center gap-3"
+                  >
+                    <DownloadIcon className="w-4 h-4" />
+                    A3
+                  </Button>
+                </Link>
+              )}
+
+              {/* BOOK FASE 1 */}
+              {imovel.attributes.materiais.books.fase_1.disponivel && (
+                <Link href={imovel.attributes.materiais.books.fase_1.link}>
+                  <Button
+                    variant={'primary'}
+                    className="flex items-center gap-3"
+                  >
+                    <DownloadIcon className="w-4 h-4" />
+                    FASE 1
+                  </Button>
+                </Link>
+              )}
 
               {/* BOOK FASE 2 */}
               {imovel.attributes.materiais.books.fase_2.disponivel && (
