@@ -1,11 +1,56 @@
 import { cn } from '@/lib/utils';
+import { Imovel } from '@/types/global';
+import { Loader2Icon } from 'lucide-react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-export const EmpreendimentoCard = ({ data }: { data: any }) => {
-  console.log(data);
+export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
   const path = usePathname();
+
+  const [imovelInfo, setImovelInfo] = useState<Imovel | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchImovel = async () => {
+      try {
+        const response = await fetch(`/api/imoveis/${data.id}`);
+        const datas = await response.json();
+        setImovelInfo(data);
+      } catch (error) {
+        console.error('Erro ao buscar imóvel:', error);
+        // Lógica de tratamento de erro
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchImovel();
+  }, [data]);
+
+  if (isLoading) {
+    return (
+      <div className="text-white/30  h-[400px] w-full rounded-lg flex items-center justify-center">
+        <Image
+          src={`${'/placeholder-white.jpg'}`}
+          alt={'Fachada'}
+          className={`object-cover transition h-[400px] w-full rounded-lg`}
+          width={900}
+          height={900}
+          priority
+        />
+
+        <Loader2Icon className="animate-spin w-8 h-8 text-red-500/50 absolute" />
+      </div>
+    ); // Exibir um indicador de carregamento
+  }
+
+  if (!data) {
+    return <div className="text-white">Erro ao carregar imóvel.</div>; // Exibir mensagem de erro
+  }
+
+  if (!data) {
+    return <div className="text-white">Erro ao carregar empreendimento.</div>;
+  }
 
   return (
     <div
