@@ -49,10 +49,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
   }
 
   return (
-    <Link
-      href={`/${imovel.attributes.slug}/${imovel.id}`}
-      className={'relative'}
-    >
+    <div className={'relative w-full'}>
       <div key={imovel.id}>
         <Image
           src={`${
@@ -67,107 +64,129 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
         />
 
         <div
-          className={`absolute top-0 left-0 w-full h-full bg-gradient-bg rounded-lg`}
+          className={`w-full absolute top-0 left-0 h-full bg-gradient-bg rounded-lg`}
         />
 
-        <div className="absolute bottom-0 p-5 flex flex-col gap-5">
-          <h2 className="text-white font-bold text-3xl">
+        <div className="w-full absolute bottom-0 p-5 flex flex-col gap-2">
+          <h2 className="text-white font-bold text-3xl mb-4">
             {imovel.attributes.title}
           </h2>
 
-          {/* DOWNLOAD BUTTONS */}
-          <div className="flex gap-4 w-full">
+          {/* RI  E BOOK*/}
+          <div className="flex gap-2 w-full">
             {/* RI */}
-            {
-              <Link
-                href={imovel.attributes.materiais?.ri.data.attributes.url || ''}
-              >
-                <Button variant={'primary'} className="flex items-center gap-3">
-                  <DownloadIcon className="w-4 h-4" />
-                  R.I
-                </Button>
-              </Link>
-            }
-
-            <div className="flex gap-4">
-              {/* BOOK A3 */}
-              {imovel.attributes.materiais?.is_active &&
-                imovel.attributes.materiais?.a3.data && (
-                  <Link
-                    href={
-                      imovel.attributes.materiais?.a3.data.attributes.url || ''
-                    }
+            {imovel.attributes.materiais?.is_active &&
+              imovel.attributes.materiais?.a3.data.attributes.url && (
+                <a
+                  href={
+                    imovel.attributes.materiais?.ri.data.attributes.url || ''
+                  }
+                  target="_blank"
+                  className="w-full"
+                >
+                  <Button
+                    variant={'primary'}
+                    size={'sm'}
+                    className="flex items-center gap-3 w-full"
                   >
-                    <Button
-                      variant={'primary'}
-                      className="flex items-center gap-3"
-                    >
-                      <DownloadIcon className="w-4 h-4" />
-                      A3
-                    </Button>
-                  </Link>
-                )}
+                    <DownloadIcon className="h-4" />
+                    R.I
+                  </Button>
+                </a>
+              )}
 
-              {/* BOOK FASE 1 */}
-              {imovel.attributes.materiais?.is_active &&
-                imovel.attributes.materiais?.fase_1.data && (
-                  <Link
-                    href={
-                      imovel.attributes.materiais?.fase_1.data.attributes.url ||
-                      ''
-                    }
+            {/* BOOK A3 */}
+            {imovel.attributes.materiais?.is_active &&
+              imovel.attributes.materiais?.a3.data && (
+                <a
+                  href={
+                    imovel.attributes.materiais?.a3.data.attributes.url || ''
+                  }
+                  target="_blank"
+                  className="w-full"
+                >
+                  <Button
+                    variant={'primary'}
+                    size={'sm'}
+                    className="flex items-center gap-3 w-full"
                   >
-                    <Button
-                      variant={'primary'}
-                      className="flex items-center gap-3"
-                    >
-                      <DownloadIcon className="w-4 h-4" />
-                      FASE 1
-                    </Button>
-                  </Link>
-                )}
+                    <DownloadIcon className="w-4 h-4" />
+                    A3
+                  </Button>
+                </a>
+              )}
+          </div>
 
-              {/* BOOK FASE 2 */}
-              {imovel.attributes.materiais?.is_active &&
-                imovel.attributes.materiais?.fase_2.data && (
-                  <Link
-                    href={
-                      imovel.attributes.materiais?.fase_2.data.attributes.url ||
-                      ''
-                    }
+          {/* DOWNLOAD BUTTONS */}
+          <div className="flex w-full gap-2">
+            {/* BOOK FASE 1 */}
+            {imovel.attributes.materiais?.is_active &&
+              imovel.attributes.materiais?.fase_1.data && (
+                <a
+                  href={
+                    imovel.attributes.materiais?.fase_1.data.attributes.url ||
+                    ''
+                  }
+                  target="_blank"
+                  className="w-full"
+                >
+                  <Button
+                    variant={'primary'}
+                    size={'sm'}
+                    className="flex items-center gap-3 w-full"
                   >
-                    <Button
-                      variant={'primary'}
-                      className="flex items-center gap-3"
-                    >
-                      <DownloadIcon className="w-4 h-4" />
-                      FASE 2
-                    </Button>
-                  </Link>
-                )}
+                    <DownloadIcon className="w-4 h-4" />
+                    FASE 1
+                  </Button>
+                </a>
+              )}
 
-              {/* BOOK FASE 3 */}
-              {imovel.attributes.materiais?.is_active &&
-                imovel.attributes.materiais?.fase_3.data && (
-                  <Link
-                    href={
-                      imovel.attributes.materiais?.fase_3.data.attributes.url ||
-                      ''
-                    }
+            {/* BOOK FASE 2 */}
+            {imovel.attributes.materiais?.is_active &&
+              imovel.attributes.materiais?.fase_2.data && (
+                <a
+                  href={
+                    imovel.attributes.materiais?.fase_2.data.attributes.url ||
+                    ''
+                  }
+                  target="_blank"
+                  className="w-full"
+                >
+                  <Button
+                    variant={'primary'}
+                    size={'sm'}
+                    className="flex items-center gap-3 w-full"
                   >
-                    <Button
-                      variant={'primary'}
-                      className="flex items-center gap-3"
-                    >
-                      <DownloadIcon className="w-4 h-4" />
-                      FASE 3
-                    </Button>
-                  </Link>
-                )}
-            </div>
+                    <DownloadIcon className="w-4 h-4" />
+                    FASE 2
+                  </Button>
+                </a>
+              )}
+
+            {/* BOOK FASE 3 */}
+            {imovel.attributes.materiais?.is_active &&
+              imovel.attributes.materiais?.fase_3.data && (
+                <a
+                  href={
+                    imovel.attributes.materiais?.fase_3.data.attributes.url ||
+                    ''
+                  }
+                  target="_blank"
+                  className="w-full"
+                >
+                  <Button
+                    variant={'primary'}
+                    size={'sm'}
+                    className="flex items-center gap-3 w-full"
+                  >
+                    <DownloadIcon className="w-4 h-4" />
+                    FASE 3
+                  </Button>
+                </a>
+              )}
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };

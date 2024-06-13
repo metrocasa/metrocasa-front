@@ -45,11 +45,11 @@ export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
   }
 
   if (!data) {
-    return <div className="text-white">Erro ao carregar imóvel.</div>; // Exibir mensagem de erro
-  }
-
-  if (!data) {
-    return <div className="text-white">Erro ao carregar empreendimento.</div>;
+    return (
+      <div className="text-white">
+        Ops! aconteceu alguma coisa aqui, tente recarregar a página!.
+      </div>
+    ); // Exibir mensagem de erro
   }
 
   return (
