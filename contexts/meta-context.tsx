@@ -25,7 +25,7 @@ export const MetaProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [meta, setMeta] = useState<number>();
-  const [currentPageSize, setCurrentPageSize] = useState<number>(10);
+  const [currentPageSize, setCurrentPageSize] = useState<number>(8);
 
   return (
     <MetaContext.Provider
