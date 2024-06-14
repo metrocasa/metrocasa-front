@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Imovel } from '@/types/global';
+import axios from 'axios';
 
 import { DownloadIcon, Loader2Icon } from 'lucide-react';
 import Image from 'next/image';
@@ -14,8 +15,15 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
   useEffect(() => {
     const fetchImovel = async () => {
       try {
-        const response = await fetch(`/api/imoveis/${imovel}`);
-        const data = await response.json();
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/imoveis/${imovel.id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_GENERAL_TOKEN}`,
+            },
+          },
+        );
+        const data = await response.data;
         setImovelInfo(data);
       } catch (error) {
         console.error('Erro ao buscar imóvel:', error);
@@ -27,6 +35,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
     fetchImovel();
   }, [imovel]);
 
+  // TODO: is Loading and error handling
   if (isLoading) {
     return (
       <div className="text-white/30  h-[400px] w-full rounded-lg flex items-center justify-center">
@@ -79,7 +88,7 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
               imovel.attributes.materiais?.a3.data.attributes.url && (
                 <a
                   href={
-                    imovel.attributes.materiais?.ri.data.attributes.url || ''
+                    imovel.attributes.materiais?.ri.data?.attributes.url || ''
                   }
                   target="_blank"
                   className="w-full"
@@ -136,7 +145,10 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
                     className="flex items-center gap-3 w-full"
                   >
                     <DownloadIcon className="w-4 h-4" />
-                    FASE 1
+                    {!imovel.attributes.materiais?.fase_2 &&
+                    !imovel.attributes.materiais?.fase_3
+                      ? 'FASE 1'
+                      : 'BOOK'}
                   </Button>
                 </a>
               )}
