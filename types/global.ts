@@ -111,7 +111,9 @@ export interface Imovel {
     }[];
     evolucao_obras: {
       is_active: boolean;
+      percentual_de_obras: number;
       acabamento: number;
+      terraplanagem: number;
       demolicao: number;
       estrutura: number;
       fechamento: number;
