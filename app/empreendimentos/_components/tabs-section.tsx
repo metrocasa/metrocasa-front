@@ -20,25 +20,29 @@ const TabsSection = ({ imovel }: { imovel: Imovel }) => {
             <Tab
               className={
                 selectedTab === 0
-                  ? 'text-3xl cursor-pointer font-bold focus:outline-none'
-                  : 'text-3xl cursor-pointer font-normal'
+                  ? 'text-4xl cursor-pointer font-bold focus:outline-none'
+                  : 'text-4xl cursor-pointer font-normal'
               }
               onClick={() => setSelectedTab(0)}
             >
-              Galeria
+              {imovel.attributes.panoramas.is_active
+                ? 'Galeria'
+                : 'Imagens do Empreendimento'}
             </Tab>
 
             {/* TAB TOUR VIRTUAL */}
-            <Tab
-              className={
-                selectedTab === 1
-                  ? 'text-3xl cursor-pointer font-bold focus:outline-none'
-                  : 'text-3xl cursor-pointer font-normal'
-              }
-              onClick={() => setSelectedTab(1)}
-            >
-              Tour Virtual
-            </Tab>
+            {imovel.attributes.panoramas.is_active && (
+              <Tab
+                className={
+                  selectedTab === 1
+                    ? 'text-3xl cursor-pointer font-bold focus:outline-none'
+                    : 'text-3xl cursor-pointer font-normal'
+                }
+                onClick={() => setSelectedTab(1)}
+              >
+                Tour Virtual
+              </Tab>
+            )}
           </TabList>
 
           <TabPanel>

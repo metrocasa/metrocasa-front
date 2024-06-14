@@ -1,19 +1,19 @@
-import BackgroundVideo from "next-video/background-video";
+import BackgroundVideo from 'next-video/background-video';
 
-import React from "react";
-import Image from "next/image";
-import { useMediaQuery } from "react-responsive";
-import { Imovel } from "@/types/global";
+import React from 'react';
+import Image from 'next/image';
+import { useMediaQuery } from 'react-responsive';
+import { Imovel } from '@/types/global';
 
 export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
-  const isMobile = useMediaQuery({ query: "(max-width: 850px)" });
+  const isMobile = useMediaQuery({ query: '(max-width: 850px)' });
 
   return (
     <section className="w-full h-[520px] mt-[90px]">
       <div className="relative h-auto w-full">
         {!isMobile ? (
           <BackgroundVideo
-            src={isMobile ? "" : imovel.attributes.video_background}
+            src={isMobile ? '' : imovel.attributes.video_background}
             poster={`${imovel.attributes.fachada.data.attributes.url}`}
             className="w-full h-[520px] object-cover absolute"
           >
@@ -28,10 +28,13 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
                 </span>
 
                 <div className="flex flex-col items-center md:items-start gap-6 ">
-                  <span className="text-white">
-                    Apartamento em{" "}
-                    <strong>{imovel.attributes.neighborhoods}</strong>
-                  </span>
+                  {!imovel.attributes.neighborhoods ?? (
+                    <span className="text-white">
+                      Apartamento em{' '}
+                      <strong>{imovel.attributes.neighborhoods}</strong>
+                    </span>
+                  )}
+
                   <Image
                     src={`${imovel.attributes.logo.data.attributes.url}`}
                     alt={`Logo Metrocasa ${imovel.attributes.title}`}
@@ -39,6 +42,10 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
                     height={500}
                     className="max-w-[470px] md:w-full"
                   />
+
+                  <h2 className="text-2xl text-white p-2 px-4 rounded md:self-start self-center text-center md:text-start">
+                    {imovel.attributes.address}
+                  </h2>
 
                   <h2 className="text-secondary-dark bg-white p-2 px-4 rounded md:self-start self-center text-center md:text-start">
                     {imovel.attributes.subtitle}
@@ -64,7 +71,7 @@ export const HeroSection = ({ imovel }: { imovel: Imovel }) => {
             <div className="relative h-full w-full flex items-center justify-center">
               <div className="flex flex-col items-center md:items-start gap-6 z-10">
                 <span className="text-white">
-                  Apartamento em{" "}
+                  Apartamento em{' '}
                   <strong>{imovel.attributes.neighborhoods}</strong>
                 </span>
                 <Image

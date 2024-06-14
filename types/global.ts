@@ -66,11 +66,14 @@ export interface Imovel {
       };
     };
     panoramas: {
-      url: string;
-      link: [number, number, number];
-      name: string;
-      position: [number, number, number];
-    }[];
+      is_active: boolean;
+      data: {
+        url: string;
+        link: [number, number, number];
+        name: string;
+        position: [number, number, number];
+      }[];
+    };
     facilities: string[];
     about_the_region: string;
     video_hero: string;

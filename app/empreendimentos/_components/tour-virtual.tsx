@@ -1,10 +1,10 @@
-import { Imovel } from "@/types/global";
+import { Imovel } from '@/types/global';
 
-import * as THREE from "three";
-import { Suspense, useState } from "react";
-import { Canvas, useLoader } from "@react-three/fiber";
-import { Html, Preload, OrbitControls } from "@react-three/drei";
-import { Popconfirm } from "antd";
+import * as THREE from 'three';
+import { Suspense, useState } from 'react';
+import { Canvas, useLoader } from '@react-three/fiber';
+import { Html, Preload, OrbitControls } from '@react-three/drei';
+import { Popconfirm } from 'antd';
 
 function Dome({
   name,
@@ -47,8 +47,7 @@ function Dome({
 }
 
 function Portals({ imovel }: { imovel: Imovel }) {
-  const panoramas = imovel.attributes.panoramas;
-  console.log(panoramas);
+  const panoramas = imovel.attributes.panoramas.data;
 
   const [index, set] = useState(0);
   const { link, ...props } = panoramas[index];
@@ -74,7 +73,7 @@ export const TourVirtual = ({ imovel }: { imovel: Imovel }) => {
     <section className="w-full">
       <div className="flex flex-col items-center gap-10">
         <Canvas
-          style={{ height: "100vh" }}
+          style={{ height: '100vh' }}
           frameloop="demand"
           camera={{ position: [0, 0, 0.1] }}
         >
