@@ -32,28 +32,29 @@ export const Hero = () => {
   const imoveisData = quantityImoveis[randomNumber] as Imovel;
 
   return (
-    <section className="px-[15px] w-full py-24 pt-32 md:pt-48 overflow-x-hidden ">
+    <section className="px-[15px] w-full  pt-32 md:pt-48 overflow-x-hidden ">
       <div className="w-full max-w-[1216px] mx-auto">
         {/* Hero Area */}
         <div className="flex flex-col lg:flex-row gap-14">
           {/* CTA AREA */}
           <div className="w-full max-w-[530px] flex flex-col gap-5">
             <h1
-              className={cn("font-bold text-5xl md:text-7xl", font.className)}
+              className={cn("font-bold text-5xl md:text-6xl", font.className)}
               rel="preload"
             >
-              Lorem ipsum sit
+              O primeiro passo para
               <span className="text-secondary-red font-extrabold">
-                {" amet dolor "}
+                {" para seu novo lar! "}
               </span>
-              <br />
-              ensenctum
             </h1>
             <p className={cn("font-normal", font.className)}>
-              How much will it cost the target audience is makes and famles aged
-              zero and up, for i&apos;ll pay you in a week we don&apos;t need to
-              pay upfront i hope you understand yet i&apos;ll know it when i see
-              it there are more projects lined up charge extra the next time,
+              Transforme o sonho do primeiro apartamento em realidade com a
+              Construtora Metrocasa, opções ideais para quem busca qualidade e
+              boa localização.{" "}
+              <strong>
+                Agende uma visita e descubra como é simples começar essa nova
+                fase da sua vida.
+              </strong>
             </p>
 
             {/*  FORM AREA */}

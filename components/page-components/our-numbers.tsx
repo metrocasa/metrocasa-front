@@ -1,34 +1,34 @@
-'use client';
+"use client";
 
-import { Building2Icon, HandshakeIcon, StarIcon } from 'lucide-react';
-import React from 'react';
+import { Building2Icon, HandshakeIcon, HardHat, StarIcon } from "lucide-react";
+import React from "react";
 
 const data = [
   {
-    number: '400',
-    label: 'Happy Customers',
+    number: " 80",
+    label: " Empreendimentos na Capital Paulista",
     icon: <Building2Icon className="h-[40px] w-[40px] text-main-red" />,
   },
   {
-    number: '+3400',
-    label: 'Acordos Fechados',
+    number: " 30",
+    label: "Empreendimentos em Obras",
+    icon: <HardHat className="h-[40px] w-[40px] text-main-red" />,
+  },
+  {
+    number: " 2.000",
+    label: "Unidades entregues",
     icon: <HandshakeIcon className="h-[40px] w-[40px] text-main-red" />,
   },
   {
-    number: '400',
-    label: 'Happy Customers',
+    number: " 11.000",
+    label: "Sonhos realizados",
     icon: <StarIcon className="h-[40px] w-[40px] text-main-red" />,
-  },
-  {
-    number: 'TOP 10',
-    label: 'Reclame Aqui',
-    icon: <Building2Icon className="h-[40px] w-[40px] text-main-red" />,
   },
 ];
 
 export const OurNumbers = () => {
   return (
-    <div className="py-24 flex flex-col items-center md:flex-row justify-center gap-14 ">
+    <div className="pt-24 flex flex-col items-center md:flex-row justify-center gap-14 ">
       {data.map((item, i) => (
         <div
           key={i}
@@ -36,7 +36,10 @@ export const OurNumbers = () => {
         >
           {item.icon}
           <div className="flex flex-col items-center">
-            <h5 className="font-extrabold text-3xl ">{item.number}</h5>
+            <h5 className="font-extrabold text-3xl ">
+              <span>+ DE </span>
+              {item.number}
+            </h5>
             <span className="text-normal uppercase text-center">
               {item.label}
             </span>

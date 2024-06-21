@@ -1,14 +1,14 @@
-import { MoveRight } from 'lucide-react';
-import Image from 'next/image';
+import { MoveRight } from "lucide-react";
+import Image from "next/image";
 
-import React from 'react';
+import React from "react";
 
-import { Button } from '@/components/ui/button';
-import { Title } from '../title';
+import { Button } from "@/components/ui/button";
+import { Title } from "../title";
 
 export const AboutUs = () => {
   return (
-    <section className="w-full py-10 md:py-10 px-[15px]">
+    <section className="w-full py-10 px-[15px]">
       <div className="w-full max-w-[1216px] mx-auto flex flex-col md:flex-row gap-2 md:gap-14">
         {/* LEFT */}
         <div className="w-full flex flex-col gap-8">
@@ -17,7 +17,7 @@ export const AboutUs = () => {
           {/* IMAGE */}
           <div className="h-[438px] md:w-[670px]">
             <Image
-              src={'/sobre/fachada-jardim-botanico.jpg'}
+              src={"/sobre/fachada-jardim-botanico.jpg"}
               alt="Metrocasa Jardim Botânico"
               width={900}
               height={900}
@@ -27,24 +27,28 @@ export const AboutUs = () => {
         </div>
 
         {/* RIGHT*/}
-        <div className="w-full flex flex-col justify-between gap-5">
-          {/* IMAGE */}
-          <Image
-            src={'/sobre/praca-da-arvore-fachada.png'}
-            alt="Metrocasa Jardim Botânico"
-            width={700}
-            height={700}
-            className="object-cover h-full w-full rounded-xl"
-          />
-
+        <div className="w-full flex flex-col justify-end gap-5">
           {/* CONTENT */}
-          <div className="flex flex-col  gap-5">
+          <div className="flex flex-col gap-5 ">
             <p>
-              Archito Group se présente comme un outil pluridisciplinaire et
-              complet regroupant diverses maitrises et compétences utiles à
-              l’investissement immobilier. OWN Group se positionne toujours et
-              exclusivement du côté des investisseurs. Uncommonly spacious and
-              handsomely appointed.
+              A Construtora Metrocasa é fruto da visão e experiência de
+              fundadores com uma longa trajetória no mercado da construção
+              civil.
+              <br />
+              <br />
+              Movidos pela realização dos sonhos dos nossos clientes e baseados
+              na excelência construtiva do mercado imobiliário, unimos
+              atendimento personalizado, conceitos inovadores, diferenciais e
+              apoio em todo o seu processo de compra e pós compra, com muita
+              dedicação para deixar você mais perto do seu sonho.
+              <br />
+              <br />
+              Nossos condomínios são modernos, bem equipados e pensados para
+              oferecer o melhor estilo de vida aos moradores, localizados em
+              excelentes bairros da cidade, próximos a comodidades e meios de
+              transporte público, proporcionando conveniência e praticidade.
+              Tudo isso com preço baixo e financiamento pelo programa Minha Casa
+              Minha Vida.
             </p>
             <Button variant="primary" size="lg" className="self-start">
               Saiba mais

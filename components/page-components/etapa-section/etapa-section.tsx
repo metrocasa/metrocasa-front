@@ -1,32 +1,32 @@
-import React from 'react';
-import { Card } from './etapa-card';
-import { BookUserIcon, CoffeeIcon, SproutIcon, UsersIcon } from 'lucide-react';
+import React from "react";
+import { Card } from "./etapa-card";
+import { BookUserIcon, CoffeeIcon, SproutIcon, UsersIcon } from "lucide-react";
 
 export const EtapaSection = () => {
   const cards = [
     {
-      title: 'Indepedência',
+      title: "Indepedência",
       icon: <CoffeeIcon className="w-11 h-11 text-secondary-dark" />,
       description:
-        'I want you to take it to the next level. Can you use a high definition screenshot I really like the colour but can you change',
+        "Buscando seu primeiro lar? Os apartamentos da Construtora Metrocasa oferecem conforto e praticidade para quem deseja conquistar sua independência com estilo.",
     },
     {
-      title: 'Vou Casar',
+      title: "Vou Casar",
       icon: <UsersIcon className="w-11 h-11 text-secondary-dark" />,
       description:
-        'I want you to take it to the next level. Can you use a high definition screenshot I really like the colour but can you change',
+        "Vai casar e começar uma vida a dois? Nossos apartamentos são perfeitos para esse novo começo, combinando elegância e funcionalidade para criar memórias inesquecíveis.",
     },
     {
-      title: 'Familía',
+      title: "Familía",
       icon: <BookUserIcon className="w-11 h-11 text-secondary-dark" />,
       description:
-        'I want you to take it to the next level. Can you use a high definition screenshot I really like the colour but can you change',
+        "Sua família está crescendo? Oferecemos apartamentos espaçosos e acolhedores, ideais para proporcionar segurança e conforto para todos os membros da sua família.",
     },
     {
-      title: 'Quero Investir',
+      title: "Quero Investir",
       icon: <SproutIcon className="w-11 h-11 text-secondary-dark" />,
       description:
-        'I want you to take it to the next level. Can you use a high definition screenshot I really like the colour but can you change',
+        "Quer investir em imóveis? Os apartamentos da Construtora Metrocasa são uma excelente opção, garantindo valorização constante e retorno significativo para o seu patrimônio.",
     },
   ];
 

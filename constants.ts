@@ -79,6 +79,15 @@ export const zonas = [
      <br /> <br />
      </span></p><p><span style="font-weight: 400;">Para quem busca viver na Zona Oeste, a região apresenta uma sólida infraestrutura urbana que permite realizar diversas atividades a poucos passos de distância.</span><b> Com ruas arborizadas e ótimas opções de lazer, ela também contribui significativamente para a qualidade de vida dos moradores.</b></p>						</div>`,
   },
+  {
+    zone: "Norte",
+    image: "/zonas/zona-norte.jpg",
+    link: "/empreendimentos",
+    description: `<div class="elementor-widget-container">
+     <p><b>A Zona Oeste é uma das áreas mais valorizadas da cidade,</b><span style="font-weight: 400;"> conhecida pela diversidade de comércios, instituições de ensino e opções culturais e de entretenimento. Além disso, oferece excelente acesso aos meios de transporte público, com opções de estações de trem e metrô, linhas de ônibus e ciclovias.
+     <br /> <br />
+     </span></p><p><span style="font-weight: 400;">Para quem busca viver na Zona Oeste, a região apresenta uma sólida infraestrutura urbana que permite realizar diversas atividades a poucos passos de distância.</span><b> Com ruas arborizadas e ótimas opções de lazer, ela também contribui significativamente para a qualidade de vida dos moradores.</b></p>						</div>`,
+  },
 ];
 
 export const regions = [
@@ -147,24 +156,30 @@ export const regions = [
 
 export const faqQuestions = [
   {
-    question: "Lorem Ipsum 1?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern.",
+    question:
+      "Encontre respostas seguras para suas principais dúvidas a seguir. ",
+    content:
+      "Estamos aqui para tornar sua busca por informações mais fácil e esclarecedora.",
   },
   {
-    question: "Lorem Ipsum 2?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern.",
+    question: "Qual a metragem dos Apartamentos?",
+    content:
+      "A metragem de cada imóvel varia de acordo com o tipo de unidade que você escolher. Oferecemos uma ampla gama de opções, desde studios. 1 e 2 dormitórios, 1 dorm. com office, coberturas duplex, gardens e penthouses. Para obter informações detalhadas sobre a metragem do apartamento que mais se adequa às suas necessidades, entre em contato com um de nossos consultores.",
   },
   {
-    question: "Lorem Ipsum 3?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern.",
+    question: "Tem empreendimentos na região que desejo morar/investir?",
+    content:
+      "Conheça nossos mais de 80 projetos espalhados por todas as regiões da capital paulista! Com uma variedade de empreendimentos, estamos certos de que você encontrará a opção perfeita para atender aos seus objetivos de moradia ou investimento. Nossos consultores estão prontos para guiá-lo até a escolha ideal, proporcionando a você a experiência única que merece.",
   },
   {
-    question: "Lorem Ipsum 4?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern.",
+    question: "Posso financiar através do programa Minha Casa Minha Vida?",
+    content:
+      "Sim, você pode! Em parceria com a Caixa Econômica Federal, o Minha Casa Minha Vida oferece uma gama de benefícios para compradores que se enquadram nos critérios do programa. Isso inclui um subsídio de até R$55 mil, tornando o sonho do apartamento próprio ainda mais acessível. Nossos consultores estão à disposição para fornecer orientações detalhadas e ajudá-lo a aproveitar ao máximo essa oportunidade.",
   },
   {
-    question: "Lorem Ipsum 5?",
-    content: "Yes. It adheres to the WAI-ARIA design pattern.",
+    question: "Qual o valor do apartamento?",
+    content:
+      "O valor pode ser influenciado por diversos fatores, como a localização do empreendimento e a metragem da unidade escolhida. Para obter uma visão detalhada dos preços de cada imóvel, recomendamos entrar em contato com nossos consultores imobiliários. Eles estão prontos para fornecer informações personalizadas, auxiliando você a encontrar o imóvel dentro do seu orçamento e preferências.",
   },
 ];
 

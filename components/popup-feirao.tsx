@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import React from "react";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import { InitialForm } from './forms/initial';
-import { useFeirao, useImoveis } from '@/utils/queries';
-import { Loading } from './loading';
+import { InitialForm } from "./forms/initial";
+import { useFeirao, useImoveis } from "@/utils/queries";
+import { Loading } from "./loading";
 
 // DIALOG
 import {
@@ -16,8 +16,8 @@ import {
   DialogContent,
   DialogClose,
   DialogTrigger,
-} from '@/components/ui/dialog';
-import { FeiraoProps } from '@/types/global';
+} from "@/components/ui/dialog";
+import { FeiraoProps } from "@/types/global";
 
 const PopupFeirao = () => {
   const [showModal, setShowModal] = React.useState(false);
@@ -25,7 +25,7 @@ const PopupFeirao = () => {
   const route = useRouter();
 
   const handleContinue = () => {
-    Cookies.set('ft', 'false', { expires: 1 });
+    Cookies.set("ft", "false", { expires: 1 });
     route.refresh();
   };
 
@@ -34,7 +34,7 @@ const PopupFeirao = () => {
   const imageUrl = feirao.data?.data?.attributes.imagem.data.attributes
     .url as string;
 
-  const firstTime = Cookies.get('ft');
+  const firstTime = Cookies.get("ft");
 
   return (
     <Dialog defaultOpen={!firstTime}>
@@ -42,7 +42,7 @@ const PopupFeirao = () => {
         {/* LEFT */}
         <div className="hidden lg:block h-full w-full md:w-[50%] ">
           <Image
-            src={imageUrl ?? '/feirao/feirao-default.jpg'}
+            src={imageUrl ?? "/feirao/feirao-default.jpeg"}
             width={900}
             height={900}
             alt="Banner Feirão Metrocasa"
@@ -54,7 +54,7 @@ const PopupFeirao = () => {
         {/* RIGHT */}
         <div className="h-full w-full lg:w-[50%] p-8 items-center justify-center flex flex-col gap-8">
           <Image
-            src={'/logo-red.svg'}
+            src={"/logo-red.svg"}
             width={200}
             height={200}
             alt="Logo Metrocasa"
@@ -65,13 +65,13 @@ const PopupFeirao = () => {
           </h1>
           <div
             dangerouslySetInnerHTML={{
-              __html: feirao.data?.data.attributes.description || '',
+              __html: feirao.data?.data.attributes.description || "",
             }}
           />
           <InitialForm
             className="flex-col max-w-[600px]"
             handleContinue={handleContinue}
-            variant={'primary'}
+            variant={"primary"}
           />
         </div>
       </DialogContent>

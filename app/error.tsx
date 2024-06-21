@@ -15,7 +15,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 bg-red-bg">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 bg-red-bg bg-cover">
       <div className="bg-white p-8 rounded-lg shadow-lg">
         <h1 className="text-4xl font-bold text-red-500 mb-4">Oops!</h1>
         <h2 className="text-2xl mb-4">Aconteceu um probleminha aqui.</h2>

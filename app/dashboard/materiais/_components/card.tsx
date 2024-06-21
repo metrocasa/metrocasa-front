@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button';
-import { Imovel } from '@/types/global';
-import axios from 'axios';
+import { Button } from "@/components/ui/button";
+import { Imovel } from "@/types/global";
+import axios from "axios";
 
-import { DownloadIcon, Loader2Icon } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { DownloadIcon, Loader2Icon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 export const Card = ({ imovel }: { imovel: Imovel }) => {
   const [imovelInfo, setImovelInfo] = useState<Imovel | null>(null);
@@ -21,12 +21,12 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
             headers: {
               Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_GENERAL_TOKEN}`,
             },
-          },
+          }
         );
         const data = await response.data;
         setImovelInfo(data);
       } catch (error) {
-        console.error('Erro ao buscar imóvel:', error);
+        console.error("Erro ao buscar imóvel:", error);
         // Lógica de tratamento de erro (opcional)
       } finally {
         setIsLoading(false);
@@ -40,8 +40,8 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
     return (
       <div className="text-white/30  h-[400px] w-full rounded-lg flex items-center justify-center">
         <Image
-          src={`${'/placeholder.jpg'}`}
-          alt={'Fachada'}
+          src={`${"/placeholder.jpg"}`}
+          alt={"Fachada"}
           className={`object-cover transition h-[400px] w-full rounded-lg`}
           width={900}
           height={900}
@@ -58,14 +58,14 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
   }
 
   return (
-    <div className={'relative w-full'}>
+    <div className={"relative w-full"}>
       <div key={imovel.id}>
         <Image
           src={`${
             imovel.attributes.fachada.data.attributes.url ||
-            '/public/placeholder.jpg'
+            "/public/placeholder.jpg"
           }`}
-          alt={'Fachada'}
+          alt={"Fachada"}
           className={`object-cover transition h-[400px] w-full rounded-lg`}
           width={900}
           height={900}
@@ -85,17 +85,17 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
           <div className="flex gap-2 w-full">
             {/* RI */}
             {imovel.attributes.materiais?.is_active &&
-              imovel.attributes.materiais?.a3.data.attributes.url && (
+              imovel.attributes.materiais?.ri.data?.attributes.url && (
                 <a
                   href={
-                    imovel.attributes.materiais?.ri.data?.attributes.url || ''
+                    imovel.attributes.materiais?.ri.data?.attributes.url || ""
                   }
                   target="_blank"
                   className="w-full"
                 >
                   <Button
-                    variant={'primary'}
-                    size={'sm'}
+                    variant={"primary"}
+                    size={"sm"}
                     className="flex items-center gap-3 w-full"
                   >
                     <DownloadIcon className="h-4" />
@@ -109,14 +109,14 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
               imovel.attributes.materiais?.a3.data && (
                 <a
                   href={
-                    imovel.attributes.materiais?.a3.data.attributes.url || ''
+                    imovel.attributes.materiais?.a3.data.attributes.url || ""
                   }
                   target="_blank"
                   className="w-full"
                 >
                   <Button
-                    variant={'primary'}
-                    size={'sm'}
+                    variant={"primary"}
+                    size={"sm"}
                     className="flex items-center gap-3 w-full"
                   >
                     <DownloadIcon className="w-4 h-4" />
@@ -134,21 +134,21 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
                 <a
                   href={
                     imovel.attributes.materiais?.fase_1.data.attributes.url ||
-                    ''
+                    ""
                   }
                   target="_blank"
                   className="w-full"
                 >
                   <Button
-                    variant={'primary'}
-                    size={'sm'}
+                    variant={"primary"}
+                    size={"sm"}
                     className="flex items-center gap-3 w-full"
                   >
                     <DownloadIcon className="w-4 h-4" />
                     {!imovel.attributes.materiais?.fase_2 &&
                     !imovel.attributes.materiais?.fase_3
-                      ? 'FASE 1'
-                      : 'BOOK'}
+                      ? "FASE 1"
+                      : "BOOK"}
                   </Button>
                 </a>
               )}
@@ -159,14 +159,14 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
                 <a
                   href={
                     imovel.attributes.materiais?.fase_2.data.attributes.url ||
-                    ''
+                    ""
                   }
                   target="_blank"
                   className="w-full"
                 >
                   <Button
-                    variant={'primary'}
-                    size={'sm'}
+                    variant={"primary"}
+                    size={"sm"}
                     className="flex items-center gap-3 w-full"
                   >
                     <DownloadIcon className="w-4 h-4" />
@@ -181,14 +181,14 @@ export const Card = ({ imovel }: { imovel: Imovel }) => {
                 <a
                   href={
                     imovel.attributes.materiais?.fase_3.data.attributes.url ||
-                    ''
+                    ""
                   }
                   target="_blank"
                   className="w-full"
                 >
                   <Button
-                    variant={'primary'}
-                    size={'sm'}
+                    variant={"primary"}
+                    size={"sm"}
                     className="flex items-center gap-3 w-full"
                   >
                     <DownloadIcon className="w-4 h-4" />

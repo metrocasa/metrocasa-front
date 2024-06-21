@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { MessageSquare } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
+import { Button } from "@/components/ui/button";
+import { MessageSquare } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 interface IProps {
   title: string;
@@ -15,7 +15,9 @@ export const Card = ({ title, icon, description }: IProps) => {
       {icon}
       <h2 className="text-white font-bold text-2xl">{title}</h2>
       <p className="mb-5">{description}</p>
-      <Button variant="primary">Ver Emprendimentos</Button>
+      <Link href={"/empreendimentos"}>
+        <Button variant="primary">Ver Emprendimentos</Button>
+      </Link>
     </div>
   );
 };
