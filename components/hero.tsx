@@ -44,7 +44,7 @@ export const Hero = () => {
             >
               O primeiro passo para
               <span className="text-secondary-red font-extrabold">
-                {" para seu novo lar! "}
+                {" seu novo lar! "}
               </span>
             </h1>
             <p className={cn("font-normal", font.className)}>
