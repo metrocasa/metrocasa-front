@@ -83,12 +83,13 @@ export const MainForm = ({
     : "";
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const endpoint = process.env.ANAPRO_ENDPOINT!;
-    const key = process.env.ANAPRO_KEY;
-    const canal_key = process.env.ANAPRO_CANAL_KEY;
-    const campanha_key = process.env.ANAPRO_CAMPANHA_KEY;
-    const key_integradora = process.env.ANAPRO_KEY_INTEGRADORA;
-    const key_agencia = process.env.ANAPRO_KEY_AGENCIA;
+    const endpoint =
+      "https://crm.anapro.com.br/webcrm/webapi/integracao/v2/CadastrarProspect";
+    const key = "wz2O9Z9BawY1";
+    const canal_key = "7aTeATm50Tk1";
+    const campanha_key = "T8Ds8DuFA781";
+    const key_integradora = "883F81F3-32BF-4A1F-BE1D-71E93E900832";
+    const key_agencia = "883F81F3-32BF-4A1F-BE1D-71E93E900832";
 
     const body = {
       Key: key,
