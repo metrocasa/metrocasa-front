@@ -83,7 +83,7 @@ export const MainForm = ({
     : "";
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const endpoint = process.env.ANAPRO_ENDPOINT as string;
+    const endpoint = process.env.ANAPRO_ENDPOINT!;
     const key = process.env.ANAPRO_KEY;
     const canal_key = process.env.ANAPRO_CANAL_KEY;
     const campanha_key = process.env.ANAPRO_CAMPANHA_KEY;
