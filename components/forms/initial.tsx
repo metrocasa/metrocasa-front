@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,10 +12,10 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
 // SCHEMA
 const formSchema = z.object({
@@ -26,10 +26,10 @@ const formSchema = z.object({
 
 // FORMAT PHONE NUMBER
 const parseAndFormatPhoneNumber = (value: string) => {
-  const unformattedValue = value.replace(/\D/g, '');
+  const unformattedValue = value.replace(/\D/g, "");
   const formattedValue = unformattedValue.replace(
     /(\d{2})(\d{5})(\d{4})/,
-    '$1 $2-$3',
+    "$1 $2-$3"
   );
   return formattedValue;
 };
@@ -45,7 +45,7 @@ export const InitialForm = ({
   handleContinue,
 }: {
   className?: string;
-  variant?: 'default' | 'primary' | 'outline' | 'ghost' | null | undefined;
+  variant?: "default" | "primary" | "outline" | "ghost" | null | undefined;
   name?: boolean;
   email?: boolean;
   phone?: boolean;
@@ -56,25 +56,25 @@ export const InitialForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      phone: '',
-      email: '',
+      name: "",
+      phone: "",
+      email: "",
     },
   });
 
   // Update the `phone` field's value using the `parseAndFormatPhoneNumber` function
-  const formattedPhone = form.watch('phone');
+  const formattedPhone = form.watch("phone");
   const formattedPhoneValue = formattedPhone
     ? parseAndFormatPhoneNumber(formattedPhone)
-    : '';
+    : "";
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    const endpoint = process.env.NEXT_PUBLIC_ANAPRO_ENDPOINT as string;
-    const key = process.env.NEXT_PUBLIC_ANAPRO_KEY;
-    const canal_key = process.env.NEXT_PUBLIC_ANAPRO_CANAL_KEY;
-    const campanha_key = process.env.NEXT_PUBLIC_ANAPRO_CAMPANHA_KEY;
-    const key_integradora = process.env.NEXT_PUBLIC_ANAPRO_KEY_INTEGRADORA;
-    const key_agencia = process.env.NEXT_PUBLIC_ANAPRO_KEY_AGENCIA;
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const endpoint = process.env.ANAPRO_ENDPOINT as string;
+    const key = process.env.ANAPRO_KEY;
+    const canal_key = process.env.ANAPRO_CANAL_KEY;
+    const campanha_key = process.env.ANAPRO_CAMPANHA_KEY;
+    const key_integradora = process.env.ANAPRO_KEY_INTEGRADORA;
+    const key_agencia = process.env.ANAPRO_KEY_AGENCIA;
 
     const body = {
       Key: key,
@@ -82,7 +82,7 @@ export const InitialForm = ({
       CampanhaKey: campanha_key,
       KeyIntegradora: key_integradora,
       KeyAgencia: key_agencia,
-      PoliticaPrivacidadeKey: '',
+      PoliticaPrivacidadeKey: "",
       PessoaNome: values.name,
       PessoaEmail: values.email,
 
@@ -95,26 +95,24 @@ export const InitialForm = ({
     };
 
     // ENVIAR DADOS PARA O ANAPRO
-    const postData = async () => {
-      try {
-        const response = await fetch(endpoint, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(body),
-        });
 
-        if (!response.ok) {
-          throw new Error('Failed to submit form');
-        }
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
 
-        console.log('Form submitted successfully');
-      } catch (error) {
-        console.error('Error submitting form:', error);
+      if (!response.ok) {
+        throw new Error("Failed to submit form");
       }
-    };
-    postData();
+
+      console.log("Form submitted successfully");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
 
     if (handleContinue) {
       handleContinue();
@@ -125,7 +123,7 @@ export const InitialForm = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn('flex gap-y-7 w-full', className)}
+        className={cn("flex gap-y-7 w-full", className)}
       >
         {/* Nome */}
         <div className="flex flex-col md:flex-row w-full gap-4">
@@ -161,11 +159,11 @@ export const InitialForm = ({
                       value={formattedPhoneValue}
                       onBlur={() => {
                         form.setValue(
-                          'phone',
+                          "phone",
                           parseAndFormatPhoneNumber(formattedPhoneValue),
                           {
                             shouldValidate: true,
-                          },
+                          }
                         );
                       }}
                       maxLength={11}
@@ -207,7 +205,7 @@ export const InitialForm = ({
           <Button
             onClick={handleContinue}
             className="mt-4 text-center w-full"
-            variant={'ghost'}
+            variant={"ghost"}
             type="button"
           >
             Quero continuar para o site
