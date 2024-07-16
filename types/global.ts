@@ -235,7 +235,7 @@ export interface Posts {
   };
 }
 
-// FEIR'AO
+// FEIRÃO
 export interface FeiraoProps {
   data: {
     id: number;
@@ -249,6 +249,40 @@ export interface FeiraoProps {
           };
         };
       };
+    };
+  };
+}
+
+// BANNER PROPS
+export interface BannerProps {
+  data: {
+    id: number;
+    attributes: {
+      banner_title: string;
+      banner_link: string;
+      createdAt: string;
+      updatedAt: string;
+      publishedAt: string;
+      desktop_image: {
+        data: {
+          attributes: {
+            url: string;
+          };
+        };
+      };
+      mobile_image: {
+        attributes: {
+          url: string;
+        };
+      };
+    };
+  }[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
     };
   };
 }

@@ -20,7 +20,7 @@ export const links = [
     href: "/",
   },
   {
-    label: "Empreendimentos",
+    label: "Imóveis",
     href: "/empreendimentos",
   },
   {

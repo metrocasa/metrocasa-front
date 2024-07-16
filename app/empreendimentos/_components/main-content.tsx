@@ -10,10 +10,17 @@ export const MainContent = ({ imovel }: { imovel: Imovel }) => {
         <div className="flex flex-col md:flex-row gap-10">
           {/* LEFT */}
           <div className="md:w-[65%]">
-            <h2 className="text-3xl font-semibold text-center md:text-left ">
-              Uma oportunidade para todos que sempre desejaram morar no(a){" "}
-              <strong>{imovel.attributes.neighborhoods}</strong>
-            </h2>
+            {imovel.attributes.neighborhoods ? (
+              <h2 className="text-3xl font-semibold text-center md:text-left ">
+                Uma oportunidade para todos que sempre desejaram morar no(a){" "}
+                <strong>{imovel.attributes.neighborhoods}</strong>
+              </h2>
+            ) : (
+              <h2 className="text-3xl font-semibold text-center md:text-left ">
+                Uma oportunidade para todos que sempre desejaram morar no(a){" "}
+                <strong>{imovel.attributes.title}</strong>
+              </h2>
+            )}
 
             <div
               className="py-14 md:text-xl"

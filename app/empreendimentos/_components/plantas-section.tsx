@@ -1,10 +1,6 @@
 import React from "react";
-
 import Image from "next/image";
-
 import { useMediaQuery } from "react-responsive";
-
-// LIGHTBOX
 import Lightbox, {
   FullscreenRef,
   SlideshowRef,
@@ -17,8 +13,6 @@ import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
-
-// Import Swiper styles
 import "swiper/css";
 import { Title } from "@/components/title";
 import { Imovel } from "@/types/global";
@@ -55,12 +49,28 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   const handleClick = (index: number) => setIndex(index);
   const [index, setIndex] = React.useState(-1);
 
-  // Função para formatar a primeira letra de cada palavra em maiúsculo
-  function capitalizeWords(str: string) {
-    return str.replace(/\b\w/g, function (char) {
-      return char.toUpperCase();
-    });
-  }
+  const formatTitle = (title: string) => {
+    switch (title) {
+      case "um_dormitorio":
+        return "1 Dormitório";
+      case "dois_dormitorios":
+        return "2 Dormitórios";
+      case "um_dormitorio_plus_office":
+        return "1 Dormitório + Office";
+      case "um_dormitorio_plus_studio":
+        return "1 Dormitório + Studio";
+      case "cobertura_duplex":
+        return "Cobertura Duplex";
+      case "studio":
+        return "Studio";
+      case "garden":
+        return "Garden";
+      case "penthouse":
+        return "Penthouse";
+      // default:
+      //   return title.replace(/_/g, " ");
+    }
+  };
 
   if (!allImages) return null;
 
@@ -68,22 +78,15 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
     <section className="w-full px-[15px] md:px-0 pb-14">
       <div className="w-full">
         <Title subtitle="Veja mais" title="Plantas" />
-
         <div className="w-full max-w-[1216px] mx-auto">
           <div className="flex flex-wrap gap-4">
             {plantas.map((planta, i) => (
               <div key={planta.id} className="p-4 flex flex-col gap-4">
                 <h3 className="text-2xl font-bold text-main-red">
-                  {capitalizeWords(
-                    planta.planta_title
-                      .replaceAll("plus", "+")
-                      .replace(/_/g, " ")
-                  )}
+                  {formatTitle(planta.planta_title)}
                 </h3>
-
-                {/* TODO: Remove this "/#" see a better way to do this */}
                 <Image
-                  src={`${planta.planta_image.data?.attributes?.url || "/#"}`}
+                  src={`${planta.planta_image.data?.attributes?.url as string}`}
                   width={550}
                   height={550}
                   alt="Imagem da Planta"
@@ -93,7 +96,6 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
               </div>
             ))}
           </div>
-
           <Lightbox
             plugins={[Slideshow, Thumbnails, Fullscreen, Zoom]}
             open={index >= 0}

@@ -1,25 +1,42 @@
-import { getFeirao } from '@/actions/get-feirao';
+import { getAllBanners } from "@/actions/get-banners";
+import { getFeirao } from "@/actions/get-feirao";
 import {
   getAllImoveis,
   getImoveis,
   getImovelById,
   searchImoveis,
-} from '@/actions/get-imoveis';
-import { getMateriais } from '@/actions/get-materiais';
-import { FeiraoProps, Imoveis, Imovel, Materiais } from '@/types/global';
+} from "@/actions/get-imoveis";
+import { getMateriais } from "@/actions/get-materiais";
+import {
+  BannerProps,
+  FeiraoProps,
+  Imoveis,
+  Imovel,
+  Materiais,
+} from "@/types/global";
 import {
   dehydrate,
   keepPreviousData,
   useQuery,
   useQueryClient,
-} from '@tanstack/react-query';
+} from "@tanstack/react-query";
 
 // FEIRÃO
 // get feirão
 export const useFeirao = () => {
   return useQuery<FeiraoProps>({
-    queryKey: ['feirao'],
+    queryKey: ["feirao"],
     queryFn: getFeirao,
+    placeholderData: keepPreviousData,
+  });
+};
+
+// BANNERS
+// get feirão
+export const useBanners = () => {
+  return useQuery<BannerProps>({
+    queryKey: ["banners"],
+    queryFn: getAllBanners,
     placeholderData: keepPreviousData,
   });
 };
@@ -28,7 +45,7 @@ export const useFeirao = () => {
 // get imoveis
 export const useImoveis = (pageSize: number) => {
   return useQuery<Imoveis>({
-    queryKey: ['imoveis', pageSize],
+    queryKey: ["imoveis", pageSize],
     queryFn: () => getImoveis(pageSize),
     placeholderData: keepPreviousData,
   });
@@ -37,7 +54,7 @@ export const useImoveis = (pageSize: number) => {
 // get imovel by id
 export const useImovelById = (id: number) => {
   return useQuery<Imovel>({
-    queryKey: ['imovel', id],
+    queryKey: ["imovel", id],
     queryFn: () => getImovelById(id),
     placeholderData: keepPreviousData,
   });
@@ -46,7 +63,7 @@ export const useImovelById = (id: number) => {
 // search imovel
 export const useSearchImovel = (search: string) => {
   return useQuery<Imoveis>({
-    queryKey: ['imovelSearch', search],
+    queryKey: ["imovelSearch", search],
     queryFn: () => searchImoveis(search),
     placeholderData: keepPreviousData,
   });
@@ -55,7 +72,7 @@ export const useSearchImovel = (search: string) => {
 // get all imoveis
 export const useAllImoveis = () => {
   return useQuery<Imoveis>({
-    queryKey: ['allImoveis'],
+    queryKey: ["allImoveis"],
     queryFn: getAllImoveis,
     placeholderData: keepPreviousData,
   });
@@ -65,7 +82,7 @@ export const useAllImoveis = () => {
 // get materiais
 export const useMateriais = () => {
   return useQuery<Materiais>({
-    queryKey: ['materiais'],
+    queryKey: ["materiais"],
     queryFn: getMateriais,
     placeholderData: keepPreviousData,
   });

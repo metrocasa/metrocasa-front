@@ -1,35 +1,35 @@
-'use client';
+"use client";
 
-import { menusFooter } from '@/constants';
+import { menusFooter } from "@/constants";
 import {
   FacebookIcon,
   InstagramIcon,
   LinkedinIcon,
   YoutubeIcon,
-} from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 // TODO: Change Icons
 const socials = [
   {
-    social: 'Facebook',
-    link: 'https://www.facebook.com/construtorametrocasa',
+    social: "Facebook",
+    link: "https://www.facebook.com/construtorametrocasa",
     icon: <FacebookIcon />,
   },
   {
-    social: 'Instagram',
-    link: 'https://www.instagram.com/construtorametrocasa/',
+    social: "Instagram",
+    link: "https://www.instagram.com/construtorametrocasa/",
     icon: <InstagramIcon />,
   },
   {
-    social: 'LinkedIn',
-    link: 'https://www.linkedin.com/company/metrocasa/',
+    social: "LinkedIn",
+    link: "https://www.linkedin.com/company/metrocasa/",
     icon: <LinkedinIcon />,
   },
   {
-    social: 'Youtube',
-    link: 'https://www.youtube.com/@ConstrutoraMetrocasa',
+    social: "Youtube",
+    link: "https://www.youtube.com/@ConstrutoraMetrocasa",
     icon: <YoutubeIcon />,
   },
   // {
@@ -111,19 +111,24 @@ export const Footer = () => {
               </div>
 
               {/* CAC */}
-              <div className="flex flex-col md:flex-row items-center gap-4 w-full rounded-md text-white bg-main-red p-5">
-                <Image
-                  src={'/icons/whatsapp-i.svg'}
-                  alt="WhatsApp Icone"
-                  width={40}
-                  height={40}
-                />
-                <div className="flex flex-col md:flex-col items-center md:items-start">
-                  <h3 className="text-2xl font-bold">CAC</h3>
-                  <p>Central de Atendimento ao Cliente</p>
-                  <h3 className="text-2xl font-bold">(11) 5061-0022</h3>
+              <a
+                href="https://api.whatsapp.com/send?phone=551150610022"
+                target="_blank"
+              >
+                <div className="flex flex-col md:flex-row items-center gap-4 w-full rounded-md text-white bg-main-red p-5">
+                  <Image
+                    src={"/icons/whatsapp-i.svg"}
+                    alt="WhatsApp Icone"
+                    width={40}
+                    height={40}
+                  />
+                  <div className="flex flex-col md:flex-col items-center md:items-start">
+                    <h3 className="text-2xl font-bold">CAC</h3>
+                    <p>Central de Atendimento ao Cliente</p>
+                    <h3 className="text-2xl font-bold">(11) 5061-0022</h3>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>

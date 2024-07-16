@@ -11,6 +11,7 @@ import { Filter } from "@/components/globals/Filter";
 import { Testmonials } from "@/components/page-components/testmonials-section";
 
 import PopupFeirao from "@/components/popup-feirao";
+import { Slider } from "@/components/slider";
 
 export default async function Home() {
   return (
@@ -18,6 +19,9 @@ export default async function Home() {
       <PopupFeirao />
       <Header />
 
+      <div className="pt-[75px] lg:pt-[100px] w-full">
+        <Slider />
+      </div>
       <Hero />
       <AboutUs />
       <EmpreendimentoList />
@@ -26,7 +30,7 @@ export default async function Home() {
       <Zonas />
       <FormSection title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento." />
       <Testmonials />
-      <FaqSection />
+      {/* <FaqSection /> */}
 
       <Footer />
     </>
