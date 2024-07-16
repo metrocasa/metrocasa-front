@@ -18,9 +18,10 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { FeiraoProps } from "@/types/global";
+import { useFeiraoPopup } from "@/stores/feirao-store";
 
 const PopupFeirao = () => {
-  const [showModal, setShowModal] = React.useState(false);
+  const { isOpen, onClose, onOpen } = useFeiraoPopup();
 
   const route = useRouter();
 
@@ -37,8 +38,8 @@ const PopupFeirao = () => {
   const firstTime = Cookies.get("ft");
 
   return (
-    <Dialog defaultOpen={!firstTime}>
-      <DialogContent className="flex md:max-w-[80%] md:h-[80%] p-0 border-none">
+    <Dialog defaultOpen={!firstTime} onOpenChange={onClose} open={isOpen}>
+      <DialogContent className="flex md:max-w-[80%] md:h-[80%] p-0 border-none ">
         {/* LEFT */}
         <div className="hidden lg:block h-full w-full md:w-[50%] ">
           <Image
@@ -52,7 +53,7 @@ const PopupFeirao = () => {
         </div>
 
         {/* RIGHT */}
-        <div className="h-full w-full lg:w-[50%] p-8 items-center justify-center flex flex-col gap-8">
+        <div className="h-full w-full lg:w-[50%] p-10 items-center justify-center flex flex-col gap-4">
           <Image
             src={"/logo-red.svg"}
             width={200}
@@ -69,7 +70,7 @@ const PopupFeirao = () => {
             }}
           />
           <InitialForm
-            className="flex-col max-w-[600px]"
+            className="flex-col gap-4"
             handleContinue={handleContinue}
             variant={"primary"}
           />

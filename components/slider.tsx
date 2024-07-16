@@ -10,6 +10,8 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
 import { useBanners } from "@/utils/queries";
 import { Loading } from "./loading";
 import { useMediaQuery } from "usehooks-ts";
+import { useFeiraoPopup } from "@/stores/feirao-store";
+import Link from "next/link";
 
 interface Banner {
   id: number;
@@ -37,6 +39,8 @@ export const Slider = () => {
   const [banners, setBanners] = useState<Banner[]>([]);
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+  const { isOpen, onClose, onOpen } = useFeiraoPopup();
+
   useEffect(() => {
     const fetchBanners = async () => {
       try {
@@ -63,18 +67,20 @@ export const Slider = () => {
       >
         {banners?.map((banner) => (
           <SwiperSlide key={banner.id}>
-            <Image
-              src={
-                // Verifica se é mobile ou desktop e usa a imagem correspondente
-                isTablet
-                  ? `${banner?.attributes?.mobile_image?.data.attributes?.url}`
-                  : `${banner?.attributes?.desktop_image?.data.attributes?.url}`
-              }
-              alt={banner.attributes.banner_title}
-              width={1920}
-              height={100}
-              className="w-full"
-            />
+            <Link href={""} onClick={onOpen}>
+              <Image
+                src={
+                  // Verifica se é mobile ou desktop e usa a imagem correspondente
+                  isTablet
+                    ? `${banner?.attributes?.mobile_image?.data.attributes?.url}`
+                    : `${banner?.attributes?.desktop_image?.data.attributes?.url}`
+                }
+                alt={banner.attributes.banner_title}
+                width={1920}
+                height={100}
+                className="w-full"
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

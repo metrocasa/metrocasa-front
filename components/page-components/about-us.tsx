@@ -17,7 +17,7 @@ export const AboutUs = () => {
           {/* IMAGE */}
           <div className="h-[438px] md:w-[670px]">
             <Image
-              src={"/sobre/fachada-jardim-botanico.jpg"}
+              src={"/sobre/fachada.jpg"}
               alt="Metrocasa Jardim Botânico"
               width={900}
               height={900}
