@@ -9,25 +9,28 @@ import { Title } from "../title";
 export const AboutUs = () => {
   return (
     <section className="w-full py-10 px-[15px]">
-      <div className="w-full max-w-[1216px] mx-auto flex flex-col md:flex-row gap-2 md:gap-14">
+      <div className="w-full max-w-[1216px] mx-auto flex flex-col justify-center md:flex-row gap-2 md:gap-14">
         {/* LEFT */}
-        <div className="w-full flex flex-col gap-8">
-          <Title title="Conheça a Metrocasa" subtitle="Quem Somos?" />
-
+        <div className="w-full flex flex-col justify-center gap-8">
           {/* IMAGE */}
-          <div className="h-[438px] md:w-[670px]">
+          <div className="h-auto md:w-[670px]">
             <Image
-              src={"/sobre/fachada.jpg"}
+              src={"/about-image.webp"}
               alt="Metrocasa Jardim Botânico"
               width={900}
               height={900}
-              className="object-cover h-full w-full rounded-xl"
+              className="rounded-xl max-w-[600px]"
             />
           </div>
         </div>
 
         {/* RIGHT*/}
-        <div className="w-full flex flex-col justify-end gap-5">
+        <div className="w-full flex flex-col items-center justify-center gap-5">
+          <Title
+            title="Conheça a Metrocasa"
+            subtitle="Quem Somos?"
+            className="w-full"
+          />
           {/* CONTENT */}
           <div className="flex flex-col gap-5 ">
             <p>

@@ -22,10 +22,10 @@ export default async function Home() {
       <div className="pt-[75px] lg:pt-[100px] w-full">
         <Slider />
       </div>
-      <Hero />
-      <AboutUs />
       <EmpreendimentoList />
       <Filter />
+      <Hero />
+      <AboutUs />
       {/* <LancamentoSection /> */}
       <Zonas />
       <FormSection title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento." />

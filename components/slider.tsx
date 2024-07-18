@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/navigation";
+
 import axios from "axios";
 import Image from "next/image";
 
@@ -63,7 +65,8 @@ export const Slider = () => {
         slidesPerView={1}
         autoplay={{ delay: 5500 }}
         effect={"fade"}
-        modules={[Autoplay, Pagination, Navigation]}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation, EffectFade]}
       >
         {banners?.map((banner) => (
           <SwiperSlide key={banner.id}>

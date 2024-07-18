@@ -67,9 +67,9 @@ export const EmpreendimentoList = () => {
         <>
           {/* RENDERIZAR NA PAGINA HOME */}
           {path === "/" && (
-            <section className="w-full pt-24 px-[15px] md:px-0 mb-6">
+            <section className="w-full pt-4 px-[15px] md:px-0 mb-6">
               <Title
-                subtitle="De leste a Oeste"
+                subtitle="De Leste a Oeste"
                 title="Conheça seu novo Apartamento"
               />
 

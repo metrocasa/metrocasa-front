@@ -1,9 +1,9 @@
-import { cn } from '@/lib/utils';
-import { Imovel } from '@/types/global';
-import { Loader2Icon } from 'lucide-react';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { cn } from "@/lib/utils";
+import { Imovel } from "@/types/global";
+import { Loader2Icon } from "lucide-react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
   const path = usePathname();
@@ -18,7 +18,7 @@ export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
         const datas = await response.json();
         setImovelInfo(data);
       } catch (error) {
-        console.error('Erro ao buscar imóvel:', error);
+        console.error("Erro ao buscar imóvel:", error);
         // Lógica de tratamento de erro
       } finally {
         setIsLoading(false);
@@ -29,16 +29,15 @@ export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
 
   if (isLoading) {
     return (
-      <div className="text-white/30  h-[400px] w-full rounded-lg flex items-center justify-center">
+      <div className="text-white/30 h-[400px] w-full rounded-lg flex items-center justify-center relative">
         <Image
-          src={`${'/placeholder-white.jpg'}`}
-          alt={'Fachada'}
-          className={`object-cover transition h-[400px] w-full rounded-lg`}
+          src={`${"/placeholder-white.jpg"}`}
+          alt={"Fachada"}
+          className="object-cover transition h-[400px] w-full rounded-lg"
           width={900}
           height={900}
           priority
         />
-
         <Loader2Icon className="animate-spin w-8 h-8 text-red-500/50 absolute" />
       </div>
     ); // Exibir um indicador de carregamento
@@ -55,13 +54,16 @@ export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
   return (
     <div
       key={data.id}
-      className={cn('relative w-full', path === '/' && 'min-w-[400px]')}
+      className={cn(
+        "relative w-full overflow-hidden",
+        path === "/" && "min-w-[400px]"
+      )}
     >
       <Image
         src={`${data.attributes.fachada.data.attributes.url}`}
         alt={`Fachada - ${data.attributes.title}`}
-        className={`object-cover transition h-[495px] w-full ${
-          path === '/empreendimentos' ? '' : 'rounded-lg'
+        className={`w-full h-[495px] object-cover transform transition-transform duration-300 ease-in-out hover:scale-110 ${
+          path === "/empreendimentos" ? "" : "rounded-lg"
         }`}
         width={900}
         height={900}
@@ -70,8 +72,9 @@ export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
 
       <div
         className={`absolute top-0 left-0 w-full h-full bg-gradient-bg ${
-          path === '/empreendimentos' ? '' : 'rounded-lg'
+          path === "/empreendimentos" ? "" : "rounded-lg"
         }`}
+        style={{ pointerEvents: "none" }}
       />
 
       <div className="absolute bottom-0 p-5 flex flex-col gap-5">
