@@ -22,8 +22,8 @@ export default async function Home() {
       <div className="pt-[75px] lg:pt-[100px] w-full">
         <Slider />
       </div>
+
       <EmpreendimentoList />
-      <Filter />
       <Hero />
       <AboutUs />
       {/* <LancamentoSection /> */}

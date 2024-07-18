@@ -28,6 +28,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { regions } from "@/constants";
+import { cn } from "@/lib/utils";
 
 const formSchema = z.object({
   region: z.string(),
@@ -36,7 +37,7 @@ const formSchema = z.object({
   zone: z.string(),
 });
 
-export const Filter = () => {
+export const Filter = ({ styles }: { styles?: string }) => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -61,7 +62,10 @@ export const Filter = () => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col md:flex-row items-center justify-center mx-auto gap-4 md:gap-8 bg-white  py-6 px-[45px] md:px-0"
+        className={cn(
+          "flex flex-col md:flex-row items-center justify-center mx-auto gap-4 md:gap-8 bg-white  py-6 px-[45px] md:px-0",
+          styles
+        )}
       >
         {/* W
         //TODO: Implementar o filtro por zona

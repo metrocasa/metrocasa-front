@@ -16,7 +16,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useMediaQuery } from "react-responsive";
 import { Title } from "../title";
 import { Button } from "../ui/button";
-import { Loader2Icon } from "lucide-react";
+import { Loader2Icon, MoveRight } from "lucide-react";
 
 import { Skeleton } from "../ui/skeleton";
 import posthog from "posthog-js";
@@ -26,6 +26,7 @@ import { Loading } from "../loading";
 import { Imoveis, Imovel } from "@/types/global";
 import { useQuery } from "@tanstack/react-query";
 import { getAllImoveis } from "@/actions/get-imoveis";
+import { Filter } from "../globals/Filter";
 
 export const EmpreendimentoList = () => {
   const { currentPageSize, setMeta, setCurrentPageSize } = useMetaContext();
@@ -68,10 +69,22 @@ export const EmpreendimentoList = () => {
           {/* RENDERIZAR NA PAGINA HOME */}
           {path === "/" && (
             <section className="w-full pt-4 px-[15px] md:px-0 mb-6">
-              <Title
-                subtitle="De Leste a Oeste"
-                title="Conheça seu novo Apartamento"
-              />
+              <div className="w-full max-w-[1216px] mx-auto flex flex-col justify-center items-center md:flex-row gap-2 md:gap-14">
+                <div className="w-full max-w-[100%] mx-auto md:py-14 flex flex-col gap-4">
+                  <div className={"flex gap-2 text-main-red items-center"}>
+                    <MoveRight strokeWidth={1} className="w-14" />
+                    <h5 className={"text-lg font-bold"}>De Leste a Oeste</h5>
+                  </div>
+
+                  <h2 className={"text-4xl md:text-5xl font-bold"}>
+                    Conheça seu novo apartamento
+                  </h2>
+                </div>
+
+                <div className="h-auto w-full max-w-[35%] pt-5">
+                  <Filter />
+                </div>
+              </div>
 
               <Swiper
                 spaceBetween={isMobile ? 15 : 185}
