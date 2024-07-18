@@ -34,9 +34,9 @@ export const AboutUs = () => {
           {/* CONTENT */}
           <div className="flex flex-col gap-5 ">
             <p>
-              A Construtora Metrocasa é fruto da visão e experiência de
-              fundadores com uma longa trajetória no mercado da construção
-              civil.
+              A <strong>Construtora Metrocasa</strong> é fruto da visão e
+              experiência de fundadores com uma longa trajetória no mercado da
+              construção civil.
               <br />
               <br />
               Movidos pela realização dos sonhos dos nossos clientes e baseados
