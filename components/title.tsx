@@ -18,7 +18,7 @@ interface IProps {
 
 export const Title = ({ children, title, subtitle, className }: IProps) => {
   return (
-    <div className="w-full max-w-[1216px] mx-auto md:py-14 flex flex-col gap-4">
+    <div className="w-full max-w-[1216px] mx-auto md:py-10 flex flex-col gap-4">
       <div className={cn("flex gap-2 text-main-red items-center", className)}>
         <MoveRight strokeWidth={1} className="w-14" />
         <h5 className={cn("text-lg font-bold", className)}>{subtitle}</h5>

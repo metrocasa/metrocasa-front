@@ -28,7 +28,11 @@ export default async function Home() {
       <AboutUs />
       {/* <LancamentoSection /> */}
       <Zonas />
-      <FormSection title="Aqui na Metrocasa, você realiza o sonho do seu apartamento próprio com descontos incríveis e as melhores condições de pagamento." />
+      <FormSection
+        title="Você esta a um passo de conquistar o seu imóvel"
+        subtitle="
+Empreendimentos de médio a alto padrão com descontos incríveis, parcelas que cabem no seu bolso e as melhores condições de pagamento!"
+      />
       <Testmonials />
       {/* <FaqSection /> */}
 

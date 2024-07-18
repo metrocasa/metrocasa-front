@@ -9,7 +9,7 @@ import { Title } from "../title";
 export const AboutUs = () => {
   return (
     <section className="w-full py-10 px-[15px]">
-      <div className="w-full max-w-[1216px] mx-auto flex flex-col justify-center md:flex-row gap-2 md:gap-14">
+      <div className="w-full max-w-[1216px] mx-auto flex flex-col justify-center md:flex-row gap-2 md:gap-4">
         {/* LEFT */}
         <div className="w-full flex flex-col justify-center gap-8">
           {/* IMAGE */}
@@ -25,11 +25,11 @@ export const AboutUs = () => {
         </div>
 
         {/* RIGHT*/}
-        <div className="w-full flex flex-col items-center justify-center gap-5">
+        <div className="w-full flex flex-col items-center justify-center">
           <Title
             title="Conheça a Metrocasa"
             subtitle="Quem Somos?"
-            className="w-full"
+            className="w-full !p-0 !m-0"
           />
           {/* CONTENT */}
           <div className="flex flex-col gap-5 ">
