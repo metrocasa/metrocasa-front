@@ -30,7 +30,7 @@ import { zonas } from "@/constants";
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   phone: z.string().regex(/^\d{2}\s\d{5}\-\d{4}$/),
-  email: z.string().min(2).max(50),
+  email: z.string().max(50).optional(),
   rendaMensal: z.string().min(2).max(50),
   regiaoDeInteresse: z.string().min(2).max(50),
 });
@@ -210,72 +210,73 @@ export const MainForm = ({
           />
         )}
 
-        {/* Renda Mensal */}
-        {rendaMensal && (
-          <FormField
-            control={form.control}
-            name="rendaMensal"
-            render={({ field }) => (
-              <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Renda Mensal</FormLabel>}
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione..." />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="Abaixo de 2 Mil">
-                      Abaixo de 2 Mil
-                    </SelectItem>
-                    <SelectItem value="De 2 a 4 Mil">De 2 a 4 Mil</SelectItem>
-                    <SelectItem value="De 4 a 6 Mil">De 4 a 6 Mil</SelectItem>
-                    <SelectItem value="De 6 a 8 Mil">De 6 a 8 Mil</SelectItem>
-                    <SelectItem value="Acima de 8 Mil">
-                      Acima de 8 Mil
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
-                {errorMessage && <FormMessage />}
-              </FormItem>
-            )}
-          />
-        )}
-
-        {/* Região de Interesse */}
-        {regiaoDeInteresse && (
-          <FormField
-            control={form.control}
-            name="regiaoDeInteresse"
-            render={({ field }) => (
-              <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Região de Interesse</FormLabel>}
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Selecione..." />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {zonas.map((zona, i) => (
-                      <SelectItem key={i} value={zona.zone}>
-                        {zona.zone}
+        <div className="flex gap-4 items-center w-full">
+          {/* Renda Mensal */}
+          {rendaMensal && (
+            <FormField
+              control={form.control}
+              name="rendaMensal"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  {label && <FormLabel>Renda Mensal</FormLabel>}
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione..." />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="Abaixo de 2 Mil">
+                        Abaixo de 2 Mil
                       </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {errorMessage && <FormMessage />}
-              </FormItem>
-            )}
-          />
-        )}
+                      <SelectItem value="De 2 a 4 Mil">De 2 a 4 Mil</SelectItem>
+                      <SelectItem value="De 4 a 6 Mil">De 4 a 6 Mil</SelectItem>
+                      <SelectItem value="De 6 a 8 Mil">De 6 a 8 Mil</SelectItem>
+                      <SelectItem value="Acima de 8 Mil">
+                        Acima de 8 Mil
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {errorMessage && <FormMessage />}
+                </FormItem>
+              )}
+            />
+          )}
 
+          {/* Região de Interesse */}
+          {regiaoDeInteresse && (
+            <FormField
+              control={form.control}
+              name="regiaoDeInteresse"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  {label && <FormLabel>Região de Interesse</FormLabel>}
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione..." />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {zonas.map((zona, i) => (
+                        <SelectItem key={i} value={zona.zone}>
+                          {zona.zone}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {errorMessage && <FormMessage />}
+                </FormItem>
+              )}
+            />
+          )}
+        </div>
         <Button type="submit" variant={variant} className="self-end">
           Enviar
         </Button>

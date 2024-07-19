@@ -18,11 +18,11 @@ export const FormSection = ({ title, subtitle }: IProps) => {
           <h2 className="text-3xl md:text-4xl w-full font-bold text-center md:text-left mb-5">
             {title}
           </h2>
-          <span className="text-main-red text-lg md:text-3xl font-medium text-center md:text-start max-w-[70%]">
+          <span className="text-lg font-medium text-center md:text-start max-w-[70%]">
             {subtitle}
           </span>
         </div>
-        <MainForm className="flex-col" variant={"primary"} />
+        <MainForm className="flex-col" variant={"primary"} email={false} />
       </div>
     </section>
   );
