@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import Image from 'next/image';
+import Image from "next/image";
 
-import { SwiperSlide, Swiper, useSwiper } from 'swiper/react';
-import { Pagination, Autoplay, EffectFade, Navigation } from 'swiper/modules';
+import { SwiperSlide, Swiper, useSwiper } from "swiper/react";
+import { Pagination, Autoplay, EffectFade, Navigation } from "swiper/modules";
 
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 
 // LIGHTBOX
 import Lightbox, {
@@ -13,19 +13,19 @@ import Lightbox, {
   SlideshowRef,
   ThumbnailsRef,
   ZoomRef,
-} from 'yet-another-react-lightbox';
-import Slideshow from 'yet-another-react-lightbox/plugins/slideshow';
-import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails';
-import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen';
-import Zoom from 'yet-another-react-lightbox/plugins/zoom';
-import 'yet-another-react-lightbox/plugins/thumbnails.css';
-import 'yet-another-react-lightbox/styles.css';
+} from "yet-another-react-lightbox";
+import Slideshow from "yet-another-react-lightbox/plugins/slideshow";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import "yet-another-react-lightbox/styles.css";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react';
-import { Imovel } from '@/types/global';
+import "swiper/css";
+import "swiper/css/navigation";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
+import { Imovel } from "@/types/global";
 
 export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
   const swiper = useSwiper();
@@ -37,13 +37,13 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
 
   const [openLightBox, setOpenLightBox] = React.useState(false);
   const allImages = imovel.attributes.main_gallery.data.map(
-    (img) => img.attributes.url,
+    (img) => img.attributes.url
   );
   const allImagesMapped = allImages.map((url) => ({
     src: `${url}`,
   }));
 
-  const isMobile = useMediaQuery({ query: '(max-width: 424px)' });
+  const isMobile = useMediaQuery({ query: "(max-width: 424px)" });
 
   return (
     <section className="w-full px-[15px] md:px-0">
@@ -54,13 +54,13 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          effect={isMobile ? 'fade' : ''}
+          effect={isMobile ? "fade" : ""}
           pagination={{
             clickable: true,
           }}
           navigation={{
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
           }}
           breakpoints={{
             300: {
@@ -70,13 +70,13 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
               slidesPerView: 1,
             },
             800: {
-              slidesPerView: 2,
+              slidesPerView: 3,
             },
             1024: {
-              slidesPerView: 3,
+              slidesPerView: 5,
             },
             1400: {
-              slidesPerView: 3,
+              slidesPerView: 5,
             },
           }}
           modules={[Autoplay, Pagination, EffectFade, Navigation]}
@@ -87,7 +87,7 @@ export const MainGallery = ({ imovel }: { imovel: Imovel }) => {
 
           {imovel.attributes.main_gallery.data.map((image, i) => (
             <SwiperSlide key={i} className="w-[600px] h-[700px]">
-              <div className="w-[600px] h-[500px]">
+              <div className="w-[350px] h-[400px]">
                 <Image
                   onClick={() => setOpenLightBox(true)}
                   src={`${image.attributes.url}`}

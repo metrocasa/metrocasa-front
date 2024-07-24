@@ -5,11 +5,11 @@ import React from "react";
 
 export const MainContent = ({ imovel }: { imovel: Imovel }) => {
   return (
-    <section className="w-full px-[15px] md:px-0 md:pt-24 pt-10">
+    <section className="w-full px-[15px] md:px-0 md:pt-24 pt-10 bg-[#f7f7f7]">
       <div className="w-full max-w-[1216px] mx-auto">
         <div className="flex flex-col md:flex-row gap-10">
           {/* LEFT */}
-          <div className="md:w-[65%]">
+          <div className="md:w-[65%] ">
             {imovel.attributes.neighborhoods ? (
               <h2 className="text-3xl font-semibold text-center md:text-left ">
                 Uma oportunidade para todos que sempre desejaram morar no(a){" "}
@@ -33,7 +33,7 @@ export const MainContent = ({ imovel }: { imovel: Imovel }) => {
           {/* RIGHT */}
           <div className="md:w-[35%] flex flex-col h-full relative">
             {/* VISITE O DECORADO */}
-            <div className="md:self-end md:-mt-36 bg-white p-8 rounded-lg flex flex-col gap-4 shadow-md">
+            <div className="md:self-end md:-mt-36 bg-white p-8 rounded-lg flex flex-col gap-4 shadow-xl transition hover:shadow-2xl">
               <h4 className="text-center text-2xl font-bold text-main-red">
                 Precisa de mais informações?
               </h4>
