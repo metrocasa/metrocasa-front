@@ -140,7 +140,7 @@ export const EmpreendimentoList = () => {
           {/* RENDER DA PAGINA EMPREENDIMENTOS */}
           {path.startsWith("/empreendimentos") && (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mb-6">
                 {(search ? searchImoveis?.data : imoveisList)?.map(
                   (imovel: Imovel, i: number) => (
                     <Link

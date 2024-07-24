@@ -62,7 +62,7 @@ export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
       <Image
         src={`${data.attributes.fachada.data.attributes.url}`}
         alt={`Fachada - ${data.attributes.title}`}
-        className={`w-full h-[495px] object-cover transform transition-transform duration-300 ease-in-out hover:scale-110 ${
+        className={`w-full h-[495px] object-cover transform transition-all duration-300 ease-in-out hover:brightness-75 hover:scale-110 ${
           path === "/empreendimentos" ? "" : "rounded-lg"
         }`}
         width={900}

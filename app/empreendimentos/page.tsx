@@ -9,6 +9,7 @@ import { Footer } from "@/components/globals/Footer";
 
 import { EtapaSection } from "@/components/page-components/etapa-section/etapa-section";
 import { FormSection } from "@/components/page-components/form-section";
+import { Title } from "@/components/title";
 
 const EmpreendimentosPage = async () => {
   return (
@@ -25,6 +26,19 @@ const EmpreendimentosPage = async () => {
           </div>
         </HeroSection>
 
+        <div className="p-4">
+          <Title
+            subtitle="Conheça nossos empreendimentos"
+            title="O primeiro passo para seu Apê!"
+          >
+            <p className="max-w-[80%]">
+              Nossos condomínios são localizados em excelentes bairros da
+              cidade, próximos a comodidades e meios de transporte público,
+              proporcionando conveniência e praticidade. Tudo isso com preço
+              baixo e financiamento pelo programa Minha Casa Minha Vida.
+            </p>
+          </Title>
+        </div>
         <Suspense>
           <EmpreendimentoList />
         </Suspense>
