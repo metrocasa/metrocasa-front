@@ -1,14 +1,14 @@
-import { MainForm } from '@/components/forms/main';
-import { Footer } from '@/components/globals/Footer';
-import { Header } from '@/components/globals/Header';
-import { HeroSection } from '@/components/page-components/hero-section';
-import { contatoInfo } from '@/constants';
+import { MainForm } from "@/components/forms/main";
+import { Footer } from "@/components/globals/Footer";
+import { Header } from "@/components/globals/Header";
+import { HeroSection } from "@/components/page-components/hero-section";
+import { contatoInfo } from "@/constants";
 
 export default function ContatoPage() {
   return (
     <>
       <Header />
-      <HeroSection title={'Entre Contato'} />
+      <HeroSection title={"Entre Contato"} />
       <div className="w-full max-w-[1216px] px-[15px] md:mx-auto py-24 flex flex-col md:flex-row justify-between md:items-center gap-14">
         {/* LEFT */}
         <div className="flex flex-col gap-6 md:max-w-[50%]">
@@ -26,7 +26,7 @@ export default function ContatoPage() {
         </div>
 
         {/* RIGHT */}
-        <MainForm className="flex-col md:w-[500px]" variant={'primary'} />
+        {/* <MainForm className="flex-col md:w-[500px]" variant={'primary'} /> */}
       </div>
 
       {/* MAPS */}
@@ -35,7 +35,7 @@ export default function ContatoPage() {
         width="100%"
         height="750"
         style={{ border: 0 }}
-        loading={'lazy'}
+        loading={"lazy"}
       />
       <Footer />
     </>

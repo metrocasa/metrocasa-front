@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import React, { Suspense, useEffect, useState } from 'react';
-import { List } from './_components/list';
-import { MetaProvider, useMetaContext } from '@/contexts/meta-context';
+import React, { Suspense, useEffect, useState } from "react";
+import { List } from "./_components/list";
+import { MetaProvider, useMetaContext } from "@/contexts/meta-context";
 import {
   DownloadIcon,
   Laptop2Icon,
   Loader2Icon,
   SmartphoneIcon,
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
+} from "@/components/ui/accordion";
 // import { useMateriais } from '@/contexts/materiais-context';
-import Link from 'next/link';
-import Image from 'next/image';
-import { Imovel } from '@/types/global';
-import { useImoveis, useMateriais } from '@/utils/queries';
-import { Loading } from '@/components/loading';
-import { is } from '@react-three/fiber/dist/declarations/src/core/utils';
+import Link from "next/link";
+import Image from "next/image";
+import { Imovel } from "@/types/global";
+import { useImoveis, useMateriais } from "@/utils/queries";
+import { Loading } from "@/components/loading";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 const Materiais = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
@@ -51,7 +51,7 @@ const Materiais = () => {
   }, [imoveis.data?.data]);
 
   const handleShowMore = () => {
-    setCurrentPageSize(currentPageSize + 8);
+    setCurrentPageSize(currentPageSize + 10);
   };
 
   if (imoveisQuantity.isLoading && imoveis.isLoading && meta && materiais)
@@ -76,12 +76,12 @@ const Materiais = () => {
               size="lg"
               className={
                 imoveis.isFetching
-                  ? 'bg-main-red/30 pointer-events-none cursor-not-allowed'
-                  : 'bg-main-red'
+                  ? "bg-main-red/30 pointer-events-none cursor-not-allowed"
+                  : "bg-main-red"
               }
             >
               {!imoveis.isFetching ? (
-                'MOSTRAR MAIS'
+                "MOSTRAR MAIS"
               ) : (
                 <Loader2Icon className="animate-spin text-white w-6 h-6" />
               )}

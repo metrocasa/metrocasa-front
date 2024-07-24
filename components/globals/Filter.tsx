@@ -37,7 +37,13 @@ const formSchema = z.object({
   zone: z.string(),
 });
 
-export const Filter = ({ styles }: { styles?: string }) => {
+export const Filter = ({
+  styles,
+  label = true,
+}: {
+  styles?: string;
+  label?: boolean;
+}) => {
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -63,7 +69,7 @@ export const Filter = ({ styles }: { styles?: string }) => {
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className={cn(
-          "flex flex-col md:flex-row items-center justify-center mx-auto gap-4 md:gap-8 bg-white  py-6 px-[45px] md:px-0",
+          "flex flex-col  md:flex-row items-center justify-center mx-auto gap-4 md:gap-8 px-[45px] md:px-0",
           styles
         )}
       >
@@ -133,11 +139,11 @@ export const Filter = ({ styles }: { styles?: string }) => {
           control={form.control}
           name="search"
           render={({ field }) => (
-            <FormItem className="w-full md:w-[300px]">
-              <FormLabel>Pesquisar</FormLabel>
+            <FormItem className="w-full md:w-[300px] active:border-white active:border">
+              {label && <FormLabel>Pesquisar</FormLabel>}
               <FormControl>
                 <Input
-                  placeholder="Butantã, Real parque, Butantã..."
+                  placeholder="Butantã, Real Parque..."
                   {...field}
                   className="md:pr-14 md:w-full"
                   type="search"
@@ -149,7 +155,11 @@ export const Filter = ({ styles }: { styles?: string }) => {
           )}
         />
 
-        <Button type="submit" variant="primary" className="self-end px-8">
+        <Button
+          type="submit"
+          variant="primary"
+          className="self-center md:self-end px-8"
+        >
           Pesquisar
         </Button>
       </form>

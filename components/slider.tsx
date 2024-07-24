@@ -9,7 +9,7 @@ import axios from "axios";
 import Image from "next/image";
 
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
-import { useBanners } from "@/utils/queries";
+
 import { Loading } from "./loading";
 import { useMediaQuery } from "usehooks-ts";
 import { useFeiraoPopup } from "@/stores/feirao-store";
@@ -54,7 +54,7 @@ export const Slider = () => {
     };
 
     fetchBanners();
-  }, []);
+  }, [BASE_URL]);
 
   if (banners.length === 0) return <Loading />;
 
@@ -64,7 +64,7 @@ export const Slider = () => {
         spaceBetween={50}
         slidesPerView={1}
         autoplay={{ delay: 5500 }}
-        effect={"fade"}
+        // effect={"fade"}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
       >
@@ -90,47 +90,3 @@ export const Slider = () => {
     </>
   );
 };
-
-// <Swiper
-//   spaceBetween={30}
-//   slidesPerView={1}
-//   navigation={true}
-//   effect={"fade"}
-//   speed={1500}
-//   autoplay={{ delay: 2500 }}
-//   pagination={{
-//     clickable: false,
-//   }}
-//   loop={true}
-//   modules={[Navigation, Pagination, Autoplay, EffectFade]}
-//   className="MainSwiper"
-//   breakpoints={{
-//     // Quando a largura da tela for menor que 640px, use a imagem mobile
-//     640: {
-//       slidesPerView: 1,
-//       spaceBetween: 10,
-//     },
-//     // Caso contrário, use a imagem desktop
-//     1024: {
-//       slidesPerView: 1,
-//       spaceBetween: 30,
-//     },
-//   }}
-// >
-//   {banners?.map((banner) => (
-//     <SwiperSlide key={banner.id}>
-//       <Image
-//         src={
-//           // Verifica se é mobile ou desktop e usa a imagem correspondente
-//           isTablet
-//             ? `${banner?.attributes?.mobile_image?.data.attributes?.url}`
-//             : `${banner?.attributes?.desktop_image?.data.attributes?.url}`
-//         }
-//         alt={banner.attributes.banner_title}
-//         width={1920}
-//         height={100}
-//         className="w-full"
-//       />
-//     </SwiperSlide>
-//   ))}
-// </Swiper>

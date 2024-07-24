@@ -57,7 +57,7 @@ export const EmpreendimentoList = () => {
 
   // Show more imoveis
   const handleShowMore = () => {
-    setCurrentPageSize(currentPageSize + 8);
+    setCurrentPageSize(currentPageSize + 10);
   };
 
   if (imoveis.isLoading && imoveis.isLoading && meta) return <Loading />;
@@ -140,7 +140,7 @@ export const EmpreendimentoList = () => {
           {/* RENDER DA PAGINA EMPREENDIMENTOS */}
           {path.startsWith("/empreendimentos") && (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1 mb-6">
                 {(search ? searchImoveis?.data : imoveisList)?.map(
                   (imovel: Imovel, i: number) => (
                     <Link
@@ -188,7 +188,7 @@ export const EmpreendimentoList = () => {
           )}
         </>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6 max-w-[1350px] mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 mb-6 max-w-[1350px] mx-auto py-10">
           {[1, 2, 3, 4].map((item, i) => (
             <div key={i} className="">
               <div className="flex flex-col space-y-3">
