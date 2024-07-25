@@ -12,7 +12,10 @@ const TabsSection = ({ imovel }: { imovel: Imovel }) => {
   const [selectedTab, setSelectedTab] = useState(0);
 
   return (
-    <section className="w-full px-[15px] md:px-0 py-24 bg-[#121212]">
+    <section
+      className="w-full px-[15px] md:px-0 py-24 bg-[#121212]"
+      id="images"
+    >
       <div className="w-full">
         <Tabs className="w-full flex flex-col ">
           <TabList className="w-full max-w-[1216px] mx-auto flex gap-14 items-center justify-center  rounded-lg  pb-8">

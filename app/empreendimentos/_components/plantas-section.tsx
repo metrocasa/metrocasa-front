@@ -75,7 +75,7 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
   if (!allImages) return null;
 
   return (
-    <section className="w-full px-[15px] md:px-0 pb-14">
+    <section className="w-full px-[15px] md:px-0 pb-14" id="plantas">
       <div className="w-full">
         <Title subtitle="Veja mais" title="Plantas" />
         <div className="w-full max-w-[1216px] mx-auto">

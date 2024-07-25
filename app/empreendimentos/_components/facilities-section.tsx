@@ -1,5 +1,5 @@
-import { Title } from '@/components/title';
-import { Imovel } from '@/types/global';
+import { Title } from "@/components/title";
+import { Imovel } from "@/types/global";
 import {
   DumbbellIcon,
   WavesIcon,
@@ -27,7 +27,7 @@ import {
   CakeIcon,
   JoystickIcon,
   MedalIcon,
-} from 'lucide-react';
+} from "lucide-react";
 
 interface FacilitiesSectionProps {
   imovel: Imovel;
@@ -38,48 +38,48 @@ const facilitiesIcons: { [key: string]: React.ComponentType | null } = {
   bicicletário: BikeIcon,
   brinquedoteca: BabyIcon,
   churrasqueira: BeefIcon,
-  'churrasqueira-com-pergolado': BeefIcon,
+  "churrasqueira-com-pergolado": BeefIcon,
   coworking: BriefcaseIcon,
-  'delivery-space': PackageIcon,
+  "delivery-space": PackageIcon,
   ducha: ShowerHeadIcon,
-  'espaço-com-espelho-dagua': StarIcon,
-  'espaço-cross-training': DumbbellIcon,
-  'espaço-gourmet': WineIcon,
-  'espaço-kids': BabyIcon,
-  'espaço-leitura': BookIcon,
-  'espaço-multiuso': StarIcon,
-  'espaço-pet-care': DogIcon,
-  'espaço-sport-bar': BeerIcon,
-  'espaço-zen': LeafIcon,
-  'fitness-externo': DumbbellIcon,
-  'hall-de-acesso': KeyIcon,
-  'hall-social': ConciergeBellIcon,
+  "espaço-com-espelho-dagua": StarIcon,
+  "espaço-cross-training": DumbbellIcon,
+  "espaço-gourmet": WineIcon,
+  "espaço-kids": BabyIcon,
+  "espaço-leitura": BookIcon,
+  "espaço-multiuso": StarIcon,
+  "espaço-pet-care": DogIcon,
+  "espaço-sport-bar": BeerIcon,
+  "espaço-zen": LeafIcon,
+  "fitness-externo": DumbbellIcon,
+  "hall-de-acesso": KeyIcon,
+  "hall-social": ConciergeBellIcon,
   lavanderia: WashingMachineIcon,
   living: LeafIcon,
   lobby: StarIcon,
   lounge: StarIcon,
   market: StoreIcon,
   paisagismo: null,
-  'patinete-place': StarIcon,
-  'pet-place': DogIcon,
+  "patinete-place": StarIcon,
+  "pet-place": DogIcon,
   piscina: WavesIcon,
   playground: PuzzleIcon,
   portaria: KeyIcon,
-  'portária-com-clausura': KeyIcon,
-  'praça-da-fogueira': FlameIcon,
-  'praça-de-convivência': UsersIcon,
-  'praça-de-leitura': BookIcon,
-  'quadra-poliesportiva': null,
-  'quadra-recreativa': PuzzleIcon,
+  "portária-com-clausura": KeyIcon,
+  "praça-da-fogueira": FlameIcon,
+  "praça-de-convivência": UsersIcon,
+  "praça-de-leitura": BookIcon,
+  "quadra-poliesportiva": null,
+  "quadra-recreativa": PuzzleIcon,
   redário: LeafIcon,
-  'sala-de-estudos': BookIcon,
-  'salão-de-festas': CakeIcon,
-  'salão-de-jogos': JoystickIcon,
+  "sala-de-estudos": BookIcon,
+  "salão-de-festas": CakeIcon,
+  "salão-de-jogos": JoystickIcon,
   sauna: FlameIcon,
-  'sky-lounge': StarIcon,
+  "sky-lounge": StarIcon,
   solário: SunIcon,
-  'spa-sauna': LeafIcon,
-  'sport-play': MedalIcon,
+  "spa-sauna": LeafIcon,
+  "sport-play": MedalIcon,
 };
 
 const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ imovel }) => {
@@ -88,11 +88,11 @@ const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ imovel }) => {
       facilitiesIcons[
         facility
           .toLowerCase()
-          .replace(' ', '-')
-          .replace('/', '')
-          .replace(' ', '-')
-          .replace('--', '-')
-          .replace(' ', '')
+          .replace(" ", "-")
+          .replace("/", "")
+          .replace(" ", "-")
+          .replace("--", "-")
+          .replace(" ", "")
       ];
 
     return {
@@ -102,7 +102,10 @@ const FacilitiesSection: React.FC<FacilitiesSectionProps> = ({ imovel }) => {
   });
 
   return (
-    <section className="w-full py-8 px-[15px] bg-main-red bg-no-repeat bg-cover">
+    <section
+      className="w-full py-8 px-[15px] bg-main-red bg-no-repeat bg-cover"
+      id="facilidades"
+    >
       <div className="w-full max-w-[1216px] mx-auto">
         <Title
           subtitle="Mais facilidades para você"

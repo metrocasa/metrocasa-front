@@ -1,15 +1,51 @@
 import { HeroForm } from "@/components/forms/hero";
+import { Button } from "@/components/ui/button";
 import { Imovel } from "@/types/global";
 import { MapIcon, MapPinnedIcon, TramFront } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export const MainContent = ({ imovel }: { imovel: Imovel }) => {
   return (
-    <section className="w-full px-[15px] md:px-0 md:pt-24 pt-10 bg-[#f7f7f7]">
+    <section className="w-full px-[15px] md:px-0  pt-4 bg-[#f7f7f7]">
       <div className="w-full max-w-[1216px] mx-auto">
         <div className="flex flex-col md:flex-row gap-10">
           {/* LEFT */}
-          <div className="md:w-[65%] ">
+          <div className="md:w-[65%]">
+            {/* NAVIGATION BUTTONS */}
+            <div className="w-full rounded-xl mb-10 flex justify-between">
+              <Button variant={"border-r"} className="w-full" asChild>
+                <Link
+                  href={`/empreendimentos/${imovel.attributes.title}/${imovel.id}/#images`}
+                >
+                  Imagens do Empreendimento
+                </Link>
+              </Button>
+
+              <Button variant={"border-r"} className="w-full" asChild>
+                <Link
+                  href={`/empreendimentos/${imovel.attributes.title}/${imovel.id}/#plantas`}
+                >
+                  Plantas
+                </Link>
+              </Button>
+
+              <Button variant={"border-r"} className="w-full" asChild>
+                <Link
+                  href={`/empreendimentos/${imovel.attributes.title}/${imovel.id}/#facilidades`}
+                >
+                  Facilidades
+                </Link>
+              </Button>
+
+              <Button variant={"border-r"} className="w-full" asChild>
+                <Link
+                  href={`/empreendimentos/${imovel.attributes.title}/${imovel.id}/#regiao`}
+                >
+                  Conheça a Região
+                </Link>
+              </Button>
+            </div>
             {imovel.attributes.neighborhoods ? (
               <h2 className="text-3xl font-semibold text-center md:text-left ">
                 Uma oportunidade para todos que sempre desejaram morar no(a){" "}
@@ -21,7 +57,6 @@ export const MainContent = ({ imovel }: { imovel: Imovel }) => {
                 <strong>{imovel.attributes.title}</strong>
               </h2>
             )}
-
             <div
               className="py-14 md:text-xl"
               dangerouslySetInnerHTML={{

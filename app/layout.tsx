@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
+    <html lang="pt-br" className="scroll-smooth">
       <CSPostHogProvider>
         <body className={inter.className + "px-[15px]"}>
           <MetaProvider>
