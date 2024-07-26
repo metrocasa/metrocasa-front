@@ -26,7 +26,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { regions } from "@/constants";
 import { cn } from "@/lib/utils";
 
@@ -45,6 +45,7 @@ export const Filter = ({
   label?: boolean;
 }) => {
   const router = useRouter();
+  const path = usePathname();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -155,13 +156,24 @@ export const Filter = ({
           )}
         />
 
-        <Button
-          type="submit"
-          variant="primary"
-          className="self-center md:self-end px-8"
-        >
-          Pesquisar
-        </Button>
+        {path.startsWith("/empreendimentos") ? (
+          <Button
+            type="submit"
+            variant="primary"
+            className="self-center md:self-end px-8"
+            onClick={() => router.push("/empreendimentos#list")}
+          >
+            Pesquisar
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            variant="primary"
+            className="self-center md:self-end px-8"
+          >
+            Pesquisar
+          </Button>
+        )}
       </form>
     </Form>
   );
