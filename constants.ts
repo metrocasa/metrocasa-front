@@ -192,7 +192,7 @@ export const testmonialVideos = [
 
 export const menusFooter = {
   empresa: [
-    { menu: "Sobre Nós", link: "/about" },
+    // { menu: "Sobre Nós", link: "/about" },
     { menu: "Entre em Contato", link: "/contato" },
     {
       menu: "Carreiras",

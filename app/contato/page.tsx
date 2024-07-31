@@ -26,7 +26,7 @@ export default function ContatoPage() {
         </div>
 
         {/* RIGHT */}
-        {/* <MainForm className="flex-col md:w-[500px]" variant={'primary'} /> */}
+        <MainForm className="flex-col md:w-[500px]" variant={"primary"} />
       </div>
 
       {/* MAPS */}

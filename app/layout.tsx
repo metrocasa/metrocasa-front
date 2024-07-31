@@ -13,6 +13,7 @@ import { Suspense } from "react";
 // React Query
 import Providers from "@/utils/Providers";
 import BackToTopButton from "@/components/to-top";
+import { WhatsAppIcon } from "@/components/WhatsAppIcon";
 
 const inter = Montserrat({ subsets: ["latin"] });
 
@@ -43,19 +44,7 @@ export default function RootLayout({
               <BackToTopButton />
 
               {/* Whatsapp Icon */}
-              <Link
-                href="https://api.whatsapp.com/send?phone=551132142300&text=Ol%C3%A1%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20empreendimentos!"
-                className="fixed right-7 bottom-7 z-40 animate-in"
-              >
-                <Image
-                  src={"/icons/whatsapp-color.svg"}
-                  alt="WhatsApp Metrocasa"
-                  width={60}
-                  height={60}
-                  className="drop-shadow-2xl drop-shadow-main-red"
-                  priority
-                />
-              </Link>
+              <WhatsAppIcon />
             </Suspense>
           </MetaProvider>
         </body>
