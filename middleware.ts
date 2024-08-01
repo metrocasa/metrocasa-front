@@ -12,6 +12,7 @@ const publicRoutes = [
   "/blog",
   "/fazer-simulacao",
   "/empreendimentos",
+  "/area-do-cliente",
   /^\/empreendimentos\/[^/]+(\/[^/]+)?$/,
   "/contato",
   "/dashboard/sign-in",

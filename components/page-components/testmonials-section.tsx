@@ -1,22 +1,24 @@
 "use client";
 
 import { testmonialVideos } from "@/constants";
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 import YouTube from "react-youtube";
 
 export const Testmonials = () => {
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
-  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
+  // const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" });
+  // const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
 
-  const opts = {
-    height: isTabletOrMobile ? (isMobile ? "190" : "230") : "300",
-    width: isTabletOrMobile ? (isMobile ? "360" : "230") : "545",
-    playerVars: {
-      autoplay: 0,
-    },
-  };
+  // const opts = {
+  //   height: isTabletOrMobile ? (isMobile ? "190" : "230") : "300",
+  //   width: isTabletOrMobile ? (isMobile ? "360" : "230") : "545",
+  //   playerVars: {
+  //     autoplay: 0,
+  //   },
+  // };
 
   return (
     <section className="w-full py-24">
@@ -31,9 +33,27 @@ export const Testmonials = () => {
         </p>
 
         <div className="flex gap-5 w-full flex-wrap items-center justify-center">
-          {testmonialVideos.map((video, i) => (
-            <YouTube key={i} videoId={video.id} opts={opts} />
-          ))}
+          <Link href={"https://www.youtube.com/watch?v=VlPAdTHAXp4"}>
+            <Image
+              src={"/thumbs/01.jpg"}
+              alt="Metrocasa"
+              width={500}
+              height={500}
+            />
+          </Link>
+
+          <Link
+            href={
+              "https://www.youtube.com/watch?v=yYMpUcbRNV0&ab_channel=ConstrutoraMetrocasa"
+            }
+          >
+            <Image
+              src={"/thumbs/02.jpg"}
+              alt="Metrocasa"
+              width={500}
+              height={500}
+            />
+          </Link>
         </div>
       </div>
     </section>

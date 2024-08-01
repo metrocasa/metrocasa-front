@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,11 +8,11 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import Link from 'next/link';
-import authActions from '@/actions/auth-actions';
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import authActions from "@/actions/auth-actions";
 
 const LoginPage = () => {
   return (
@@ -51,12 +51,12 @@ const LoginPage = () => {
             <Button className="w-full" type="submit">
               Login
             </Button>
-            <div className="mt-4 text-center text-sm">
+            {/* <div className="mt-4 text-center text-sm">
               Não tem uma conta?{' '}
               <Link href="/dashboard/sign-up" className="underline">
                 Cadastre-se
               </Link>
-            </div>
+            </div> */}
             {/* <div className="mt-4 text-center text-sm">
               <Link href="/dashboard/forgot-password" className="underline">
                 Esqueci minha senha 😭
