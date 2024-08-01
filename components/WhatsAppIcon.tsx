@@ -39,7 +39,7 @@ export const WhatsAppIcon = () => {
               <Button variant={"outline"}>Falar com um Consultor</Button>
             </Link>
             <Link href="https://api.whatsapp.com/send?phone=551150610022">
-              <Button variant={"outline"}>Falar com CAC</Button>
+              <Button variant={"primary"}>Central de Atendimento</Button>
             </Link>
           </PopoverContent>
         </Popover>
