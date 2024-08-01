@@ -186,8 +186,8 @@ export const faqQuestions = [
 export const testmonialVideos = [
   { id: "yYMpUcbRNV0" },
   { id: "VlPAdTHAXp4" },
-  { id: "nXcjW79qahs" },
-  { id: "RwHhOycz8_8" },
+  // { id: "nXcjW79qahs" },
+  // { id: "RwHhOycz8_8" },
 ];
 
 export const menusFooter = {
