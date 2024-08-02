@@ -8,7 +8,6 @@ import Link from "next/link";
 import { links } from "@/constants";
 import { Button } from "@/components/ui/button";
 import { Sidebar } from "../sidebar";
-import { PhoneIcon } from "lucide-react";
 import { useStore } from "zustand";
 import { useFeiraoPopup } from "@/stores/feirao-store";
 
@@ -34,8 +33,7 @@ export const Header = () => {
 
           <Link href={wppUrl}>
             <div className="hidden md:flex gap-2">
-              <PhoneIcon strokeWidth={1} className="text-main-red" />
-              <span>(11) 3214-2300</span>
+              <span className="font-bold">(11) 3214-2300</span>
             </div>
           </Link>
         </div>
