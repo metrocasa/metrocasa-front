@@ -10,9 +10,14 @@ export const Zonas = () => {
   return (
     <section className="w-full h-auto py-24 px-[15px] bg-[#121212]">
       <div className="w-full max-w-[1216px] mx-auto flex flex-col gap-5 items-center text-white">
-        <Title subtitle="" title="Onde você quer morar?" className="text-white">
-          Descubra as características únicas de cada área da cidade e encontre a
-          opção perfeita para o seu estilo de vida!
+        <Title
+          title="Onde você quer morar?"
+          className="text-white text-center md:text-start"
+        >
+          <p className="text-center md:text-start">
+            Descubra as características únicas de cada área da cidade e encontre
+            a opção perfeita para o seu estilo de vida!
+          </p>
         </Title>
 
         {/* SLIDER */}

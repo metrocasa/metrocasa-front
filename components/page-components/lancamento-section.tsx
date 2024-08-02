@@ -18,8 +18,8 @@ export const LancamentoSection = () => {
           <h1 className=" text-primary-dark text-2xl">
             Conheça o Metrocasa
             <br />
-            <span className="text-light text-main-red font-bold text-5xl">
-              Estação Giovanni Gronchi
+            <span className="text-light text-main-red font-bold text-4xl">
+              Giovanni Gronchi
             </span>
           </h1>
 

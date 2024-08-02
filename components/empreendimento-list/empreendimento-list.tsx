@@ -98,7 +98,7 @@ export const EmpreendimentoList = () => {
               </div>
 
               <Swiper
-                spaceBetween={isMobile ? 15 : 185}
+                spaceBetween={isMobile ? 15 : 100}
                 autoplay={{
                   delay: 3000,
                   disableOnInteraction: false,

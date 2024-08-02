@@ -12,7 +12,7 @@ const font = Be_Vietnam_Pro({
 interface IProps {
   children?: React.ReactNode;
   title: string;
-  subtitle: string;
+  subtitle?: string;
   className?: string;
 }
 
@@ -20,8 +20,12 @@ export const Title = ({ children, title, subtitle, className }: IProps) => {
   return (
     <div className="w-full max-w-[1216px] mx-auto md:py-10 flex flex-col gap-4">
       <div className={cn("flex gap-2 text-main-red items-center", className)}>
-        <MoveRight strokeWidth={1} className="w-14 -ml-3" />
-        <h5 className={cn("text-lg font-bold", className)}>{subtitle}</h5>
+        {subtitle && (
+          <>
+            <MoveRight strokeWidth={1} className="w-14 -ml-3" />
+            <h5 className={cn("text-lg font-bold", className)}>{subtitle}</h5>
+          </>
+        )}
       </div>
 
       <h2
