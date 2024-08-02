@@ -29,13 +29,13 @@ const EmpreendimentosPage = async () => {
         <div className="p-4">
           <Title
             subtitle="Conheça nossos empreendimentos"
-            title="O primeiro passo para seu Apê!"
+            title="O primeiro passo para o seu Apê!"
           >
             <p className="max-w-[80%]">
-              Nossos condomínios são localizados em excelentes bairros da
-              cidade, próximos a comodidades e meios de transporte público,
-              proporcionando conveniência e praticidade. Tudo isso com preço
-              baixo e financiamento pelo programa Minha Casa Minha Vida.
+              Nossos empreendimentos estão em excelentes bairros da cidade,
+              próximos a comodidades e meios de transporte público,
+              proporcionando conveniência e praticidade, com financiamento
+              direto ou pelo programa Minha Casa Minha Vida.
             </p>
           </Title>
         </div>

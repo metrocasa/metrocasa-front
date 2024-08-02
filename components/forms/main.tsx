@@ -146,9 +146,9 @@ export const MainForm = ({
             name="name"
             render={({ field }) => (
               <FormItem className="w-full md:w-auto">
-                {label && <FormLabel>Nome</FormLabel>}
+                {label && <FormLabel>Nome Completo</FormLabel>}
                 <FormControl>
-                  <Input placeholder="Maria dos Santos" {...field} />
+                  <Input placeholder="Digite seu nome" {...field} />
                 </FormControl>
 
                 {errorMessage && <FormMessage />}

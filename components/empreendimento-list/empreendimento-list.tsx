@@ -73,7 +73,7 @@ export const EmpreendimentoList = () => {
                 <div className="w-full max-w-[100%] mx-auto md:py-14 flex flex-col gap-4">
                   <div
                     className={
-                      "flex gap-2 text-main-red items-center justify-center"
+                      "flex gap-2 text-main-red items-center md:justify-start justify-center"
                     }
                   >
                     <MoveRight
@@ -83,8 +83,12 @@ export const EmpreendimentoList = () => {
                     <h5 className={"text-lg font-bold"}>De Leste a Oeste</h5>
                   </div>
 
-                  <h2 className={"text-4xl md:text-5xl font-bold text-center"}>
-                    Conheça seu novo apartamento
+                  <h2
+                    className={
+                      "text-3xl md:text-5xl font-bold text-center md:text-start"
+                    }
+                  >
+                    Apartamentos em todas as regiões da Cidade de São Paulo
                   </h2>
                 </div>
 

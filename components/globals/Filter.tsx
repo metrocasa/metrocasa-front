@@ -144,7 +144,7 @@ export const Filter = ({
               {label && <FormLabel>Pesquisar</FormLabel>}
               <FormControl>
                 <Input
-                  placeholder="Butantã, Real Parque..."
+                  placeholder="Busque por imóvel ou localização…"
                   {...field}
                   className="md:pr-14 md:w-full"
                   type="search"

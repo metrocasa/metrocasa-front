@@ -29,9 +29,9 @@ export default async function Home() {
       <LancamentoSection />
       <Zonas />
       <FormSection
-        title="Você esta a um passo de conquistar o seu imóvel"
-        subtitle="
-Empreendimentos com características de médio e alto padrão com descontos incríveis, parcelas que cabem no seu bolso e as melhores condições de pagamento!"
+        title="Pronto para dar o próximo passo? Agende sua visita agora e descubra o apartamento dos seus sonhos!
+        "
+        subtitle="Oportunidades únicas com parcelas acessíveis e condições de pagamento que facilitam a compra do seu imóvel."
       />
       <Testmonials />
       {/* <FaqSection /> */}
