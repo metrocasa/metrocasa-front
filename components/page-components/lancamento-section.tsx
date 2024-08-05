@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export const LancamentoSection = () => {
   return (
@@ -25,24 +26,20 @@ export const LancamentoSection = () => {
 
           <p>
             <strong>
-              Viver em Giovanni Gronchi é mais do que encontrar um lar, é
-              descobrir um estilo de vida repleto de cultura, lazer e culinária
-              memorável.
+              Faça deste empreendimento o seu próximo lar dos sonhos e realize o
+              desejo de conquistar seu novo apartamento com a Construtora
+              Metrocasa!
             </strong>
             <br />
             <br />
-            Venha fazer de Giovanni Gronchi o seu próximo endereço e deixe-se
-            envolver por essa atmosfera única.{" "}
-            <strong>
-              Conheça o empreendimento Metrocasa Estação Giovanni Gronchi!
-            </strong>{" "}
-            São unidades studios, 2 dormitórios, 1 dormitório com office e
-            cobertura duplex. Além de uma gama de comodidades como salão de
-            jogos, área de churrasco, espaço kids, academia, lavanderia e uma
-            infinidade de outras opções.
+            Conheça o empreendimento Metrocasa Estação Giovanni Gronchi.
+            <br /> São unidades studios, 2 dormitórios, 1 dormitório com office
+            e cobertura duplex. além de uma variedade de comodidades como área
+            de churrasco, espaço kids, academia, lavanderia e uma infinidade de
+            outras opções.
           </p>
           <Button variant="primary" className="self-start px-10">
-            Ver Mais
+            <Link href={"/empreendimentos/giovanni-gronchi/34"}>Ver Mais</Link>
           </Button>
         </div>
       </div>

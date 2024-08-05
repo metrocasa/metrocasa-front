@@ -68,7 +68,7 @@ export const EmpreendimentoList = () => {
         <>
           {/* RENDERIZAR NA PAGINA HOME */}
           {path === "/" && (
-            <section className="w-full pt-4 px-[15px] md:px-0 mb-6">
+            <section className="w-full pt-4 px-[15px] md:px-4 mb-6">
               <div className="w-full max-w-[1216px] mx-auto flex flex-col justify-center items-center md:flex-row gap-2 md:gap-14 py-8">
                 <div className="w-full max-w-[100%] mx-auto md:py-14 flex flex-col gap-4">
                   <div
@@ -98,7 +98,7 @@ export const EmpreendimentoList = () => {
               </div>
 
               <Swiper
-                spaceBetween={isMobile ? 15 : 100}
+                spaceBetween={isMobile ? 15 : 20}
                 autoplay={{
                   delay: 3000,
                   disableOnInteraction: false,

@@ -56,14 +56,14 @@ export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
       key={data.id}
       className={cn(
         "relative w-full overflow-hidden",
-        path === "/" && "min-w-[400px]"
+        path === "/" && "min-w-[20%] rounded-lg"
       )}
     >
       <Image
         src={`${data.attributes.fachada.data.attributes.url}`}
         alt={`Fachada - ${data.attributes.title}`}
         className={`w-full h-[495px] object-cover transform transition-all duration-300 ease-in-out hover:brightness-75 hover:scale-110 ${
-          path === "/empreendimentos" ? "" : "rounded-lg"
+          path === "/empreendimentos" ? "" : ""
         }`}
         width={900}
         height={900}
@@ -72,7 +72,7 @@ export const EmpreendimentoCard = ({ data }: { data: Imovel }) => {
 
       <div
         className={`absolute top-0 left-0 w-full h-full bg-gradient-bg ${
-          path === "/empreendimentos" ? "" : "rounded-lg"
+          path === "/empreendimentos" ? "" : ""
         }`}
         style={{ pointerEvents: "none" }}
       />
