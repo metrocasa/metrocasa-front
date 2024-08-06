@@ -34,7 +34,7 @@ export const MainContent = ({ imovel }: { imovel: Imovel }) => {
                 <Link
                   href={`/empreendimentos/${imovel.attributes.title}/${imovel.id}/#facilidades`}
                 >
-                  Facilidades
+                  Áreas Comuns
                 </Link>
               </Button>
 
