@@ -15,10 +15,10 @@ export const MapsSection = ({ imovel }: { imovel: Imovel }) => {
         loading={"lazy"}
       />
       <div className="w-full max-w-[1216px] mx-auto mb-20 px-[15px] md:px-0 pt-6">
-        <Title
+        {/* <Title
           subtitle={neighborhoods ?? "Saiba mais"}
           title="Conheça a região"
-        />
+        /> */}
 
         {/* <div
           dangerouslySetInnerHTML={{
