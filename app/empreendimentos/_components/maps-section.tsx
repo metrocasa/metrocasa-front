@@ -20,11 +20,11 @@ export const MapsSection = ({ imovel }: { imovel: Imovel }) => {
           title="Conheça a região"
         />
 
-        <div
+        {/* <div
           dangerouslySetInnerHTML={{
             __html: imovel.attributes.about_the_region,
           }}
-        />
+        /> */}
       </div>
     </section>
   );
