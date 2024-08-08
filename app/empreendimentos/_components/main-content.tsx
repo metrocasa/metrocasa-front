@@ -13,7 +13,7 @@ export const MainContent = ({ imovel }: { imovel: Imovel }) => {
           {/* LEFT */}
           <div className="md:w-[65%]">
             {/* NAVIGATION BUTTONS */}
-            <div className="w-full rounded-xl mb-10 flex justify-between">
+            <div className="w-full rounded-xl md:mb-10 justify-between flex flex-col md:flex md:flex-row">
               <Button variant={"border-r"} className="w-full" asChild>
                 <Link
                   href={`/empreendimentos/${imovel.attributes.title}/${imovel.id}/#images`}
@@ -48,7 +48,7 @@ export const MainContent = ({ imovel }: { imovel: Imovel }) => {
             </div>
 
             <div
-              className="py-14 md:text-xl"
+              className="py-14 md:text-xl text-center md:text-start"
               dangerouslySetInnerHTML={{
                 __html: imovel.attributes.description,
               }}

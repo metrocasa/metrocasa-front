@@ -76,7 +76,7 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
 
   return (
     <section className="w-full px-[15px] md:px-0 pb-14" id="plantas">
-      <div className="w-full">
+      <div className="w-full py-10">
         <Title subtitle="Veja mais" title="Plantas" />
         <div className="w-full max-w-[1216px] mx-auto">
           <div className="flex flex-wrap gap-4">
