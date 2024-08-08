@@ -36,7 +36,7 @@ export default function RootLayout({
       <GoogleTagManager gtmId={GTM_ID} />
 
       <CSPostHogProvider>
-        <body className={`${inter.className} px-[15px]`}>
+        <body className={`${inter.className}`}>
           <MetaProvider>
             <Suspense>
               <div>
