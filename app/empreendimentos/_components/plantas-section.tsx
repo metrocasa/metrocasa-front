@@ -68,7 +68,7 @@ export const Plantas = ({ imovel }: { imovel: Imovel }) => {
       case "penthouse":
         return "Penthouse";
       // default:
-      //   return title.replace(/_/g, " ");
+      //   return title.replace(/_/g, "");
     }
   };
 
