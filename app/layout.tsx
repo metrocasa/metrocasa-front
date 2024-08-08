@@ -10,6 +10,8 @@ import { CSPostHogProvider } from "./PosthogProvider";
 import PostHogPageView from "./PostHogPageView";
 import { Suspense } from "react";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 // React Query
 import Providers from "@/utils/Providers";
 import BackToTopButton from "@/components/to-top";
@@ -39,6 +41,9 @@ export default function RootLayout({
               <div>
                 <Providers>{children}</Providers>
               </div>
+
+              {/* Google Analytics */}
+              <GoogleAnalytics gaId="GTM-NV8SM9Z" />
 
               {/* Back to top button*/}
               <BackToTopButton />

@@ -16,10 +16,6 @@ export const contatoInfo = [
 
 export const links = [
   {
-    label: "Home",
-    href: "/",
-  },
-  {
     label: "Imóveis",
     href: "/empreendimentos",
   },
